@@ -5,44 +5,44 @@
 {% block title %}Apply for {{ internship.title }}{% endblock %}
 
 {% block content %}
-<div>
+<div class="apply-internship-container">
     <h1>Apply for {{ internship.title }}</h1>
     <p>Review and update your details below before submitting your application.</p>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="apply-internship-form">
         {% csrf_token %}
-        <div>
+        <div class="apply-internship-field apply-internship-full-name">
             <label for="full_name">Full Name</label>
             <input type="text" id="full_name" name="full_name" value="{{ profile.full_name }}" required>
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-email">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" value="{{ profile.email }}" required>
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-skills">
             <label for="skills">Skills</label>
             <textarea id="skills" name="skills" required>{{ profile.skills }}</textarea>
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-experience">
             <label for="experience">Experience</label>
             <textarea id="experience" name="experience">{{ profile.experience }}</textarea>
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-resume">
             <label for="resume">Resume</label>
             <input type="file" id="resume" name="resume">
             {% if profile.resume %}
                 <p>Current: <a href="{{ profile.resume.url }}" target="_blank">View Resume</a></p>
             {% endif %}
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-linkedin">
             <label for="linkedin">LinkedIn URL</label>
             <input type="url" id="linkedin" name="linkedin" value="{{ profile.linkedin }}">
         </div>
-        <div>
+        <div class="apply-internship-field apply-internship-projects">
             <label for="projects">Projects</label>
             <textarea id="projects" name="projects">{{ profile.projects }}</textarea>
         </div>
-        <div>
+        <div class="apply-internship-submit">
             <button type="submit">
                 Submit Application
             </button>

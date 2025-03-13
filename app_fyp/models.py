@@ -36,7 +36,8 @@ class InternshipApplication(models.Model):
         ('REJECTED', 'Rejected'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applications')
+    id = models.BigAutoField(primary_key=True)
+    user_id = models.BigIntegerField()  # Replace ForeignKey with a plain integer
     internship = models.ForeignKey(Internship, on_delete=models.CASCADE, related_name='applications')
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -49,10 +50,10 @@ class InternshipApplication(models.Model):
 
     class Meta:
         db_table = 'internship_applications'
-        unique_together = ('user', 'internship')
+        unique_together = ('user_id', 'internship')  # Update to user_id
         indexes = [
-            models.Index(fields=['user', 'status']),
+            models.Index(fields=['user_id', 'status']),
         ]
 
     def __str__(self):
-        return f"{self.user.username} - {self.internship.title}"
+        return f"Application for {self.internship.title} by user {self.user_id}"

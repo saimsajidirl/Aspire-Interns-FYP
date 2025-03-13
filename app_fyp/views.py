@@ -73,7 +73,7 @@ def apply_internship(request, internship_id):
     user = request.user
 
     # Check if user has already applied
-    if InternshipApplication.objects.filter(user=user, internship=internship).exists():
+    if InternshipApplication.objects.filter(user_id=user.id, internship=internship).exists():
         messages.warning(request, "You have already applied for this internship.")
         return redirect('app_fyp:internships')
 
@@ -110,7 +110,7 @@ def apply_internship(request, internship_id):
 
         # Create application
         InternshipApplication.objects.create(
-            user=user,
+            user_id=user.id,  # Use user.id instead of user
             internship=internship,
             full_name=full_name,
             email=email,

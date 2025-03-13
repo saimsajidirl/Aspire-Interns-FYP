@@ -1,232 +1,2651 @@
-{% extends 'base.html' %}
+/* ================= ASPIRE INTERNS MODERN CSS ================= */
+/* High-performance, 60FPS, ultra-responsive design */
 
-{% block title %}Aspire Interns{% endblock %}
+/* ================= BASE STYLES ================= */
+:root {
+  /* Color Palette */
+  --primary: #3a86ff;
+  --primary-light: #72a8ff;
+  --primary-dark: #0061ff;
+  --secondary: #8338ec;
+  --accent: #ff006e;
+  --success: #06d6a0;
+  --warning: #ffbe0b;
+  --danger: #ef476f;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
 
-{% block content %}
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-<section id="about" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6 md:px-16 text-center">
-        <h2 class="text-4xl font-bold mb-6 text-gray-800">About Aspire Interns</h2>
-        <p class="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
-            At Aspire Interns, our mission is to bridge the gap between education and industry by providing meaningful opportunities 
-            for students and young professionals to kickstart their careers. We are dedicated to nurturing talent, fostering innovation, 
-            and building a global community of aspiring leaders.
-        </p>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
-                <h3 class="text-xl font-semibold text-blue-600 mb-4">Our Mission</h3>
-                <p class="text-gray-600">
-                    Empower young professionals with the tools and experiences they need to excel in their chosen fields.
-                </p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
-                <h3 class="text-xl font-semibold text-green-600 mb-4">Our Vision</h3>
-                <p class="text-gray-600">
-                    To be the leading global platform for career development, offering equal opportunities for everyone.
-                </p>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
-                <h3 class="text-xl font-semibold text-purple-600 mb-4">Our Values</h3>
-                <p class="text-gray-600">
-                    Integrity, innovation, inclusivity, and commitment to excellence guide everything we do.
-                </p>
-            </div>
-        </div>
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
 
-    </div>
-</section>
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Animation Speeds */
+  --trans-fast: 150ms;
+  --trans-normal: 250ms;
+  --trans-slow: 400ms;
+
+  /* Z-index layers */
+  --z-negative: -1;
+  --z-base: 1;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+}
+
+/* Smooth Scrolling & Text Rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 248, 255, 0.3) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+/* Reset & Baseline */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--gray-800);
+  background-color: var(--light);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  will-change: transform, background-color;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+/* ================= LAYOUT & CONTAINERS ================= */
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  isolation: isolate;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 3rem;
+  }
+}
+
+/* ================= TYPOGRAPHY ================= */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75em;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  background: linear-gradient(
+    120deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--primary-light) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1.5rem;
+  text-shadow:
+    0 2px 10px rgba(58, 134, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  animation: gradientShift 8s infinite ease-in-out;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  position: relative;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.75rem;
+  width: 5rem;
+  height: 0.35rem;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 50%,
+    transparent 100%
+  );
+  border-radius: var(--radius-full);
+  transform-origin: left;
+  animation: expandWidth 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  box-shadow: 0 2px 15px rgba(58, 134, 255, 0.3);
+}
+
+h3 {
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+}
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--gray-700);
+  font-size: 1.1rem;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+}
+
+/* ================= NAVIGATION ================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(245, 250, 255, 0.92) 100%
+  );
+  backdrop-filter: blur(12px) saturate(200%);
+  -webkit-backdrop-filter: blur(12px) saturate(200%);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid rgba(58, 134, 255, 0.05);
+}
+
+nav.scrolled {
+  padding: 1rem 3rem;
+  box-shadow:
+    0 6px 25px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav img {
+  height: 5rem; /* Increased size */
+  width: 5rem;  /* Ensures the image remains a perfect circle */
+  border-radius: 50%; /* Makes it circular */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15); /* Slightly enhanced shadow */
+  padding: 0.3rem;
+  background: white;
+}
+
+nav img:hover {
+  transform: scale(1.1) rotate(3deg); /* Slightly more pronounced hover effect */
+  box-shadow: 0 5px 18px rgba(58, 134, 255, 0.25); /* Enhanced hover shadow */
+}
 
 
-{% endblock %}<!-- templates/apply_internship.html -->
-{% extends 'base.html' %}
-{% load static %}
+nav > div > div {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
-{% block title %}Apply for {{ internship.title }}{% endblock %}
+nav > div > div:hover {
+  color: var(--primary-dark);
+}
 
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-center mb-8">Apply for {{ internship.title }}</h1>
-    <p class="text-center text-gray-600 mb-8">Review and update your details below before submitting your application.</p>
+#mobile-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  align-items: center;
+  padding-right: 1rem;
+}
 
-    <form method="POST" enctype="multipart/form-data" class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-        {% csrf_token %}
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="full_name">Full Name</label>
-            <input type="text" id="full_name" name="full_name" value="{{ profile.full_name }}"
-                   class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500" required>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="email">Email</label>
-            <input type="email" id="email" name="email" value="{{ profile.email }}"
-                   class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500" required>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="skills">Skills</label>
-            <textarea id="skills" name="skills" class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500" required>{{ profile.skills }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="experience">Experience</label>
-            <textarea id="experience" name="experience" class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500">{{ profile.experience }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="resume">Resume</label>
-            <input type="file" id="resume" name="resume" class="w-full p-3 border rounded-lg">
-            {% if profile.resume %}
-                <p class="text-sm text-gray-500">Current: <a href="{{ profile.resume.url }}" target="_blank">View Resume</a></p>
-            {% endif %}
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="linkedin">LinkedIn URL</label>
-            <input type="url" id="linkedin" name="linkedin" value="{{ profile.linkedin }}"
-                   class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500">
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2" for="projects">Projects</label>
-            <textarea id="projects" name="projects" class="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500">{{ profile.projects }}</textarea>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition">
-                Submit{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Aspire Interns - {% endblock %}</title>
-    <link rel="icon" href="{% static 'images/Logo.jpg' %}" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    {% block extra_head %}{% endblock %}
-    <style>
-        .logo-hover {
-            transition: transform 0.3s;
+#mobile-menu li a {
+  text-decoration: none;
+  color: var(--gray-700);
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.5rem 0.25rem;
+}
+
+#mobile-menu li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 2px;
+}
+
+#mobile-menu li a:hover,
+#mobile-menu li a:focus {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+#mobile-menu li a:hover::after,
+#mobile-menu li a:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  box-shadow: 0 2px 10px rgba(58, 134, 255, 0.3);
+}
+
+#mobile-menu li button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 3px 15px rgba(58, 134, 255, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#mobile-menu li button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#mobile-menu li button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+#mobile-menu li span {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(
+    45deg,
+    var(--gray-200) 0%,
+    var(--gray-100) 100%
+  );
+  color: var(--gray-800);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#mobile-menu-btn {
+  display: none;
+  background: linear-gradient(
+    45deg,
+    var(--gray-100),
+    var(--gray-200)
+  );
+  border: none;
+  font-size: 1.25rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+#mobile-menu-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  #mobile-menu {
+    position: fixed;
+    top: 4.5rem;
+    right: -100%;
+    flex-direction: column;
+    width: 85%;
+    max-width: 320px;
+    height: calc(100vh - 4.5rem);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(245, 250, 255, 0.95) 100%
+    );
+    box-shadow:
+      -5px 0 25px rgba(0, 0, 0, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem 2rem;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+  }
+
+  #mobile-menu.show {
+    right: 0;
+  }
+
+  #mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes expandWidth {
+  from { transform: scaleX(0.2); opacity: 0.6; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+/* ================= HEADER ================= */
+header {
+  padding: 5rem 0 3rem;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.9) 100%
+  );
+  border-radius: var(--radius-xl);
+  margin: 2rem 0 4rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),
+              0 1px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(5px);
+  isolation: isolate;
+}
+
+/* Enhanced background decoration */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle at top right,
+    rgba(58, 134, 255, 0.15) 0%,
+    rgba(147, 197, 253, 0.1) 30%,
+    transparent 70%
+  );
+  z-index: var(--z-negative);
+  animation: pulse 8s infinite ease-in-out;
+}
+
+/* Circular Logo Styling */
+header .logo {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  box-shadow:
+    0 0 20px rgba(58, 134, 255, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+header .logo:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+header .logo::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: white;
+  z-index: 1;
+}
+
+/* Enhanced paragraph styling */
+header p {
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  color: var(--gray-700);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Container styling */
+header > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Form styling */
+header form {
+  display: flex;
+  width: 100%;
+  max-width: 650px;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Input styling */
+header input[type="text"] {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 1.1rem;
+  background: white;
+  transition: all var(--trans-fast) cubic-bezier(0.2, 0.8, 0.4, 1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+header input[type="text"]:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(58, 134, 255, 0.15);
+  transform: scale(1.02);
+}
+
+/* Button styling */
+header button {
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 15px rgba(58, 134, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+header button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+header button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+/* Select styling */
+header select {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+header select:focus {
+  box-shadow:
+    0 0 0 3px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  header {
+    padding: 3rem 0 2rem;
+    margin: 1rem 0 2rem;
+  }
+
+  header .logo {
+    width: 140px;
+    height: 140px;
+  }
+
+  header > div {
+    gap: 1.5rem;
+  }
+
+  header form {
+    flex-direction: column;
+    padding: 0.25rem;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+/* ================= STATS SECTION ================= */
+#stats {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  position: relative;
+
+}
+
+#stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+#stats > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#stats > div > div {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 250, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+  position: relative;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(58, 134, 255, 0.05);
+}
+
+#stats > div > div:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 40px rgba(58, 134, 255, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#stats h3 {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--primary-light) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(58, 134, 255, 0.2);
+  animation: gradientShift 6s infinite ease-in-out;
+}
+
+#stats p {
+  color: var(--gray-600);
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* ================= FEATURED INTERNSHIPS ================= */
+#featured {
+  margin: 5rem 0;
+  position: relative;
+  padding: 2rem 0;
+}
+
+#featured h2 {
+  text-align: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(240, 248, 255, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
+  border-radius: var(--radius-lg);
+  display: inline-block;
+  margin: 0 auto 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#internship-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#internship-list > div {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  height: 100%;
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  position: relative;
+  backdrop-filter: blur(3px);
+}
+
+#internship-list > div:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow:
+    0 12px 35px rgba(58, 134, 255, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(58, 134, 255, 0.15);
+}
+
+#internship-list > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#internship-list > div:hover::before {
+  opacity: 1;
+}
+
+#internship-list > div > div {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+#internship-list span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    45deg,
+    rgba(58, 134, 255, 0.15) 0%,
+    rgba(147, 197, 253, 0.1) 100%
+  );
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(58, 134, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+#internship-list span:hover {
+  transform: scale(1.05);
+}
+
+#internship-list h3 {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  color: var(--gray-900);
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#internship-list p {
+  margin-bottom: 1rem;
+  color: var(--gray-700);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#internship-list div > div:last-child {
+  margin-top: auto;
+  display: flex;
+  gap: 1.25rem;
+  padding-top: 2rem;
+}
+
+#internship-list a {
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 3px 15px rgba(58, 134, 255, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#internship-list a:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#internship-list a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+#internship-list button {
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(245, 250, 255, 0.9)
+  );
+  color: var(--primary);
+  border: 2px solid rgba(58, 134, 255, 0.3);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  flex: 1;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#internship-list button:hover {
+  background: rgba(58, 134, 255, 0.15);
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow:
+    0 4px 15px rgba(58, 134, 255, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#internship-list p:empty {
+  display: none;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* ================= CATEGORIES SECTION ================= */
+#categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin: 5rem 0;
+  position: relative;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#categories::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top center,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+#categories > div {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  height: 100%;
+  position: relative;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(58, 134, 255, 0.05);
+}
+
+#categories > div:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 40px rgba(58, 134, 255, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+  border-color: rgba(58, 134, 255, 0.15);
+}
+
+#categories > div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent)
+  );
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#categories > div:hover::after {
+  opacity: 1;
+}
+
+#categories > div > div {
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+#categories span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#categories span:hover {
+  transform: scale(1.05);
+}
+
+#categories > div:nth-child(1) span {
+  background: linear-gradient(
+    45deg,
+    rgba(6, 214, 160, 0.15),
+    rgba(6, 214, 160, 0.05)
+  );
+  color: var(--success);
+}
+
+#categories > div:nth-child(2) span {
+  background: linear-gradient(
+    45deg,
+    rgba(131, 56, 236, 0.15),
+    rgba(131, 56, 236, 0.05)
+  );
+  color: var(--secondary);
+}
+
+#categories > div:nth-child(3) span {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 110, 0.15),
+    rgba(255, 0, 110, 0.05)
+  );
+  color: var(--accent);
+}
+
+#categories h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#categories p {
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#categories ul {
+  list-style: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+
+#categories ul li {
+  margin-bottom: 0.75rem;
+  color: var(--gray-700);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+#categories ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+#categories a {
+  display: inline-block;
+  padding: 0.9rem 1.75rem;
+  background: linear-gradient(
+    45deg,
+    var(--gray-100) 0%,
+    var(--gray-50) 100%
+  );
+  color: var(--gray-800);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  margin-top: auto;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(58, 134, 255, 0.1);
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#categories > div:nth-child(1) a:hover {
+  background: linear-gradient(
+    45deg,
+    var(--success) 0%,
+    adjust-hue(var(--success), 20deg) 100%
+  );
+  color: blue;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(6, 214, 160, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  border-color: var(--success);
+}
+
+#categories > div:nth-child(2) a:hover {
+  background: linear-gradient(
+    45deg,
+    var(--secondary) 0%,
+    adjust-hue(var(--secondary), 20deg) 100%
+  );
+  color: blue;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(131, 56, 236, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  border-color: var(--secondary);
+}
+
+#categories > div:nth-child(3) a:hover {
+  background: linear-gradient(
+    45deg,
+    var(--accent) 0%,
+    adjust-hue(var(--accent), 20deg) 100%
+  );
+  color: blue;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(255, 0, 110, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+
+
+
+
+/* ================= TESTIMONIALS SECTION ================= */
+/* ================= TESTIMONIALS SECTION ================= */
+#testimonials {
+  margin: 5rem 0;
+  padding: 3rem 0;
+  position: relative;
+  text-align: center;
+
+}
+
+#testimonials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: var(--z-negative);
+}
+
+#testimonials > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#testimonials > div > div {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  text-align: left;
+  box-shadow: var(--shadow-md);
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  backdrop-filter: blur(3px);
+  will-change: transform, box-shadow;
+}
+
+#testimonials > div > div::before {
+  content: '"';
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  font-size: 8rem;
+  color: rgba(58, 134, 255, 0.08);
+  font-family: serif;
+  line-height: 1;
+  z-index: var(--z-negative);
+  transition: all var(--trans-normal) ease;
+}
+
+#testimonials > div > div:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(58, 134, 255, 0.15);
+}
+
+#testimonials > div > div:hover::before {
+  color: rgba(58, 134, 255, 0.15);
+}
+
+#testimonials > div > div p:first-of-type {
+  font-size: 1.1rem;
+  color: var(--gray-800);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: var(--z-base);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+  line-height: 1.6;
+}
+
+#testimonials h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  color: var(--gray-900);
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#testimonials > div > div p:last-of-type {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+/* ================= INTERNSHIP MODAL ================= */
+#internship-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#internship-modal.show {
+  display: flex;
+  animation: fadeIn var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#internship-modal > div {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 250, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  transform: translateY(20px);
+  animation: slideUp var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+#internship-modal > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  opacity: 0.8;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0.8; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#internship-modal > div > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 250, 255, 0.95) 100%
+  );
+}
+
+#internship-modal h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#internship-modal button {
+  background: linear-gradient(
+    45deg,
+    var(--gray-100) 0%,
+    var(--gray-200) 100%
+  );
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all var(--trans-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#internship-modal button:hover {
+  color: var(--gray-800);
+  background: var(--gray-200);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(80vh - 80px);
+  color: var(--gray-700);
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+
+/* ================= ANIMATIONS & EFFECTS (ENHANCED) ================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+/* Enhanced Utility Classes for Animations */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ================= UTILITY CLASSES (ENHANCED) ================= */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+.w-full { width: 100%; }
+.max-w-screen { max-width: 100vw; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+
+.m-0 { margin: 0; }
+.m-1 { margin: 0.25rem; }
+.m-2 { margin: 0.5rem; }
+.m-3 { margin: 0.75rem; }
+.m-4 { margin: 1rem; }
+
+.rounded {
+  border-radius: var(--radius-md);
+  transition: border-radius var(--trans-fast) ease;
+}
+.rounded-full { border-radius: var(--radius-full); }
+.shadow {
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--trans-normal) ease;
+}
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Enhanced Text Colors */
+.text-primary {
+  color: var(--primary);
+  text-shadow: 0 1px 2px rgba(58, 134, 255, 0.1);
+}
+.text-secondary {
+  color: var(--secondary);
+  text-shadow: 0 1px 2px rgba(131, 56, 236, 0.1);
+}
+.text-success {
+  color: var(--success);
+  text-shadow: 0 1px 2px rgba(6, 214, 160, 0.1);
+}
+.text-danger {
+  color: var(--danger);
+  text-shadow: 0 1px 2px rgba(239, 71, 111, 0.1);
+}
+.text-gray { color: var(--gray-600); }
+
+/* Enhanced Background Colors */
+.bg-primary {
+  background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+.bg-secondary {
+  background: linear-gradient(45deg, var(--secondary), adjust-hue(var(--secondary), 20deg));
+  color: white;
+}
+.bg-success {
+  background: linear-gradient(45deg, var(--success), adjust-hue(var(--success), 20deg));
+  color: white;
+}
+.bg-danger {
+  background: linear-gradient(45deg, var(--danger), adjust-hue(var(--danger), 20deg));
+  color: white;
+}
+.bg-light {
+  background: linear-gradient(180deg, var(--light), var(--gray-100));
+}
+
+/* ================= ACCESSIBILITY (ENHANCED) ================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-light);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+  transition: all var(--trans-fast) ease;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+/* ================= PERFORMANCE OPTIMIZATIONS (ENHANCED) ================= */
+@media (min-width: 1024px) {
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .will-change-shadow {
+    will-change: box-shadow;
+  }
+}
+
+/* Enhanced Lazy Loading Images */
+img.lazy {
+  opacity: 0;
+  transition: opacity var(--trans-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+  animation: fadeInUp var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  nav {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* ================= ABOUT SECTION (ENHANCED) ================= */
+#about {
+  margin: 6rem 0;
+  background: white;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 15px 40px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#about::before,
+#about::after {
+  content: none;
+}
+
+#about > div {
+  position: relative;
+  padding: 5rem 3rem;
+  text-align: center;
+  color: black;
+  z-index: var(--z-base + 1);
+  backdrop-filter: blur(2px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#about h3 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: black;
+  margin-bottom: 1.5rem;
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#about p {
+  font-size: 1.3rem;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  opacity: 0.95;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  line-height: 1.7;
+}
+
+#about > div > div {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#about a {
+  padding: 1rem 2rem;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(245, 250, 255, 0.9) 100%
+  );
+  color: var(--primary);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+  text-align: center;
+}
+
+#about a:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow:
+    0 8px 25px rgba(58, 134, 255, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  color: var(--primary-dark);
+}
+
+#about a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(58, 134, 255, 0.2),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+
+/* ================= CONTACT SECTION ================= */
+#contact {
+  margin: 5rem 0;
+  padding: 3rem 0;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 248, 255, 0.2) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top center,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: var(--z-negative);
+}
+
+#contact > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+#contact h2 {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  position: relative;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#contact h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -0.75rem;
+  width: 5rem;
+  height: 0.35rem;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 50%,
+    transparent 100%
+  );
+  border-radius: var(--radius-full);
+  transform: translateX(-50%);
+  animation: expandWidth 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  box-shadow: 0 2px 15px rgba(58, 134, 255, 0.3);
+}
+
+#contact > div > p {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  color: var(--gray-700);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Messages Styling */
+#contact > div > div:first-of-type {
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#contact > div > div:first-of-type > div {
+  background: linear-gradient(
+    45deg,
+    rgba(58, 134, 255, 0.1) 0%,
+    rgba(147, 197, 253, 0.05) 100%
+  );
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+  color: var(--gray-800);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(58, 134, 255, 0.1);
+  animation: fadeInUp var(--trans-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Contact Content Container */
+#contact > div > div:last-of-type {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+/* Contact Information */
+#contact > div > div:last-of-type > div:first-child {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+#contact > div > div:last-of-type > div:first-child:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 40px rgba(58, 134, 255, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#contact h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--gray-900) 0%,
+    var(--gray-800) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+#contact ul li {
+  margin-bottom: 1rem;
+  color: var(--gray-700);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#contact ul li span {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-right: 0.5rem;
+}
+
+#contact ul li a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all var(--trans-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+#contact ul li a:hover {
+  color: var(--primary-dark);
+  transform: translateX(2px);
+}
+
+#contact ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: var(--primary);
+  transition: width var(--trans-fast) ease;
+}
+
+#contact ul li a:hover::after {
+  width: 100%;
+}
+
+/* Social Media Links */
+#contact > div > div:last-of-type > div:first-child > div ul {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#contact > div > div:last-of-type > div:first-child > div ul li {
+  margin: 0;
+}
+
+#contact > div > div:last-of-type > div:first-child > div ul li a {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(
+    45deg,
+    var(--gray-100) 0%,
+    var(--gray-50) 100%
+  );
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#contact > div > div:last-of-type > div:first-child > div ul li a:hover {
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Form */
+#contact > div > div:last-of-type > div:last-child {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+#contact > div > div:last-of-type > div:last-child:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 40px rgba(58, 134, 255, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#contact form > div {
+  position: relative;
+}
+
+#contact label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-800);
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  background: white;
+  transition: all var(--trans-fast) cubic-bezier(0.2, 0.8, 0.4, 1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  color: var(--gray-700);
+}
+
+#contact textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(58, 134, 255, 0.15);
+  transform: scale(1.01);
+}
+
+#contact button {
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 4px 15px rgba(58, 134, 255, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  margin: 0 auto;
+}
+
+#contact button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 8px 25px rgba(58, 134, 255, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+#contact button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #about {
+    margin: 3rem 0;
+    padding: 3rem 1.5rem;
+  }
+
+  #about > div {
+    padding: 3rem 1.5rem;
+  }
+
+  #contact {
+    padding: 2rem 0;
+  }
+
+  #contact > div {
+    padding: 0 1rem;
+  }
+
+  #contact > div > div:last-of-type {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+@keyframes expandWidth {
+  from { transform: scaleX(0.2); opacity: 0.6; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= FILTERS SECTION ================= */
+#filters {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+  position: relative;
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+#filters form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Input and Select Styling */
+#filters input[type="text"],
+#filters select {
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(58, 134, 255, 0.1);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  background: white;
+  transition: all var(--trans-fast) cubic-bezier(0.2, 0.8, 0.4, 1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+#filters input[type="text"]:focus,
+#filters select:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(58, 134, 255, 0.15);
+  transform: scale(1.02);
+}
+
+/* Button Styling */
+#filters button {
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 15px rgba(58, 134, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#filters button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+#filters button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 2s infinite;
+}
+
+/* Responsive Layout for Smaller Screens */
+@media (max-width: 768px) {
+  #filters form {
+    grid-template-columns: 1fr;
+  }
+}
+/* Container Styling */
+#signupForm {
+  background: white;
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 15px 40px rgba(58, 134, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 3rem auto;
+  position: relative;
+  z-index: var(--z-base + 1);
+}
+
+/* Form Headings */
+#signupForm h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e90ff;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Input and Textarea Styling */
+#signupForm input,
+#signupForm textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: var(--radius-lg);
+  background: #f9f9f9;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Effect */
+#signupForm input:focus,
+#signupForm textarea:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(58, 134, 255, 0.4);
+  outline: none;
+}
+
+/* Label Styling */
+#signupForm label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Submit Button Styling */
+#signupForm button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+#signupForm button:hover {
+  background: linear-gradient(45deg, #1c86ee, #00a5e0);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(58, 134, 255, 0.3);
+}
+
+/* Message Display */
+#signupForm > div > div {
+  background: #ffefef;
+  color: #d9534f;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Links Styling */
+#signupForm a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+#signupForm a:hover {
+  color: #1c86ee;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #signupForm {
+    padding: 2rem;
+  }
+
+  #signupForm h2 {
+    font-size: 2rem;
+  }
+}
+/* Container Styling */
+#loginForm {
+  background: white;
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 15px 40px rgba(58, 134, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 3rem auto;
+  position: relative;
+  z-index: var(--z-base + 1);
+}
+
+/* Form Headings */
+#loginForm h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e90ff;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Input Styling */
+#loginForm input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: var(--radius-lg);
+  background: #f9f9f9;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Effect */
+#loginForm input:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(58, 134, 255, 0.4);
+  outline: none;
+}
+
+/* Label Styling */
+#loginForm label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Submit Button Styling */
+#loginForm button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+#loginForm button:hover {
+  background: linear-gradient(45deg, #1c86ee, #00a5e0);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(58, 134, 255, 0.3);
+}
+
+/* Error Messages Styling */
+#loginForm > div > div {
+  background: #ffefef;
+  color: #d9534f;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Links Styling */
+#loginForm a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+#loginForm a:hover {
+  color: #1c86ee;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #loginForm {
+    padding: 2rem;
+  }
+
+  #loginForm h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Placeholder Styling */
+#loginForm input::placeholder {
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+/* Disabled Button Styling */
+#loginForm button:disabled {
+  background: #a0cfff;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Focus Visible for Accessibility */
+#loginForm input:focus-visible,
+#loginForm button:focus-visible {
+  outline: 2px solid #1e90ff;
+  outline-offset: 2px;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: linear-gradient(
+    180deg,
+    rgba(240, 248, 255, 0.7) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  padding: 3rem 0;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(58, 134, 255, 0.1);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+}
+
+footer .footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+footer .footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+footer .footer-logo img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+footer .footer-logo img:hover {
+  transform: scale(1.1);
+}
+
+footer .footer-logo p {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+footer .footer-links h4,
+footer .footer-contact h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--gray-900);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+footer .footer-links ul,
+footer .footer-contact ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer .footer-links ul li,
+footer .footer-contact ul li {
+  margin-bottom: 0.75rem;
+}
+
+footer .footer-links ul li a,
+footer .footer-contact ul li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--gray-700);
+  font-weight: 500;
+  transition: color var(--trans-fast) ease;
+}
+
+footer .footer-links ul li a::after,
+footer .footer-contact ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+footer .footer-links ul li a:hover::after,
+footer .footer-contact ul li a:hover::after {
+  width: 100%;
+}
+
+footer .footer-links ul li a:hover,
+footer .footer-contact ul li a:hover {
+  color: var(--primary);
+}
+
+footer .social-icons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+footer .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: var(--radius-full);
+  background: var(--gray-200);
+  transition: all var(--trans-fast) ease, transform 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+footer .social-icons a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+footer .social-icons a:hover img {
+  transform: scale(1.2);
+}
+
+footer .social-icons a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+footer .social-icons a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+footer .social-icons a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+footer .footer-bottom {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+footer .footer-bottom p {
+  color: var(--gray-600);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  footer .footer-section {
+    margin-bottom: 1.5rem;
+  }
+
+  footer .social-icons {
+    justify-content: center;
+  }
+}
+function showDetails(internshipId) {
+    const modal = document.getElementById('internship-modal');
+    const title = document.getElementById('modal-title');
+    const content = document.getElementById('modal-content');
+
+    // Fetch internship details via AJAX
+    fetch(`/app_fyp/internship/${internshipId}/details/`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest', // Indicate this is an AJAX request
         }
-        .logo-hover:hover {
-            transform: scale(1.2);
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.json();
+    })
+    .then(data => {
+        // Populate modal with dynamic data
+        title.textContent = data.title;
+        content.innerHTML = `
+            <p><strong>Company:</strong> ${data.company}</p>
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Duration:</strong> ${data.duration}</p>
+            <p><strong>Stack:</strong> ${data.stack}</p>
+            <p><strong>Description:</strong> ${data.description}</p>
+            ${data.stipend ? `<p><strong>Stipend:</strong> ${data.stipend}</p>` : ''}
+        `;
+        modal.classList.remove('hidden');
+    })
+    .catch(error => {
+        console.error('Error fetching internship details:', error);
+        title.textContent = "Error";
+        content.innerHTML = "<p>Sorry, we couldn't load the internship details. Please try again later.</p>";
+        modal.classList.remove('hidden');
+    });
+}
 
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        .animate-on-load {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .animate-on-load.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .js-loaded .animate-on-load {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="antialiased text-gray-900">
-    <div class="container mx-auto px-4 py-4">
-        <nav class="flex justify-between items-center bg-gray-800 text-white p-4 rounded-xl shadow-md">
-            <div class="flex items-center space-x-2">
-                <img
-                    src="{% static 'images/Logo.jpg' %}"
-                    alt="Aspire Internships Logo"
-                    class="h-16 w-16 rounded-full cursor-pointer logo-hover">
-                <div class="text-2xl font-bold">
-                    Aspire Interns
-                </div>
-            </div>
-            <ul id="mobile-menu" class="hidden md:flex space-x-6 text-lg">
-                <li><a href="{% url 'app_fyp:index' %}" class="hover:text-blue-400">Home</a></li>
-                <li><a href="{% url 'app_fyp:internships' %}" class="hover:text-blue-400">Internships</a></li>
-                <li><a href="{% url 'app_fyp:about' %}" class="hover:text-blue-400">About</a></li>
-                <li><a href="{% url 'app_fyp:contact' %}" class="hover:text-blue-400">Contact</a></li>
-                {% if user.is_authenticated %}
-                    <li><span class="text-blue-400">{{ user.full_name }}</span></li>
-                    <li>
-                        <form action="{% url 'user_auth:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="hover:text-blue-400">Logout</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li><a href="{% url 'user_auth:login' %}" class="hover:text-blue-400">Login</a></li>
-                {% endif %}
-            </ul>
-            <button class="bg-blue-500 px-4 py-2 rounded-full hover:bg-blue-600 transition md:hidden" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
-                Menu
-            </button>
-        </nav>
-    </div>
-    {% if messages %}
-        <div class="container mx-auto px-4 py-2">
-            {% for message in messages %}
-                <div class="alert {{ message.tags }} p-4 rounded-lg bg-blue-100 text-blue-800 shadow">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    <footer id="contact" class="bg-gray-800 text-gray-300 py-12">
-        <div class="container mx-auto grid md:grid-cols-4 gap-8">
-            <div>
-                <h5 class="text-lg font-bold mb-4 text-white">About Us</h5>
-                <p>
-                    Aspire Internships is committed to providing career-transforming opportunities for young professionals worldwide.
-                </p>
-            </div>
-            <div>
-                <h5 class="text-lg font-bold mb-4 text-white">Quick Links</h5>
-                <ul>
-                    <li><a href="{% url 'app_fyp:index' %}" class="hover:text-blue-400">Home</a></li>
-                    <li><a href="{% url 'app_fyp:unpaid_internships' %}" class="hover:text-blue-400">Unpaid Internships</a></li>
-                    <li><a href="{% url 'app_fyp:paid_internships' %}" class="hover:text-blue-400">Paid Internships</a></li>
-                    <li><a href="{% url 'app_fyp:about' %}" class="hover:text-blue-400">About Us</a></li>
-                    <li><a href="{% url 'app_fyp:contact' %}" class="hover:text-blue-400">Contact Us</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-lg font-bold mb-4 text-white">Contact</h5>
-                <ul>
-                    <li>Email: <a href="mailto:info@aspireinternships.com" class="hover:text-blue-400">info@aspireinternships.com</a></li>
-                    <li>Phone: +923243992858</li>
-                    <li>Address: Bhawalpur, Punjab, Pakistan</li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-lg font-bold mb-4 text-white">Follow Us</h5>
-                <ul class="flex space-x-4">
-                    <li><a href="https://www.linkedin.com/in/muhammad-saim-sajid-744078266/" class="hover:text-blue-400">LinkedIn</a></li>
-                    <li><a href="https://github.com/saimsajidirl" class="hover:text-blue-400">Github</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-700 mt-8 pt-6 text-center">
-            <p>© 2024 Aspire Internships. All Rights Reserved.</p>
-        </div>
-    </footer>
-    <script>
-  document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+function closeModal() {
+    document.getElementById('internship-modal').classList.add('hidden');
+}
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
   const nav = document.getElementById('mobile-menu');
   const expanded = this.getAttribute('aria-expanded') === 'true';
   this.setAttribute('aria-expanded', !expanded);
@@ -267,15 +2686,6 @@ document.addEventListener('DOMContentLoaded', function() {
     aboutSection,
     ...testimonialItems
   ].filter(Boolean);
-
-  animateElements.forEach((el, index) => {
-    el.classList.add('animate-on-load');
-    el.style.animationDelay = `${index * 0.1}s`;
-  });
-
-  setTimeout(() => {
-    animateElements.forEach(el => el.classList.add('visible'));
-  }, 100);
 
   const buttons = document.querySelectorAll('button, .btn, a[class*="bg-"]');
 
@@ -364,832 +2774,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('js-loaded');
   });
 });
-    </script>
-    {% block extra_scripts %}{% endblock %}
 
-</body>
-</html>{% extends 'base.html' %}
-
-{% block title %}Aspire Interns{% endblock %}
-
-{% block content %}
-    <section id="contact" class="py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300">
-        <div class="container mx-auto px-6 md:px-16">
-            <h2 class="text-4xl font-bold text-center text-white mb-8">Get in Touch</h2>
-            <p class="text-lg text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                Have questions or want to learn more? We're here to help. Reach out to us anytime!
-            </p>
-
-            <!-- Display Django Messages -->
-            {% if messages %}
-                <div class="mb-6">
-                    {% for message in messages %}
-                        <div class="p-4 rounded {% if message.tags == 'success' %}bg-green-600{% else %}bg-red-600{% endif %} text-white">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Information -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-                    <ul class="space-y-4">
-                        <li>
-                            <i class="fas fa-envelope text-blue-500 mr-3"></i>
-                            <span>Email:</span> 
-                            <a href="mailto:info@aspireinternships.com" class="hover:text-blue-400">info@aspireinternships.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt text-green-500 mr-3"></i>
-                            <span>Phone:</span> 
-                            <a href="tel:+923243992858" class="hover:text-green-400">+923243992858</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt text-purple-500 mr-3"></i>
-                            <span>Address:</span>
-                            Islamia University of Bhawalpur, Punjab, Pakistan
-                        </li>
-                    </ul>
-                    <div class="mt-8">
-                        <ul class="flex space-x-6">
-                            <li>
-                                <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook text-xl"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin text-xl"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram text-xl"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <!-- Contact Form -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
-                    <form action="{% url 'app_fyp:contact' %}" method="POST" class="space-y-6">
-                        {% csrf_token %}
-                        <div>
-                            <label for="name" class="block text-sm text-gray-400 mb-2">Your Name</label>
-                            <input type="text" id="name" name="name" value="{{ request.POST.name|default:'' }}" required class="w-full px-4 py-2 rounded bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm text-gray-400 mb-2">Your Email</label>
-                            <input type="email" id="email" name="email" value="{{ request.POST.email|default:'' }}" required class="w-full px-4 py-2 rounded bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm text-gray-400 mb-2">Your Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ request.POST.message|default:'' }}</textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-{% endblock %}{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <!-- Header with Search -->
-    <header class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-4 hero-gradient">Aspire Interns</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transforming Potential into Professional Excellence
-        </p>
-        <div class="mt-8 max-w-2xl mx-auto">
-            <form method="GET" action="{% url 'app_fyp:index' %}" class="relative">
-                <input type="text" id="internship-search" name="q" value="{{ query }}"
-                       class="w-full p-4 rounded-full border-2 border-gray-300 focus:border-blue-500 focus:outline-none"
-                       placeholder="Search internships by title, company, or location...">
-                <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">
-                    Search
-                </button>
-            </form>
-            <!-- Filters -->
-            <form method="GET" action="{% url 'app_fyp:index' %}" class="flex justify-center space-x-4 mt-4 flex-wrap">
-                <select class="p-2 rounded-lg border" id="type-filter" name="type">
-                    <option value="">All Types</option>
-                    <option value="paid" {% if request.GET.type == 'paid' %}selected{% endif %}>Paid</option>
-                    <option value="unpaid" {% if request.GET.type == 'unpaid' %}selected{% endif %}>Unpaid</option>
-                    <option value="remote" {% if request.GET.type == 'remote' %}selected{% endif %}>Remote</option>
-                </select>
-                <select class="p-2 rounded-lg border" id="duration-filter" name="duration">
-                    <option value="">All Durations</option>
-                    <option value="1-3" {% if request.GET.duration == '1-3' %}selected{% endif %}>1-3 Months</option>
-                    <option value="3-6" {% if request.GET.duration == '3-6' %}selected{% endif %}>3-6 Months</option>
-                    <option value="6+" {% if request.GET.duration == '6+' %}selected{% endif %}>6+ Months</option>
-                </select>
-                <select class="p-2 rounded-lg border" id="location-filter" name="location">
-                    <option value="">All Locations</option>
-                    <option value="remote" {% if request.GET.location == 'remote' %}selected{% endif %}>Remote</option>
-                    <option value="onsite" {% if request.GET.location == 'onsite' %}selected{% endif %}>On-site</option>
-                </select>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Filter</button>
-            </form>
-        </div>
-    </header>
-
-    <!-- Stats Section -->
-    <section id="stats" class="stats-section mb-16">
-        <div class="stats-grid md:grid-cols-4">
-            <div class="stat-item">
-                <h3 class="stat-number stat-blue">{{ total_opportunities }}</h3>
-                <p class="stat-label">Total Opportunities</p>
-            </div>
-            <div class="stat-item">
-                <h3 class="stat-number stat-green">183</h3> <!-- Replace with dynamic data if available -->
-                <p class="stat-label">Active Interns</p>
-            </div>
-            <div class="stat-item">
-                <h3 class="stat-number stat-purple">{{ partner_companies }}</h3>
-                <p class="stat-label">Partner Companies</p>
-            </div>
-            <div class="stat-item">
-                <h3 class="stat-number stat-orange">87%</h3> <!-- Replace with dynamic data if available -->
-                <p class="stat-label">Success Rate</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Internships Section -->
-    <section id="featured" class="mb-16">
-        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
-            {% if query or request.GET.type or request.GET.duration or request.GET.location %}
-                Search Results
-            {% else %}
-                Featured Internships
-            {% endif %}
-        </h2>
-        <div class="grid md:grid-cols-3 gap-8" id="internship-list">
-            {% for internship in internships %}
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover internship-card mb-12">
-                    <div class="relative">
-                        <span class="absolute top-0 right-0
-                            {% if internship.internship_type|lower == 'paid' %}bg-green-500
-                            {% elif internship.internship_type|lower == 'unpaid' %}bg-orange-500
-                            {% elif internship.internship_type|lower == 'remote' %}bg-purple-500
-                            {% else %}bg-gray-500{% endif %}
-                            text-white px-3 py-1 text-sm internship-type-badge rounded-full mb-5">
-                            {{ internship.internship_type|title }}
-                        </span>
-                        <h3 class="text-2xl font-semibold mb-2 text-{{ internship.internship_type|lower }}-600">
-                            {{ internship.title }}
-                        </h3>
-                        <p class="text-gray-600 mb-2"><strong>Company:</strong> {{ internship.company }}</p>
-                        <p class="text-gray-600 mb-2"><strong>Location:</strong> {{ internship.location }}</p>
-                        <p class="text-gray-600 mb-2"><strong>Duration:</strong> {{ internship.duration }}</p>
-                        <p class="text-gray-600 mb-4">{{ internship.description|truncatewords:20 }}</p>
-                        <div class="flex justify-between items-center">
-                            {% if user.is_authenticated %}
-                                <a href="{% url 'app_fyp:apply_internship' internship.id %}"
-                                   class="bg-{{ internship.internship_type|lower }}-500 text-white px-6 py-2 rounded-none hover:bg-{{ internship.internship_type|lower }}-600 transition">
-                                    Apply Now
-                                </a>
-                            {% else %}
-                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:index' %}"
-                                   class="bg-gray-500 text-white px-6 py-2 rounded-none hover:bg-gray-600 transition">
-                                    Login to Apply
-                                </a>
-                            {% endif %}
-                            <button class="text-blue-600 hover:underline" onclick="showDetails({{ internship.id }})">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            {% empty %}
-                <p class="text-center text-gray-600">No internships available matching your criteria.</p>
-            {% endfor %}
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section id="categories" class="grid md:grid-cols-3 gap-8 mb-16">
-        <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-            <div class="relative">
-                <span class="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 text-sm internship-type-badge">
-                    Paid ({{ paid_count }})
-                </span>
-                <h2 class="text-2xl font-semibold mb-4 text-blue-600">Paid Internships</h2>
-                <p class="text-gray-600 mb-4">Competitive compensation for top talent.</p>
-                <ul class="space-y-2 text-sm text-gray-700 mb-6">
-                    <li>✓ Competitive Salary</li>
-                    <li>✓ Performance Bonuses</li>
-                    <li>✓ Professional Development</li>
-                </ul>
-                <a href="{% url 'app_fyp:paid_internships' %}" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">
-                    Apply Now
-                </a>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-            <div class="relative">
-                <span class="absolute top-0 right-0 bg-orange-500 text-white px-3 py-1 text-sm internship-type-badge">
-                    Unpaid ({{ unpaid_count }})
-                </span>
-                <h2 class="text-2xl font-semibold mb-4 text-green-600">Skill-Building Internships</h2>
-                <p class="text-gray-600 mb-4">Zero-cost learning opportunities.</p>
-                <ul class="space-y-2 text-sm text-gray-700 mb-6">
-                    <li>✓ Mentorship Programs</li>
-                    <li>✓ Certificate of Completion</li>
-                    <li>✓ Portfolio Enhancement</li>
-                </ul>
-                <a href="{% url 'app_fyp:unpaid_internships' %}" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
-                    Explore Opportunities
-                </a>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-            <div class="relative">
-                <span class="absolute top-0 right-0 bg-purple-500 text-white px-3 py-1 text-sm internship-type-badge">
-                    Remote ({{ remote_count }})
-                </span>
-                <h2 class="text-2xl font-semibold mb-4 text-purple-600">Remote Internships</h2>
-                <p class="text-gray-600 mb-4">Global opportunities from home.</p>
-                <ul class="space-y-2 text-sm text-gray-700 mb-6">
-                    <li>✓ Global Exposure</li>
-                    <li>✓ Flexible Schedules</li>
-                    <li>✓ Cross-Cultural Experience</li>
-                </ul>
-                <a href="{% url 'app_fyp:remote_internships' %}" class="bg-purple-500 text-white px-6 py-2 rounded-full hover:bg-purple-600 transition">
-                    Discover Remote Roles
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="mt-16 text-center">
-        <div class="bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-xl p-12">
-            <h3 class="text-3xl font-bold mb-4">Your Career Journey Starts Here</h3>
-            <p class="text-xl mb-8">Transform your potential into professional success with Aspire Interns</p>
-            <div class="flex justify-center space-x-4">
-                <a href="{% url 'app_fyp:paid_internships' %}" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
-                    Check Paid Internships
-                </a>
-                <a href="{% url 'app_fyp:unpaid_internships' %}" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
-                    Check Unpaid Internships
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="mt-16 text-center bg-gray-100 py-16">
-        <h2 class="text-3xl font-bold mb-8">What Our Interns Say</h2>
-        <div class="flex justify-center space-x-12">
-            <div class="bg-white p-8 rounded-xl shadow-lg max-w-sm text-center testimonial-card">
-                <p class="text-gray-600 mb-4">"Aspire Interns helped me gain invaluable experience..."</p>
-                <h3 class="text-lg font-semibold text-blue-600">Huzaifa Muddasir</h3>
-                <p class="text-sm text-gray-500">Marketing Intern, 2023</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg max-w-sm text-center testimonial-card">
-                <p class="text-gray-600 mb-4">"The mentorship I received was unparalleled..."</p>
-                <h3 class="text-lg font-semibold text-blue-600">Shoaib Hassan</h3>
-                <p class="text-sm text-gray-500">Software Engineering Intern, 2023</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg max-w-sm text-center testimonial-card">
-                <p class="text-gray-600 mb-4">"Being a remote intern was an amazing experience..."</p>
-                <h3 class="text-lg font-semibold text-blue-600">Iqra Umer</h3>
-                <p class="text-sm text-gray-500">Data Science Intern, 2023</p>
-            </div>
-        </div>
-    </section>
-</div>
-
-<!-- Internship Details Modal -->
-<div id="internship-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
-    <div class="bg-white rounded-xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-2xl font-bold" id="modal-title"></h3>
-            <button onclick="closeModal()" class="text-gray-600 hover:text-gray-800 text-2xl">×</button>
-        </div>
-        <div id="modal-content"></div>
-    </div>
-</div>
-
-<script>
-function showDetails(internshipId) {
-    const modal = document.getElementById('internship-modal');
-    const title = document.getElementById('modal-title');
-    const content = document.getElementById('modal-content');
-
-    // Fetch internship details via AJAX
-    fetch(`/app_fyp/internship/${internshipId}/details/`, {
-        method: 'GET',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest', // Indicate this is an AJAX request
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Populate modal with dynamic data
-        title.textContent = data.title;
-        content.innerHTML = `
-            <p><strong>Company:</strong> ${data.company}</p>
-            <p><strong>Location:</strong> ${data.location}</p>
-            <p><strong>Duration:</strong> ${data.duration}</p>
-            <p><strong>Stack:</strong> ${data.stack}</p>
-            <p><strong>Description:</strong> ${data.description}</p>
-            ${data.stipend ? `<p><strong>Stipend:</strong> ${data.stipend}</p>` : ''}
-        `;
-        modal.classList.remove('hidden');
-    })
-    .catch(error => {
-        console.error('Error fetching internship details:', error);
-        title.textContent = "Error";
-        content.innerHTML = "<p>Sorry, we couldn't load the internship details. Please try again later.</p>";
-        modal.classList.remove('hidden');
-    });
-}
-
-function closeModal() {
-    document.getElementById('internship-modal').classList.add('hidden');
-}
-</script>
-{% endblock %}{% extends 'base.html' %}
-
-{% block title %}Internships - Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <header class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-4 hero-gradient">Aspire Interns</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Your Gateway to Professional Growth
-        </p>
-    </header>
-
-    <section id="internships-overview" class="mt-16">
-        <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Explore Internship Opportunities</h2>
-        <p class="text-center mb-12 text-gray-600">Choose the path that suits you best and start building your career today.</p>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Paid Internships -->
-            <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                <h3 class="text-xl font-semibold text-blue-600 mb-4">Paid Internships</h3>
-                <p class="text-gray-700 mb-4">Earn while you learn with our paid internship opportunities.</p>
-                <p class="text-gray-600 mb-4"><strong>Available:</strong> {{ paid_count }}</p>
-                <a href="{% url 'app_fyp:paid_internships' %}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">View Paid Internships</a>
-            </div>
-
-            <!-- Unpaid Internships -->
-            <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                <h3 class="text-xl font-semibold text-blue-600 mb-4">Unpaid Internships</h3>
-                <p class="text-gray-700 mb-4">Gain valuable experience and skills through unpaid roles.</p>
-                <p class="text-gray-600 mb-4"><strong>Available:</strong> {{ unpaid_count }}</p>
-                <a href="{% url 'app_fyp:unpaid_internships' %}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">View Unpaid Internships</a>
-            </div>
-
-            <!-- Remote Internships -->
-            <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                <h3 class="text-xl font-semibold text-blue-600 mb-4">Remote Internships</h3>
-                <p class="text-gray-700 mb-4">Work from anywhere with our remote internship options.</p>
-                <p class="text-gray-600 mb-4"><strong>Available:</strong> {{ remote_count }}</p>
-                {% if remote_count > 0 %}
-                    <a href="{% url 'app_fyp:remote_internships' %}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">View Remote Internships</a>
-                {% else %}
-                    <a href="#" class="bg-gray-400 text-white px-4 py-2 rounded-full cursor-not-allowed">Coming Soon</a>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-</div>
-{% endblock %}{% extends 'base.html' %}
-
-{% block title %}Aspire Interns - Login{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-3xl font-bold text-center mb-6 text-blue-600">Log In to Your Account</h2>
-
-        <!-- Display Error Messages -->
-        {% if messages %}
-            <div class="mb-4">
-                {% for message in messages %}
-                    <div class="p-3 rounded {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        <form id="loginForm" action="{% url 'user_auth:login' %}" method="POST">
-            {% csrf_token %}
-            <!-- Email -->
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter your email"
-                    value="{{ request.POST.email|default:'' }}"
-                    required>
-            </div>
-            <!-- Password -->
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter your password"
-                    required>
-            </div>
-            <!-- Submit Button -->
-            <div class="mt-6">
-                <button 
-                    type="submit" 
-                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                    Log In
-                </button>
-            </div>
-        </form>
-        <p class="mt-4 text-center text-sm text-gray-600">
-            Don't have an account? 
-            <a href="{% url 'user_auth:signup' %}" class="text-blue-500 hover:text-blue-700">Sign Up</a>
-        </p>
-    </div>
-</div>
-
-{% endblock %}{% extends 'base.html' %}
-
-{% block title %}Paid Internships - Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <header class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-4 hero-gradient">Aspire Interns</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transforming Potential into Professional Excellence
-        </p>
-    </header>
-
-    <section id="internship-listings" class="mt-16">
-        <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Explore Exciting Paid Internships</h2>
-        <p class="text-center mb-12 text-gray-600">Kickstart your career with hands-on experience and learn from industry leaders.</p>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            {% for internship in internships %}
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                    <div class="flex items-center mb-4">
-                        <!-- Placeholder image; replace with dynamic logo if added to model -->
-                        <img src="https://via.placeholder.com/40" alt="{{ internship.company }} Logo" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-600 mb-1">{{ internship.title }}</h3>
-                            <p class="text-sm text-gray-500">{{ internship.company }}</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-2"><strong>Type:</strong> {{ internship.internship_type }}</p>
-                    <p class="text-gray-700 mb-2"><strong>Description:</strong> {{ internship.description|truncatewords:20 }}</p>
-                    <!-- Apply Link -->
-                    <a href="{% url 'app_fyp:apply_internship' internship.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">Apply Now</a>
-                </div>
-            {% empty %}
-                <p class="text-center text-gray-600 col-span-3">No paid internships available at the moment.</p>
-            {% endfor %}
-        </div>
-    </section>
-</div>
-{% endblock %}{% extends 'base.html' %}
-
-{% block title %}My Profile - Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <!-- Profile Header -->
-    <header class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-800 mb-2">My Profile</h1>
-        <p class="text-lg text-gray-600">Manage your account and track your internship applications.</p>
-    </header>
-
-    <!-- Profile Information -->
-    <section class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto mb-12">
-        <h2 class="text-2xl font-semibold text-blue-600 mb-6">Personal Information</h2>
-        {% if profile %}
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <p class="mt-1 text-lg text-gray-900">{{ profile.full_name }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Email</label>
-                    <p class="mt-1 text-lg text-gray-900">{{ profile.email }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Skills</label>
-                    <p class="mt-1 text-lg text-gray-900">{{ profile.skills|default:"Not specified" }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Experience</label>
-                    <p class="mt-1 text-lg text-gray-900">{{ profile.experience|default:"Not specified" }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">LinkedIn</label>
-                    <p class="mt-1 text-lg text-gray-900">
-                        {% if profile.linkedin %}
-                            <a href="{{ profile.linkedin }}" class="text-blue-500 hover:text-blue-700">{{ profile.linkedin }}</a>
-                        {% else %}
-                            Not specified
-                        {% endif %}
-                    </p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Joined</label>
-                    <p class="mt-1 text-lg text-gray-900">{{ user.date_joined|date:"F j, Y" }}</p>
-                </div>
-            </div>
-            <div class="mt-6">
-                <a href="{% url 'user_auth:edit_profile' %}" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">Edit Profile</a>
-            </div>
-        {% else %}
-            <p class="text-center text-gray-600">Profile not found. Please complete your profile.</p>
-        {% endif %}
-    </section>
-
-    <!-- Internship Applications -->
-    <section class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">My Internship Applications</h2>
-        {% if applications %}
-            <div class="grid md:grid-cols-2 gap-8">
-                {% for application in applications %}
-                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                        <h3 class="text-xl font-semibold text-blue-600 mb-2">{{ application.internship.title }}</h3>
-                        <p class="text-gray-600 mb-2"><strong>Company:</strong> {{ application.internship.company }}</p>
-                        <p class="text-gray-600 mb-2"><strong>Applied Date:</strong> {{ application.created_at|date:"F j, Y" }}</p>
-                        <p class="text-gray-600 mb-2"><strong>Status:</strong>
-                            <span class="{% if application.status == 'Submitted' %}text-yellow-600{% elif application.status == 'Approved' %}text-green-600{% else %}text-red-600{% endif %}">
-                                {{ application.status|title }}
-                            </span>
-                        </p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p class="text-center text-gray-600">You haven’t applied to any internships yet. 
-                <a href="{% url 'app_fyp:paid_internships' %}" class="text-blue-500 hover:text-blue-700">Explore opportunities</a>.
-            </p>
-        {% endif %}
-    </section>
-</div>
-{% endblock %}<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>{% extends 'base.html' %}
-
-{% block title %}Sign Up - Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-3xl font-bold text-center mb-6 text-blue-600">Create Your Account</h2>
-
-        <!-- Display Messages -->
-        {% if messages %}
-            <div class="mb-6">
-                {% for message in messages %}
-                    <div class="p-3 rounded {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        <form id="signupForm" action="{% url 'user_auth:signup' %}" method="POST" enctype="multipart/form-data" class="space-y-6">
-            {% csrf_token %}
-            <!-- Full Name -->
-            <div>
-                <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
-                <input
-                    type="text"
-                    id="fullName"
-                    name="full_name"
-                    value="{{ request.POST.full_name|default:'' }}"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter your full name"
-                    required>
-            </div>
-            <!-- Email -->
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value="{{ request.POST.email|default:'' }}"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter your email"
-                    required>
-            </div>
-            <!-- Password -->
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Create a password"
-                    required>
-            </div>
-            <!-- Confirm Password -->
-            <div>
-                <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirm_password"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Confirm your password"
-                    required>
-            </div>
-            <!-- Skills -->
-            <div>
-                <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
-                <textarea
-                    id="skills"
-                    name="skills"
-                    rows="3"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="List your skills (e.g., Python, React, Data Analysis)"
-                    required>{{ request.POST.skills|default:'' }}</textarea>
-            </div>
-            <!-- Experience -->
-            <div>
-                <label for="experience" class="block text-sm font-medium text-gray-700">Experience</label>
-                <textarea
-                    id="experience"
-                    name="experience"
-                    rows="3"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Describe your experience (e.g., projects, internships, volunteer work)">{{ request.POST.experience|default:'' }}</textarea>
-            </div>
-            <!-- Resume -->
-            <div>
-                <label for="resume" class="block text-sm font-medium text-gray-700">Resume</label>
-                <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf,.doc,.docx"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                <p class="text-xs text-gray-500 mt-1">Upload PDF, DOC, or DOCX (max 5MB)</p>
-            </div>
-            <!-- LinkedIn Link -->
-            <div>
-                <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
-                <input
-                    type="url"
-                    id="linkedin"
-                    name="linkedin"
-                    value="{{ request.POST.linkedin|default:'' }}"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="https://www.linkedin.com/in/your-profile">
-            </div>
-            <!-- Projects Link -->
-            <div>
-                <label for="projects" class="block text-sm font-medium text-gray-700">Projects Link (e.g., GitHub)</label>
-                <input
-                    type="url"
-                    id="projects"
-                    name="projects"
-                    value="{{ request.POST.projects|default:'' }}"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="https://github.com/your-projects">
-            </div>
-            <!-- Submit Button -->
-            <div class="mt-6">
-                <button
-                    type="submit"
-                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                    Sign Up
-                </button>
-            </div>
-        </form>
-        <p class="mt-4 text-center text-sm text-gray-600">
-            Already have an account?
-            <a href="{% url 'user_auth:login' %}" class="text-blue-500 hover:text-blue-700">Log In</a>
-        </p>
-    </div>
-</div>
-{% endblock %}{% extends 'base.html' %}
-
-{% block title %}Unpaid Internships - Aspire Interns{% endblock %}
-
-{% block content %}
-<div class="container mx-auto px-4 py-16">
-    <header class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-4 hero-gradient">Aspire Interns</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Empowering Futures Through Experience
-        </p>
-    </header>
-
-    <section id="internship-listings" class="mt-16">
-        <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Discover Valuable Unpaid Internships</h2>
-        <p class="text-center mb-12 text-gray-600">Gain hands-on experience and enhance your skills through impactful projects.</p>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            {% for internship in internships %}
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover hover:scale-105 transition-all duration-300 ease-in-out transform">
-                    <div class="flex items-center mb-4">
-                        <img src="https://via.placeholder.com/40" alt="{{ internship.company }} Logo" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-600 mb-1">{{ internship.title }}</h3>
-                            <p class="text-sm text-gray-500">{{ internship.company }}</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mb-2"><strong>Type:</strong> {{ internship.internship_type }}</p>
-                    <p class="text-gray-700 mb-4"><strong>Description:</strong> {{ internship.description|truncatewords:20 }}</p>
-                    <button onclick="openModal('{{ internship.id }}')" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">Apply Now</button>
-                </div>
-            {% empty %}
-                <p class="text-center text-gray-600 col-span-3">No unpaid internships available at the moment.</p>
-            {% endfor %}
-        </div>
-    </section>
-</div>
-
-<!-- Modal Popup -->
-<div id="applyModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg p-8 max-w-lg w-full max-h-[80vh] overflow-y-auto">
-        <h2 class="text-2xl font-bold text-blue-600 mb-6">Apply for Internship</h2>
-        {% if messages %}
-            <div class="mb-4">
-                {% for message in messages %}
-                    <div class="p-3 rounded {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <form id="applyForm" action="" method="POST" enctype="multipart/form-data" class="space-y-4">
-            {% csrf_token %}
-            <input type="hidden" name="internship_id" id="internship_id">
-            <div>
-                <label for="full_name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                <input type="text" id="full_name" name="full_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required>
-            </div>
-            <div>
-                <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
-                <textarea id="skills" name="skills" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg" required></textarea>
-            </div>
-            <div>
-                <label for="experience" class="block text-sm font-medium text-gray-700">Experience</label>
-                <textarea id="experience" name="experience" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg"></textarea>
-            </div>
-            <div>
-                <label for="resume" class="block text-sm font-medium text-gray-700">Resume</label>
-                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg">
-            </div>
-            <div>
-                <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
-                <input type="url" id="linkedin" name="linkedin" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg">
-            </div>
-            <div>
-                <label for="projects" class="block text-sm font-medium text-gray-700">Projects Link</label>
-                <input type="url" id="projects" name="projects" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg">
-            </div>
-            <div class="flex justify-end space-x-4">
-                <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded-full hover:bg-gray-600">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Submit Application</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script>
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -1246,341 +2831,867 @@ function openModal(internshipId) {
 function closeModal() {
     document.getElementById('applyModal').classList.add('hidden');
 }
-</script>
-{% endblock %}/* styles.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-    --primary-blue: #2563EB;
-    --primary-green: #16A34A;
-    --primary-purple: #9333EA;
-    --primary-orange: #F97316;
-    --gradient-hero: linear-gradient(135deg, #2563EB 0%, #16A34A 50%, #9333EA 100%);
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 6px 20px rgba(37, 99, 235, 0.15);
-    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-    --border-radius: 1rem;
-}
-
-/* Reset and Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: #F9FAFB;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    position: relative;
-}
-
-/* Container */
-.container {
-    @apply mx-auto px-4 max-w-7xl;
-}
-
-/* Header and Hero */
-.hero-gradient {
-    background: var(--gradient-hero);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 3.5rem;
-    font-weight: 800;
-    transform: translateZ(0);
-    transition: transform 0.3s var(--transition-ease);
-}
-
-header {
-    transform: translateY(0);
-    opacity: 1;
-    transition: opacity 0.3s var(--transition-ease);
-}
-
-/* Navigation */
-nav {
-    background: rgba(31, 41, 55, 0.95);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    transform: translateZ(0);
-}
-
-.logo-hover {
-    transition: transform 0.3s var(--transition-ease);
-}
-
-.logo-hover:hover {
-    transform: scale(1.1);
-}
-
-/* Stats Section */
-.stats-section {
-    background: linear-gradient(120deg, #EFF6FF, #F0FDF4);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-}
-
-.stats-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.stat-item {
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease);
-}
-
-.stat-item:hover {
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    transition: transform 0.3s var(--transition-ease);
-}
-
-.stat-item:hover .stat-number {
-    transform: scale(1.05);
-}
-
-/* Internship Cards */
-.internship-card {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease), box-shadow 0.3s var(--transition-ease);
-}
-
-.internship-card.visible {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.internship-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.internship-type-badge {
-    transition: transform 0.3s var(--transition-ease);
-}
-
-.internship-card:hover .internship-type-badge {
-    transform: scale(1.05);
-}
-
-/* Categories Section */
-#categories > div {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease), box-shadow 0.3s var(--transition-ease);
-}
-
-#categories > div.visible {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-#categories > div:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-/* About Section */
-#about {
-    background: var(--gradient-hero);
-    border-radius: var(--border-radius);
-    transform: scale(1);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease);
-}
-
-#about:hover {
-    transform: scale(1.02);
-}
-
-/* Testimonials */
-.testimonial-card {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease), box-shadow 0.3s var(--transition-ease);
-}
-
-.testimonial-card.visible {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-/* Modal */
-#internship-modal {
-    transition: opacity 0.3s var(--transition-ease);
-}
-
-#internship-modal:not(.hidden) {
-    opacity: 1;
-}
-
-#internship-modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#internship-modal .bg-white {
-    transform: scale(1);
-    opacity: 1;
-    transition: transform 0.3s var(--transition-ease), opacity 0.3s var(--transition-ease);
-    box-shadow: var(--shadow-soft);
-}
-
-#internship-modal:not(.hidden) .bg-white {
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* Ripple Effect */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(0);
-    animation: ripple-animation 0.6s var(--transition-ease);
-    pointer-events: none;
-}
-
-/* Animations */
-@keyframes ripple-animation {
-    to { transform: scale(4); opacity: 0; }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-gradient {
-        font-size: 2.5rem;
+  function showDetails(internshipId) {
+        fetch(`/internship/${internshipId}/details/`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const modalContent = `
+                <h3>${data.title}</h3>
+                <p><strong>Company:</strong> ${data.company}</p>
+                <p><strong>Location:</strong> ${data.location}</p>
+                <p><strong>Duration:</strong> ${data.duration}</p>
+                <p><strong>Stack:</strong> ${data.stack}</p>
+                <p><strong>Description:</strong> ${data.description}</p>
+                <p><strong>Stipend:</strong> ${data.stipend || 'N/A'}</p>
+            `;
+            document.getElementById('modal-content').innerHTML = modalContent;
+            document.getElementById('details-modal').style.display = 'block';
+        });
     }
 
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    function closeModal() {
+        document.getElementById('details-modal').style.display = 'none';
+    }{% extends 'base.html' %}
 
-    .stat-number {
-        font-size: 2rem;
-    }
+{% block title %}Aspire Interns{% endblock %}
 
-    nav {
-        padding: 1rem;
-    }
-}
+{% block content %}
 
-@media (max-width: 480px) {
-    .hero-gradient {
-        font-size: 2rem;
-    }
+<section id="about">
+    <div>
+        <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+            About Aspire Interns
+        </h2>
 
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
+        <p>
+            Aspire Interns is a vibrant platform designed to connect aspiring interns with top companies, creating a bridge between education and industry. Our goal is to offer fresh graduates and students diverse internship opportunities that provide real-world experience and foster career growth. With an intuitive interface and an efficient application process, Aspire Interns empowers young professionals to find internships that align with their skills and ambitions.
+        </p>
+        <div>
+            <div>
+                <h3>Our Mission</h3>
+                <p>
+                    To empower young professionals by providing access to diverse internships that enhance skills, build professional networks, and launch successful careers.
+                </p>
+            </div>
+            <div>
+                <h3>Our Vision</h3>
+                <p>
+                    To be the world's leading platform for career development, offering equal opportunities for every aspiring intern regardless of background or experience level.
+                </p>
+            </div>
+            <div>
+                <h3>Our Values</h3>
+                <p>
+                    <strong>Inclusivity:</strong> Welcoming all individuals, regardless of experience, and providing equal access to career opportunities.<br>
+                    <strong>Innovation:</strong> Continuously enhancing our platform to provide the best user experience and matching algorithms.<br>
+                    <strong>Integrity:</strong> Maintaining transparency, fairness, and ethical standards in every interaction.<br>
+                    <strong>Empowerment:</strong> Providing the tools and resources needed for personal and professional growth.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    .stat-number {
-        font-size: 1.8rem;
-    }
-}
+{% endblock %}<!-- templates/apply_internship.html -->
+{% extends 'base.html' %}
+{% load static %}
 
-/* Performance Optimizations */
-.js-loaded .animate-on-load {
-    opacity: 1;
-    transform: translateY(0);
-}
+{% block title %}Apply for {{ internship.title }}{% endblock %}
 
-@layer utilities {
-    .gpu-accelerated {
-        transform: translateZ(0);
-    }
+{% block content %}
+<div>
+    <h1>Apply for {{ internship.title }}</h1>
+    <p>Review and update your details below before submitting your application.</p>
 
-    .no-reflow {
-        contain: layout paint;
-    }
-}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" value="{{ profile.full_name }}" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ profile.email }}" required>
+        </div>
+        <div>
+            <label for="skills">Skills</label>
+            <textarea id="skills" name="skills" required>{{ profile.skills }}</textarea>
+        </div>
+        <div>
+            <label for="experience">Experience</label>
+            <textarea id="experience" name="experience">{{ profile.experience }}</textarea>
+        </div>
+        <div>
+            <label for="resume">Resume</label>
+            <input type="file" id="resume" name="resume">
+            {% if profile.resume %}
+                <p>Current: <a href="{{ profile.resume.url }}" target="_blank">View Resume</a></p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="linkedin">LinkedIn URL</label>
+            <input type="url" id="linkedin" name="linkedin" value="{{ profile.linkedin }}">
+        </div>
+        <div>
+            <label for="projects">Projects</label>
+            <textarea id="projects" name="projects">{{ profile.projects }}</textarea>
+        </div>
+        <div>
+            <button type="submit">
+                Submit Application
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aspire Interns - {% endblock %}</title>
+    <link rel="icon" href="{% static 'images/Logo.jpg' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div>
+        <nav>
+            <div>
+                <img src="{% static 'images/Logo.jpg' %}" alt="Aspire Internships Logo">
+                <div>
+                    Aspire Interns
+                </div>
+            </div>
+            <ul id="mobile-menu">
+                <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+                <li><a href="{% url 'app_fyp:about' %}">About</a></li>
+                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><span>{{ user.username }}</span></li>
+                    <li>
+                        <form action="{% url 'user_auth:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'user_auth:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+            <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
+                Menu
+            </button>
+        </nav>
+    </div>
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+  <div class="footer-content">
 
-/* Stats Section */
-.stats-section {
-    background: linear-gradient(to right, #EFF6FF, #F0FDF4);
-    padding: 32px;
-    border-radius: 25%;
-}
+    <!-- Left: Logo & Description -->
+    <div class="footer-section footer-logo">
+      <img src="{% static 'images/Logo.jpg' %}" alt="Logo">
+      <p>Aspire Interns – Connecting aspiring professionals with top internship opportunities. Empowering careers, one opportunity at a time.</p>
+    </div>
 
-.stats-grid {
-    display: grid;
-    gap: 32px;
-    text-align: center;
-    animation: fadeIn 1s;
-}
+    <!-- Center: Quick Links -->
+    <div class="footer-section footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Internships</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
 
-.stat-number {
-    font-size: 1.875rem;
-    font-weight: bold;
-    animation: bounceIn 0.6s;
-}
+    <div class="footer-section footer-contact">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Email: <a href="aspireinterns@gmail.com">aspireinterns@gmail.com</a></li>
+        <li>Phone: <a href="tel:+923243991747">+923243991747</a></li>
+        <li>Location: Bhawalpur, Pakistan</li>
+      </ul>
+    <div class="social-icons">
+  <a href="#" title="Github">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe1CLK7ijKDV1QiPsBsAKkaSkKx0QWAec8Tg&s" alt="Github">
+  </a>
+  <a href="#" title="Twitter">
+    <img src="https://cdn.worldvectorlogo.com/logos/twitter-logo-2.svg" alt="Twitter">
+  </a>
+  <a href="#" title="LinkedIn">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83wjVlFpnOy2joiaYr2JpcXN8ds4EfnbdHA&s" alt="LinkedIn">
+  </a>
+</div>
 
-.stat-blue { color: #2563EB; }
-.stat-green { color: #16A34A; }
-.stat-purple { color: #9333EA; }
-.stat-orange { color: #F97316; }
-.stat-label { color: #4B5563; }
+    </div>
 
-/* Testimonial Cards */
-.testimonial-card {
-    transform: translateY(0);
-    transition: transform 0.5s;
-    border-radius: 25%;
-}
+  </div>
 
-.testimonial-card:hover {
-    transform: scale(1.05);
-}
+  <!-- Bottom Footer -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Aspire Interns. All rights reserved.</p>
+  </div>
+</footer>
 
-/* Buttons */
-button {
-    padding: 6px 12px;
-    font-size: 0.875rem;
-    border-radius: 25%;
-}
+<script src="{% static 'javascript/script.js' %}"></script>
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
 
-@keyframes bounceIn {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-10px); }
-}
-# app_fyp/models.py
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>{% extends 'base.html' %}
+
+{% block title %}Aspire Interns{% endblock %}
+
+{% block content %}
+    <section id="contact">
+        <div>
+            <h2>Get in Touch</h2>
+            <p>
+                Have questions or want to learn more? We're here to help. Reach out to us anytime!
+            </p>
+
+            <!-- Display Django Messages -->
+            {% if messages %}
+                <div>
+                    {% for message in messages %}
+                        <div>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div>
+                <!-- Contact Information -->
+                <div>
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>
+                            <span>Email:</span>
+                            <a href="mailto:aspireinterns@gmail.com">aspireinterns@gmail.com</a>
+                        </li>
+                        <li>
+                            <span>Phone:</span>
+                            <a href="tel:+923243991747">+923243991747</a>
+                        </li>
+                        <li>
+                            <span>Address:</span>
+                            Islamia University of Bhawalpur, Punjab, Pakistan
+                        </li>
+                    </ul>
+                    <div>
+                        <ul>
+                            <li>
+                                <a href="#">Twitter</a>
+                            </li>
+                            <li>
+                                <a href="#">LinkedIn</a>
+                            </li>
+                            <li>
+                                <a href="#">Github</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <h3>Send Us a Message</h3>
+                    <form action="{% url 'app_fyp:contact' %}" method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" value="{{ request.POST.name|default:'' }}" required>
+                        </div>
+                        <div>
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" value="{{ request.POST.email|default:'' }}" required>
+                        </div>
+                        <div>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="4" required>{{ request.POST.message|default:'' }}</textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <!-- Header with Search -->
+ <header>
+    <h1 style="font-size: 4rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
+  Aspire Interns
+</h1>
+
+    <p>
+       Empowering Potential, Shaping Professional Excellence.
+    </p>
+    <div>
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'app_fyp:internships' %}">
+            <input type="text" id="internship-search" name="q" value="{{ query }}"
+                   placeholder="Search internships by title, company, or location...">
+            <button type="submit">
+                Search
+            </button>
+        </form>
+
+        <!-- Filter Form -->
+        <form method="GET" action="{% url 'app_fyp:internships' %}">
+            <select id="type-filter" name="type">
+                <option value="">All Types</option>
+                <option value="paid" {% if request.GET.type == 'paid' %}selected{% endif %}>Paid</option>
+                <option value="unpaid" {% if request.GET.type == 'unpaid' %}selected{% endif %}>Unpaid</option>
+                <option value="remote" {% if request.GET.type == 'remote' %}selected{% endif %}>Remote</option>
+            </select>
+
+            <select id="duration-filter" name="duration">
+                <option value="">All Durations</option>
+                <option value="1-3" {% if request.GET.duration == '1-3' %}selected{% endif %}>1-3 Months</option>
+                <option value="3-6" {% if request.GET.duration == '3-6' %}selected{% endif %}>3-6 Months</option>
+                <option value="6+" {% if request.GET.duration == '6+' %}selected{% endif %}>6+ Months</option>
+            </select>
+
+            <select id="location-filter" name="location">
+                <option value="">All Locations</option>
+                <option value="remote" {% if request.GET.location == 'remote' %}selected{% endif %}>Remote</option>
+                <option value="onsite" {% if request.GET.location == 'onsite' %}selected{% endif %}>On-site</option>
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+</header>
+
+    <section id="stats">
+        <div>
+            <div>
+                <h3>{{ total_opportunities }}</h3>
+                <p>Total Opportunities</p>
+            </div>
+            <div>
+                <h3>183</h3>
+                <p>Active Interns</p>
+            </div>
+            <div>
+                <h3>{{ partner_companies }}</h3>
+                <p>Partner Companies</p>
+            </div>
+            <div>
+                <h3>87%</h3>
+                <p>Success Rate</p>
+            </div>
+        </div>
+    </section>
+
+<div id="internship-list">
+
+    <div>
+        <div>
+            <h3>Explore Paid Internships</h3>
+            <p>Find internships that offer stipends to support your professional growth.</p>
+            <a href="{% url 'app_fyp:internships' %}?type=paid">Explore Paid</a>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h3>Explore Unpaid Internships</h3>
+            <p>Gain valuable experience and grow your network with unpaid opportunities.</p>
+            <a href="{% url 'app_fyp:internships' %}?type=unpaid">Explore Unpaid</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h3>Explore Remote Internships</h3>
+            <p>Work from anywhere and connect with companies across the globe.</p>
+            <a href="{% url 'app_fyp:internships' %}?type=remote">Explore Remote</a>
+        </div>
+    </div>
+
+</div>
+
+    <section id="categories">
+        <div>
+            <div>
+                <span>
+                    Paid ({{ paid_count }})
+                </span>
+                <h2>Paid Internships</h2>
+                <p>Competitive compensation for top talent.</p>
+                <ul>
+                    <li>✓ Competitive Salary</li>
+                    <li>✓ Performance Bonuses</li>
+                    <li>✓ Professional Development</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span>
+                    Unpaid ({{ unpaid_count }})
+                </span>
+                <h2>Skill-Building Internships</h2>
+                <p>Zero-cost learning opportunities.</p>
+                <ul>
+                    <li>✓ Mentorship Programs</li>
+                    <li>✓ Certificate of Completion</li>
+                    <li>✓ Portfolio Enhancement</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Explore Opportunities
+                </a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span>
+                    Remote ({{ remote_count }})
+                </span>
+                <h2>Remote Internships</h2>
+                <p>Global opportunities from home.</p>
+                <ul>
+                    <li>✓ Global Exposure</li>
+                    <li>✓ Flexible Schedules</li>
+                    <li>✓ Cross-Cultural Experience</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Discover Remote Roles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div>
+            <h3>Your Career Journey Starts Here</h3>
+            <p>Transform your potential into professional success with Aspire Interns</p>
+            <div>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Check Paid Internships
+                </a>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Check Unpaid Internships
+                </a>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Check Remote Internships
+                </a>
+            </div>
+        </div>
+    </section>
+
+   <!-- Testimonials Section -->
+<section id="testimonials">
+   <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+  What Our Interns Say
+</h2>
+
+    <div>
+
+        <!-- Testimonial 1 -->
+        <div>
+            <p>
+                "Aspire Interns provided an exceptional platform to kickstart my career.
+                The real-world projects and supportive environment allowed me to develop valuable skills and build lasting professional relationships."
+            </p>
+            <h3>Ali Raza</h3>
+            <p>Marketing Intern, 2023</p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div>
+            <p>
+                "The mentorship I received at Aspire Interns was instrumental in my growth as a software engineer.
+                The exposure to cutting-edge technologies and collaborative projects enhanced my technical expertise significantly."
+            </p>
+            <h3>Ahmed Khan</h3>
+            <p>Software Engineering Intern, 2024</p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div>
+            <p>
+                "Completing my remote internship with Aspire Interns was a transformative experience.
+                The flexibility, coupled with challenging tasks and continuous feedback, made it an ideal environment for learning and growth."
+            </p>
+            <h3>Fatima Noor</h3>
+            <p>Data Science Intern, 2025</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+</div>
+
+<!-- Internship Details Modal -->
+<div id="internship-modal">
+    <div>
+        <div>
+            <h3 id="modal-title"></h3>
+            <button onclick="closeModal()">×</button>
+        </div>
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+<script src="{% static 'javascript/script.js' %}"></script>
+{% endblock %}{% extends 'base.html' %}
+{% load static %}
+{% block title %}Internships - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <header>
+        <h1>Aspire Interns</h1>
+        <p>Your Gateway to Professional Growth</p>
+    </header>
+
+    <!-- Filter Section -->
+    <section id="filters">
+        <form method="get">
+            <input type="text" name="q" placeholder="Search internships..." value="{{ query }}">
+
+            <select name="type">
+                <option value="">All Types</option>
+                <option value="paid" {% if request.GET.type == 'paid' %}selected{% endif %}>Paid</option>
+                <option value="unpaid" {% if request.GET.type == 'unpaid' %}selected{% endif %}>Unpaid</option>
+                <option value="remote" {% if request.GET.type == 'remote' %}selected{% endif %}>Remote</option>
+            </select>
+
+            <input type="text" name="duration" placeholder="Duration (e.g., 3 months)" value="{{ request.GET.duration }}">
+            <input type="text" name="location" placeholder="Location" value="{{ request.GET.location }}">
+
+            <button type="submit">Filter</button>
+        </form>
+    </section>
+
+    <!-- Featured or Search Results Section -->
+    <section id="featured">
+        <h2>
+            {% if query or request.GET.type or request.GET.duration or request.GET.location %}
+                Search Results
+            {% else %}
+                Featured Internships
+            {% endif %}
+        </h2>
+
+        <div id="internship-list">
+            {% for internship in internships %}
+                <div>
+                    <div>
+                        <span>
+                            {{ internship.internship_type|title }}
+                        </span>
+                        <h3>
+                            {{ internship.title }}
+                        </h3>
+                        <p><strong>Company:</strong> {{ internship.company }}</p>
+                        <p><strong>Location:</strong> {{ internship.location }}</p>
+                        <p><strong>Duration:</strong> {{ internship.duration }}</p>
+                        <p>{{ internship.description|truncatewords:20 }}</p>
+                        <div>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'app_fyp:apply_internship' internship.id %}">
+                                    Apply Now
+                                </a>
+                            {% else %}
+                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}">
+                                    Login to Apply
+                                </a>
+                            {% endif %}
+                            <button onclick="showDetails({{ internship.id }})">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No internships available matching your criteria.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<!-- Internship Details Modal (Optional) -->
+<div id="details-modal" style="display:none;">
+    <div id="modal-content"></div>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+<script src="{% static 'javascript/script.js' %}"></script>
+{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Aspire Interns - Login{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <h2 style="margin-top: 20px; font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+  Log in to Your Account
+</h2>
+
+
+        <!-- Display Error Messages -->
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="loginForm" action="{% url 'user_auth:login' %}" method="POST">
+            {% csrf_token %}
+            <!-- Email -->
+            <div>
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value="{{ request.POST.email|default:'' }}"
+                    required>
+            </div>
+            <!-- Password -->
+            <div>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required>
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit">Log In</button>
+            </div>
+                <p style="margin-top: 20px; text-align: right;">
+    Don't have an account?
+    <a href="{% url 'user_auth:signup' %}" style="color: #1e90ff; text-decoration: none;">Sign Up</a>
+</p>
+        </form>
+
+    </div>
+</div>
+{% endblock %}{% extends 'base.html' %}
+
+{% block title %}My Profile - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <header>
+        <h1>My Profile</h1>
+        <p>Manage your account and track your internship applications.</p>
+    </header>
+
+    <section>
+        <h2>Personal Information</h2>
+        {% if profile %}
+            <div>
+                <p>Full Name: {{ profile.full_name }}</p>
+                <p>Email: {{ profile.email }}</p>
+                <p>Skills: {{ profile.skills|default:"Not specified" }}</p>
+                <p>Experience: {{ profile.experience|default:"Not specified" }}</p>
+                <p>LinkedIn:
+                    {% if profile.linkedin %}
+                        <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a>
+                    {% else %}
+                        Not specified
+                    {% endif %}
+                </p>
+                <p>Joined: {{ user.date_joined|date:"F j, Y" }}</p>
+            </div>
+            <div>
+                <a href="{% url 'user_auth:edit_profile' %}">Edit Profile</a>
+            </div>
+        {% else %}
+            <p>Profile not found. Please complete your profile.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>My Internship Applications</h2>
+        {% if applications %}
+            {% for application in applications %}
+                <div>
+                    <h3>{{ application.internship.title }}</h3>
+                    <p>Company: {{ application.internship.company }}</p>
+                    <p>Applied Date: {{ application.created_at|date:"F j, Y" }}</p>
+                    <p>Status: {{ application.status|title }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You haven’t applied to any internships yet.
+                <a href="{% url 'app_fyp:paid_internships' %}">Explore opportunities</a>.
+            </p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}{% extends 'base.html' %}
+
+{% block title %}Sign Up - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+             <h2 style="margin-top: 20px; font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+  Create Your Account
+</h2>
+
+
+
+        <!-- Display Messages -->
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="signupForm" action="{% url 'user_auth:signup' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Full Name -->
+            <div>
+                <label for="fullName">Full Name</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="full_name"
+                    value="{{ request.POST.full_name|default:'' }}"
+                    required>
+            </div>
+            <!-- Email -->
+            <div>
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ request.POST.email|default:'' }}"
+                    required>
+            </div>
+            <!-- Password -->
+            <div>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required>
+            </div>
+            <!-- Confirm Password -->
+            <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirm_password"
+                    required>
+            </div>
+            <!-- Skills -->
+            <div>
+                <label for="skills">Skills</label>
+                <textarea
+                    id="skills"
+                    name="skills"
+                    rows="3"
+                    required>{{ request.POST.skills|default:'' }}</textarea>
+            </div>
+            <!-- Resume -->
+            <div>
+                <label for="resume">Resume</label>
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx">
+            </div>
+            <!-- LinkedIn Link -->
+            <div>
+                <label for="linkedin">LinkedIn Profile</label>
+                <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    value="{{ request.POST.linkedin|default:'' }}"
+                    placeholder="https://www.linkedin.com/in/your-profile">
+            </div>
+            <!-- Projects Link -->
+            <div>
+                <label for="projects">Projects Link (e.g., GitHub)</label>
+                <input
+                    type="url"
+                    id="projects"
+                    name="projects"
+                    value="{{ request.POST.projects|default:'' }}"
+                    placeholder="https://github.com/your-projects">
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit">Sign Up</button>
+            </div>
+              <p style="margin-top: 20px; text-align: right;">
+    Already have an account?
+    <a href="{% url 'user_auth:login' %}" style="color: #1e90ff; text-decoration: none;">Log In</a>
+</p>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+from django.apps import AppConfig
+
+
+class AppFypConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'app_fyp'
 from django.db import models
 from django.utils import timezone
-from user_auth.models import User  # Import User from user_auth
+from user_auth.models import User  
 
 class Internship(models.Model):
     INTERNSHIP_TYPE_CHOICES = [
@@ -1608,7 +3719,6 @@ class Internship(models.Model):
     def __str__(self):
         return f"{self.title} - {self.company}"
 
-# app_fyp/models.py (partial)
 class InternshipApplication(models.Model):
     APPLICATION_STATUS_CHOICES = [
         ('SUBMITTED', 'Submitted'),
@@ -1617,12 +3727,11 @@ class InternshipApplication(models.Model):
         ('REJECTED', 'Rejected'),
     ]
 
-    user = models.ForeignKey('user_auth.User', on_delete=models.CASCADE, related_name='applications')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applications')
     internship = models.ForeignKey(Internship, on_delete=models.CASCADE, related_name='applications')
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     skills = models.TextField()
-    experience = models.TextField(null=True, blank=True)
     resume = models.FileField(upload_to='applications/resumes/', null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
     projects = models.TextField(null=True, blank=True)
@@ -1637,7 +3746,7 @@ class InternshipApplication(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.user.username} - {self.internship.title}"# app_fyp/urls.py
+        return f"{self.user.username} - {self.internship.title}"
 from django.urls import path
 from . import views
 
@@ -1647,23 +3756,42 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    path('internships/paid/', views.paid_internships, name='paid_internships'),
-    path('internships/unpaid/', views.unpaid_internships, name='unpaid_internships'),
-    path('internships/remote/', views.remote_internships, name='remote_internships'),
-    path('internships/', views.internships_placeholder, name='internships'),
+    path('internships/', views.internships, name='internships'),
     path('apply/<int:internship_id>/', views.apply_internship, name='apply_internship'),
-    path('internship/<int:internship_id>/details/', views.internship_details, name='internship_details'),  # New URL
-]# app_fyp/views.py
+    path('internship/<int:internship_id>/details/', views.internship_details, name='internship_details'),
+]
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from .models import Internship, InternshipApplication
-from user_auth.models import UserProfile
 from django.utils import timezone
 from django.http import JsonResponse
 
+from .models import Internship, InternshipApplication
+from user_auth.models import UserProfile
+
+
 def index(request):
+    # Stats for the homepage
+    total_opportunities = Internship.objects.count()
+    paid_count = Internship.objects.filter(internship_type='paid').count()
+    unpaid_count = Internship.objects.filter(internship_type='unpaid').count()
+    remote_count = Internship.objects.filter(internship_type='remote').count()
+    partner_companies = Internship.objects.values('company').distinct().count()
+
+    context = {
+        'total_opportunities': total_opportunities,
+        'paid_count': paid_count,
+        'unpaid_count': unpaid_count,
+        'remote_count': remote_count,
+        'partner_companies': partner_companies,
+        'user': request.user,
+    }
+    return render(request, 'index.html', context)
+
+
+def internships(request):
+    # Filter Parameters
     query = request.GET.get('q', '')
     type_filter = request.GET.get('type', '')
     duration_filter = request.GET.get('duration', '')
@@ -1671,6 +3799,7 @@ def index(request):
 
     internships = Internship.objects.all()
 
+    # Applying Filters
     if query:
         internships = internships.filter(
             Q(title__icontains=query) |
@@ -1682,27 +3811,24 @@ def index(request):
     if duration_filter:
         internships = internships.filter(duration=duration_filter)
     if location_filter:
-        # Assuming 'location' field contains 'remote' or 'onsite'-like terms; adjust if using a different field
         internships = internships.filter(location__icontains=location_filter)
 
-    # Stats
-    total_opportunities = Internship.objects.count()
+    # Internship Counts for Filter Options
     paid_count = Internship.objects.filter(internship_type='paid').count()
     unpaid_count = Internship.objects.filter(internship_type='unpaid').count()
     remote_count = Internship.objects.filter(internship_type='remote').count()
-    partner_companies = Internship.objects.values('company').distinct().count()
 
     context = {
         'internships': internships,
         'query': query,
-        'total_opportunities': total_opportunities,
         'paid_count': paid_count,
         'unpaid_count': unpaid_count,
         'remote_count': remote_count,
-        'partner_companies': partner_companies,
         'user': request.user,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'internships.html', context)
+
+
 @login_required
 def apply_internship(request, internship_id):
     internship = get_object_or_404(Internship, id=internship_id)
@@ -1711,20 +3837,19 @@ def apply_internship(request, internship_id):
     # Check if user has already applied
     if InternshipApplication.objects.filter(user=user, internship=internship).exists():
         messages.warning(request, "You have already applied for this internship.")
-        return redirect('app_fyp:index')
+        return redirect('app_fyp:internships')
 
     # Get user profile
     try:
         profile = user.profile
     except UserProfile.DoesNotExist:
         messages.error(request, "Please complete your profile before applying.")
-        return redirect('user_auth:signup')  # Adjust to your profile creation URL
+        return redirect('user_auth:signup')
 
     if request.method == 'POST':
         full_name = request.POST.get('full_name', profile.full_name).strip()
         email = request.POST.get('email', profile.email).strip()
         skills = request.POST.get('skills', profile.skills).strip()
-        experience = request.POST.get('experience', profile.experience).strip()
         resume = request.FILES.get('resume', profile.resume)
         linkedin = request.POST.get('linkedin', profile.linkedin).strip()
         projects = request.POST.get('projects', profile.projects).strip()
@@ -1732,16 +3857,12 @@ def apply_internship(request, internship_id):
         # Validation
         if not all([full_name, email, skills]):
             messages.error(request, "Full name, email, and skills are required.")
-            return render(request, 'apply_internship.html', {
-                'internship': internship,
-                'profile': profile,
-            })
+            return render(request, 'apply_internship.html', {'internship': internship, 'profile': profile})
 
         # Update profile if changes are made
         profile.full_name = full_name
         profile.email = email
         profile.skills = skills
-        profile.experience = experience
         if resume and resume != profile.resume:
             profile.resume = resume
         profile.linkedin = linkedin
@@ -1750,46 +3871,26 @@ def apply_internship(request, internship_id):
         profile.save()
 
         # Create application
-        application = InternshipApplication(
-            user=user,  # Use ForeignKey instead of username
+        InternshipApplication.objects.create(
+            user=user,
             internship=internship,
             full_name=full_name,
             email=email,
             skills=skills,
-            experience=experience,
             resume=profile.resume,
             linkedin=linkedin,
             projects=projects,
         )
-        application.save()
 
         messages.success(request, f"Application submitted for {internship.title}!")
-        return redirect('app_fyp:index')
+        return redirect('app_fyp:internships')
 
-    return render(request, 'apply_internship.html', {
-        'internship': internship,
-        'profile': profile,
-    })
+    return render(request, 'apply_internship.html', {'internship': internship, 'profile': profile})
+
 
 def about(request):
     return render(request, 'about.html', {'user': request.user})
 
-def remote_internships(request):
-    internships = Internship.objects.filter(internship_type='remote')
-    context = {'internships': internships, 'user': request.user}
-    return render(request, 'remote_internships.html', context)
-
-def internships_placeholder(request):
-    paid_count = Internship.objects.filter(internship_type='paid').count()
-    unpaid_count = Internship.objects.filter(internship_type='unpaid').count()
-    remote_count = Internship.objects.filter(internship_type='remote').count()
-    context = {
-        'paid_count': paid_count,
-        'unpaid_count': unpaid_count,
-        'remote_count': remote_count,
-        'user': request.user,
-    }
-    return render(request, 'internships_placeholder.html', context)
 
 def contact(request):
     if request.method == 'POST':
@@ -1797,23 +3898,13 @@ def contact(request):
         email = request.POST.get('email')
         message = request.POST.get('message')
         if name and email and message:
-            # Assuming ContactMessage model exists; if not, remove or implement it
-            # ContactMessage.objects.create(name=name, email=email, message=message)
             messages.success(request, 'Your message has been sent successfully!')
             return redirect('app_fyp:contact')
         else:
             messages.error(request, 'Please fill out all fields.')
     return render(request, 'contact.html', {'user': request.user})
 
-def paid_internships(request):
-    internships = Internship.objects.filter(internship_type='paid')
-    context = {'internships': internships, 'user': request.user}
-    return render(request, 'paid_internships.html', context)
 
-def unpaid_internships(request):
-    internships = Internship.objects.filter(internship_type='unpaid')
-    context = {'internships': internships, 'user': request.user}
-    return render(request, 'unpaid_internships.html', context)
 def internship_details(request, internship_id):
     if request.headers.get('X-Requested-With') != 'XMLHttpRequest':
         return JsonResponse({'error': 'Invalid request'}, status=400)
@@ -1828,7 +3919,42 @@ def internship_details(request, internship_id):
         'description': internship.description,
         'stipend': internship.stipend if internship.stipend else None,
     }
-    return JsonResponse(data)from django.contrib import admin
+    return JsonResponse(data)
+# project_fyp/dbrouters.py
+class DatabaseRouter:
+    """
+    A router to control database operations for models in different apps.
+    - 'user_auth' app models and auth-related apps go to 'user_auth' database
+    - 'app_fyp' app models go to 'default' (internships_list)
+    """
+
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
+            return 'user_auth'
+        elif model._meta.app_label == 'app_fyp':
+            return 'default'
+        return None
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
+            return 'user_auth'
+        elif model._meta.app_label == 'app_fyp':
+            return 'default'
+        return None
+
+    def allow_relation(self, obj1, obj2, **hints):
+        db1 = self.db_for_read(obj1.__class__)
+        db2 = self.db_for_read(obj2.__class__)
+        if db1 and db2:
+            return db1 == db2
+        return None
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        if app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
+            return db == 'user_auth'
+        elif app_label == 'app_fyp':
+            return db == 'default'
+        return False  # Prevent migrations for unhandled appsfrom django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -1837,7 +3963,290 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_fyp.urls', namespace='app_fyp')),
     path('auth/', include('user_auth.urls', namespace='user_auth')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)        'HOST': 'localhost',
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)from django.apps import AppConfig
+
+
+class UserAuthConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'user_auth'
+# user_auth/models.py
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.hashers import make_password, check_password
+
+class UserManager(BaseUserManager):
+    def create_user(self, username, email, password=None, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        if password:  # Only set password if provided
+            user.set_password(password)
+        user.save(using=self._db)  # Initial save happens here
+        return user
+
+    def create_superuser(self, username, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        return self.create_user(username, email, password, **extra_fields)
+
+class User(AbstractBaseUser, PermissionsMixin):
+    id = models.BigAutoField(primary_key=True)
+    username = models.CharField(max_length=150, unique=True)
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    objects = UserManager()
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    class Meta:
+        db_table = 'user_auth'
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+        # Only use update_fields if the object already exists in the database
+        if self.pk is not None:
+            self.save(update_fields=['password'])
+        # If pk is None, the initial save will handle it (called in create_user)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
+
+    def __str__(self):
+        return self.username
+
+class UserProfile(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    skills = models.TextField()
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
+    linkedin = models.URLField(null=True, blank=True)
+    projects = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'user_profiles'
+        indexes = [
+            models.Index(fields=['user', 'email']),
+        ]
+
+    def __str__(self):
+        return self.full_namefrom django.urls import path
+from . import views
+
+app_name = 'user_auth'
+
+urlpatterns = [
+    path('signup/', views.SignupView.as_view(), name='signup'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('get_profile/', views.GetProfileView.as_view(), name='get_profile'),
+    path('media/resumes/<str:grid_id>/', views.serve_resume, name='serve_resume'),
+]from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.contrib import messages
+from django.http import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
+from user_auth.models import User
+from user_auth.models import UserProfile
+from django.contrib.auth import authenticate
+
+def serve_resume(request, user_id):
+    """Serve a resume file from the filesystem."""
+    try:
+        profile = UserProfile.objects.get(user_id=user_id)
+        if profile.resume:
+            with profile.resume.open('rb') as resume_file:
+                return HttpResponse(resume_file.read(), content_type=profile.resume.file.content_type)
+        return HttpResponse("File not found", status=404)
+    except UserProfile.DoesNotExist:
+        return HttpResponse("File not found", status=404)
+
+class SignupView(APIView):
+    permission_classes=[]
+    def get(self, request):
+        return render(request, 'signup.html')
+
+    def post(self, request):
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        skills = request.POST.get('skills')
+        resume = request.FILES.get('resume')
+        linkedin = request.POST.get('linkedin', '')
+        projects = request.POST.get('projects', '')
+
+        if not all([full_name, email, password, confirm_password, skills]):
+            messages.error(request, 'Please fill out all required fields.')
+            return HttpResponseRedirect(request.path)
+
+        if password != confirm_password:
+            messages.error(request, 'Passwords do not match.')
+            return HttpResponseRedirect(request.path)
+
+        if User.objects.filter(username=email).exists() or User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists.')
+            return HttpResponseRedirect(request.path)
+
+        try:
+            user = User(username=email, email=email)
+            user.set_password(password)
+            user.save()
+        except Exception as e:
+            messages.error(request, f'Error creating user: {str(e)}')
+            return HttpResponseRedirect(request.path)
+
+        try:
+            profile = UserProfile(
+                user=user,
+                full_name=full_name,
+                email=email,
+                skills=skills,
+                linkedin=linkedin,
+                projects=projects
+            )
+            if resume:
+                profile.resume = resume  # Direct assignment for FileField
+            profile.save()
+        except Exception as e:
+            messages.error(request, f'Error saving profile: {str(e)}')
+            user.delete()
+            return HttpResponseRedirect(request.path)
+
+        # Set user in request for immediate use
+        request.user = user
+        refresh = RefreshToken.for_user(user)
+        request.session['access_token'] = str(refresh.access_token)
+        request.session['refresh_token'] = str(refresh)
+        messages.success(request, 'Account created successfully! Please log in.')
+        return redirect('user_auth:login')
+
+# user_auth/views.py
+class LoginView(APIView):
+    def get(self, request):
+        return render(request, 'login.html')
+
+    def post(self, request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'message': 'Login successful!'
+            }, status=status.HTTP_200_OK)
+        messages.error(request, 'Invalid email or password.')
+        return redirect('user_auth:login')
+
+class LogoutView(APIView):
+    def post(self, request):
+        request.session.flush()
+        messages.success(request, 'You have been logged out successfully.')
+        return redirect('user_auth:login')
+
+class GetProfileView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            resume_url = profile.resume.url if profile.resume else ''  # Use Django's FileField URL
+            return Response({
+                'full_name': profile.full_name,
+                'email': profile.email,
+                'skills': profile.skills,
+                'resume': resume_url,
+                'linkedin': profile.linkedin
+            })
+        except UserProfile.DoesNotExist:
+            return Response({'error': 'Profile not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+DEBUG = True
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# Application definition
+INSTALLED_APPS = [
+    'rest_framework',
+    'app_fyp.apps.AppFypConfig',
+    'user_auth.apps.UserAuthConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'project_fyp.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'bg-green-500 text-white p-4 rounded',
+    messages.ERROR: 'bg-red-500 text-white p-4 rounded',
+}
+
+WSGI_APPLICATION = 'project_fyp.wsgi.application'
+
+DATABASE_ROUTERS = ['project_fyp.dbrouters.DatabaseRouter']
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'internships_list',
+        'USER': 'postgres',  'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'user_auth': {  # Updated database name to 'user_auth'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'user_auth',  # Database for authentication
+        'USER': 'postgres',  # Replace with your PostgreSQL username 'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -1896,297 +4305,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'        'HOST': 'localhost',
-        'PORT': '5432',
-    },
-    'user_auth': {  # Updated database name to 'user_auth'
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user_auth',  # Database for authentication
-        'USER': 'postgres', 
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-# Application definition
-INSTALLED_APPS = [
-    'rest_framework',
-    'app_fyp.apps.AppFypConfig',
-    'user_auth.apps.UserAuthConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'project_fyp.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-MESSAGE_TAGS = {
-    messages.SUCCESS: 'bg-green-500 text-white p-4 rounded',
-    messages.ERROR: 'bg-red-500 text-white p-4 rounded',
-}
-
-WSGI_APPLICATION = 'project_fyp.wsgi.application'
-
-DATABASE_ROUTERS = ['project_fyp.dbrouters.DatabaseRouter']
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'internships_list',
-        'USER': 'postgres',from datetime import timedelta
-from pathlib import Path
-from django.contrib import messages
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('app_fyp.urls', namespace='app_fyp')),
-    path('auth/', include('user_auth.urls', namespace='user_auth')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)from django.apps import AppConfig
-
-
-class UserAuthConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'user_auth'
-# user_auth/models.py
-from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.contrib.auth.hashers import make_password, check_password
-
-class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
-        if not username:
-            raise ValueError('The Username field must be set')
-        if not email:
-            raise ValueError('The Email field must be set')
-        email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
-        if password:  # Only set password if provided
-            user.set_password(password)
-        user.save(using=self._db)  # Initial save happens here
-        return user
-
-    def create_superuser(self, username, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
-        return self.create_user(username, email, password, **extra_fields)
-
-class User(AbstractBaseUser, PermissionsMixin):
-    id = models.BigAutoField(primary_key=True)
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(unique=True)
-    created_at = models.DateTimeField(default=timezone.now)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-    objects = UserManager()
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
-    class Meta:
-        db_table = 'user_auth'
-
-    def set_password(self, raw_password):
-        self.password = make_password(raw_password)
-        # Only use update_fields if the object already exists in the database
-        if self.pk is not None:
-            self.save(update_fields=['password'])
-        # If pk is None, the initial save will handle it (called in create_user)
-
-    def check_password(self, raw_password):
-        return check_password(raw_password, self.password)
-
-    def __str__(self):
-        return self.username
-
-class UserProfile(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    full_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    skills = models.TextField()
-    experience = models.TextField(null=True, blank=True)
-    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
-    linkedin = models.URLField(null=True, blank=True)
-    projects = models.TextField(null=True, blank=True)
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'user_profiles'
-        indexes = [
-            models.Index(fields=['user', 'email']),
-        ]
-
-    def __str__(self):
-        return self.full_namefrom django.urls import path
-from . import views
-
-app_name = 'user_auth'
-
-urlpatterns = [
-    path('signup/', views.SignupView.as_view(), name='signup'),
-    path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('get_profile/', views.GetProfileView.as_view(), name='get_profile'),
-    path('media/resumes/<str:grid_id>/', views.serve_resume, name='serve_resume'),
-]from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.contrib import messages
-from django.http import HttpResponse
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.tokens import RefreshToken
-from user_auth.models import User, UserProfile
-from django.contrib.auth import authenticate, login, logout
-
-def serve_resume(request, user_id):
-    """Serve a resume file from the filesystem."""
-    try:
-        profile = UserProfile.objects.get(user_id=user_id)
-        if profile.resume:
-            with profile.resume.open('rb') as resume_file:
-                return HttpResponse(resume_file.read(), content_type=profile.resume.file.content_type)
-        return HttpResponse("File not found", status=404)
-    except UserProfile.DoesNotExist:
-        return HttpResponse("File not found", status=404)
-
-class SignupView(APIView):
-    permission_classes = []
-    def get(self, request):
-        return render(request, 'signup.html')
-
-    def post(self, request):
-        full_name = request.POST.get('full_name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-        skills = request.POST.get('skills')
-        experience = request.POST.get('experience', '')
-        resume = request.FILES.get('resume')
-        linkedin = request.POST.get('linkedin', '')
-        projects = request.POST.get('projects', '')
-
-        if not all([full_name, email, password, confirm_password, skills]):
-            messages.error(request, 'Please fill out all required fields.')
-            return HttpResponseRedirect(request.path)
-
-        if password != confirm_password:
-            messages.error(request, 'Passwords do not match.')
-            return HttpResponseRedirect(request.path)
-
-        if User.objects.filter(username=email).exists() or User.objects.filter(email=email).exists():
-            messages.error(request, 'Email already exists.')
-            return HttpResponseRedirect(request.path)
-
-        try:
-            user = User(username=email, email=email)
-            user.set_password(password)
-            user.save()
-        except Exception as e:
-            messages.error(request, f'Error creating user: {str(e)}')
-            return HttpResponseRedirect(request.path)
-
-        try:
-            profile = UserProfile(
-                user=user,
-                full_name=full_name,
-                email=email,
-                skills=skills,
-                experience=experience,
-                linkedin=linkedin,
-                projects=projects
-            )
-            if resume:
-                profile.resume = resume
-            profile.save()
-        except Exception as e:
-            messages.error(request, f'Error saving profile: {str(e)}')
-            user.delete()
-            return HttpResponseRedirect(request.path)
-
-        messages.success(request, 'Account created successfully! Please log in.')
-        return redirect('user_auth:login')
-
-class LoginView(APIView):
-    def get(self, request):
-        return render(request, 'login.html')
-
-    def post(self, request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)  # Log the user in with session-based auth
-            messages.success(request, 'Login successful!')
-            return redirect('app_fyp:index')  # Redirect to index page
-        messages.error(request, 'Invalid email or password.')
-        return redirect('user_auth:login')
-
-class LogoutView(APIView):
-    def post(self, request):
-        logout(request)  # Log the user out
-        messages.success(request, 'You have been logged out successfully.')
-        return redirect('user_auth:login')
-
-class GetProfileView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        try:
-            profile = UserProfile.objects.get(user=request.user)
-            resume_url = profile.resume.url if profile.resume else ''
-            return Response({
-                'full_name': profile.full_name,
-                'email': profile.email,
-                'skills': profile.skills,
-                'experience': profile.experience,
-                'resume': resume_url,
-                'linkedin': profile.linkedin
-            })
-        except UserProfile.DoesNotExist:
-            return Response({'error': 'Profile not found'}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

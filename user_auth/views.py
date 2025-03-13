@@ -1,15 +1,16 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.tokens import RefreshToken
 from user_auth.models import User
 from user_auth.models import UserProfile
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 def serve_resume(request, user_id):
     """Serve a resume file from the filesystem."""
@@ -83,6 +84,8 @@ class SignupView(APIView):
         return redirect('user_auth:login')
 
 # user_auth/views.py
+
+
 class LoginView(APIView):
     def get(self, request):
         return render(request, 'login.html')
@@ -92,14 +95,16 @@ class LoginView(APIView):
         password = request.POST.get('password')
         user = authenticate(request, username=email, password=password)
         if user is not None:
+            # Log the user into the session
+            login(request, user)
+            # Optionally generate and store JWT tokens if needed
             refresh = RefreshToken.for_user(user)
-            return Response({
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'message': 'Login successful!'
-            }, status=status.HTTP_200_OK)
+            request.session['access_token'] = str(refresh.access_token)
+            request.session['refresh_token'] = str(refresh)
+            messages.success(request, 'Login successful!')
+            return redirect('app_fyp:index')  # Redirect to homepage
         messages.error(request, 'Invalid email or password.')
-        return redirect('user_auth:login')
+        return redirect('user_auth:login')  # Redirect back to login on failure
 
 class LogoutView(APIView):
     def post(self, request):

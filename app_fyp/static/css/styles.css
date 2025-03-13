@@ -2603,3 +2603,59 @@ footer .footer-bottom p {
     justify-content: center;
   }
 }
+/* Main container */
+.apply-internship-container {
+  padding: 2rem;
+  background: var(--light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Form layout */
+.apply-internship-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* General field styles */
+.apply-internship-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Input and textarea styling */
+.apply-internship-field input,
+.apply-internship-field textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--light);
+  transition: border-color 0.3s;
+}
+
+.apply-internship-field input:focus,
+.apply-internship-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 5px var(--primary-light);
+}
+
+/* Submit button */
+.apply-internship-submit button {
+  padding: 0.75rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.apply-internship-submit button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
