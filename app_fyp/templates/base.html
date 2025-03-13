@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aspire Interns - {% endblock %}</title>
+    <link rel="icon" href="{% static 'images/Logo.jpg' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div>
+        <nav>
+            <div>
+                <img src="{% static 'images/Logo.jpg' %}" alt="Aspire Internships Logo">
+                <div>
+                    Aspire Interns
+                </div>
+            </div>
+            <ul id="mobile-menu">
+                <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+                <li><a href="{% url 'app_fyp:about' %}">About</a></li>
+                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><span>{{ user.username }}</span></li>
+                    <li>
+                        <form action="{% url 'user_auth:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'user_auth:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+            <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
+                Menu
+            </button>
+        </nav>
+    </div>
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+  <div class="footer-content">
+
+    <!-- Left: Logo & Description -->
+    <div class="footer-section footer-logo">
+      <img src="{% static 'images/Logo.jpg' %}" alt="Logo">
+      <p>Aspire Interns – Connecting aspiring professionals with top internship opportunities. Empowering careers, one opportunity at a time.</p>
+    </div>
+
+    <!-- Center: Quick Links -->
+    <div class="footer-section footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Internships</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section footer-contact">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Email: <a href="aspireinterns@gmail.com">aspireinterns@gmail.com</a></li>
+        <li>Phone: <a href="tel:+923243991747">+923243991747</a></li>
+        <li>Location: Bhawalpur, Pakistan</li>
+      </ul>
+    <div class="social-icons">
+  <a href="#" title="Github">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe1CLK7ijKDV1QiPsBsAKkaSkKx0QWAec8Tg&s" alt="Github">
+  </a>
+  <a href="#" title="Twitter">
+    <img src="https://cdn.worldvectorlogo.com/logos/twitter-logo-2.svg" alt="Twitter">
+  </a>
+  <a href="#" title="LinkedIn">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83wjVlFpnOy2joiaYr2JpcXN8ds4EfnbdHA&s" alt="LinkedIn">
+  </a>
+</div>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Aspire Interns. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="{% static 'javascript/script.js' %}"></script>
+
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+             <h2 style="margin-top: 20px; font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+  Create Your Account
+</h2>
+
+
+
+        <!-- Display Messages -->
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="signupForm" action="{% url 'user_auth:signup' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Full Name -->
+            <div>
+                <label for="fullName">Full Name</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="full_name"
+                    value="{{ request.POST.full_name|default:'' }}"
+                    required>
+            </div>
+            <!-- Email -->
+            <div>
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ request.POST.email|default:'' }}"
+                    required>
+            </div>
+            <!-- Password -->
+            <div>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required>
+            </div>
+            <!-- Confirm Password -->
+            <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirm_password"
+                    required>
+            </div>
+            <!-- Skills -->
+            <div>
+                <label for="skills">Skills</label>
+                <textarea
+                    id="skills"
+                    name="skills"
+                    rows="3"
+                    required>{{ request.POST.skills|default:'' }}</textarea>
+            </div>
+            <!-- Resume -->
+            <div>
+                <label for="resume">Resume</label>
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx">
+            </div>
+            <!-- LinkedIn Link -->
+            <div>
+                <label for="linkedin">LinkedIn Profile</label>
+                <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    value="{{ request.POST.linkedin|default:'' }}"
+                    placeholder="https://www.linkedin.com/in/your-profile">
+            </div>
+            <!-- Projects Link -->
+            <div>
+                <label for="projects">Projects Link (e.g., GitHub)</label>
+                <input
+                    type="url"
+                    id="projects"
+                    name="projects"
+                    value="{{ request.POST.projects|default:'' }}"
+                    placeholder="https://github.com/your-projects">
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit">Sign Up</button>
+            </div>
+              <p style="margin-top: 20px; text-align: right;">
+    Already have an account?
+    <a href="{% url 'user_auth:login' %}" style="color: #1e90ff; text-decoration: none;">Log In</a>
+</p>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

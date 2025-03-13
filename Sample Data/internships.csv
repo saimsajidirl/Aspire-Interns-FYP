@@ -1,0 +1,51 @@
+title,company,stack,location,duration,stipend,description,internship_type,created_at
+Backend Developer Intern,VisionTech,"Node.js, Express, MongoDB","Karachi, Pakistan",4 months,12000 PKR,Develop scalable backend systems using Node.js and MongoDB.,paid,2025-03-12T16:31:55.214920
+Python Developer Intern,DataCorp,"Python, Django, REST APIs","Islamabad, Pakistan",4 months,,Work on backend development using Django and build RESTful APIs.,paid,2025-03-12T16:31:55.214936
+AI Research Intern,Appify Studios,"Python, TensorFlow, Machine Learning",Remote,6 months,10000 PKR,Conduct research on machine learning models and contribute to AI projects.,remote,2025-03-12T16:31:55.214942
+Frontend Developer Intern,CloudNova,"HTML, CSS, JavaScript, React",Remote,6 months,12000 PKR,Assist in designing and implementing user interfaces for web applications.,unpaid,2025-03-12T16:31:55.214954
+Backend Developer Intern,VisionTech,"Node.js, Express, MongoDB","Islamabad, Pakistan",3 months,10000 PKR,Develop scalable backend systems using Node.js and MongoDB.,remote,2025-03-12T16:31:55.214959
+Frontend Developer Intern,NextGen Solutions,"HTML, CSS, JavaScript, React","Karachi, Pakistan",3 months,10000 PKR,Assist in designing and implementing user interfaces for web applications.,unpaid,2025-03-12T16:31:55.214964
+UI/UX Designer Intern,VisionTech,"Figma, Adobe XD, Sketch","Karachi, Pakistan",4 months,10000 PKR,Create engaging user experiences and interface designs.,remote,2025-03-12T16:31:55.214968
+Data Analyst Intern,NextGen Solutions,"Python, Pandas, SQL",Remote,4 months,15000 PKR,Analyze datasets and generate actionable insights for business strategy.,unpaid,2025-03-12T16:31:55.214979
+DevOps Intern,ByteCraft,"Docker, Kubernetes, AWS","Karachi, Pakistan",3 months,10000 PKR,Assist with infrastructure automation and CI/CD pipelines.,remote,2025-03-12T16:31:55.214985
+Cybersecurity Intern,AI Ventures,"Cybersecurity, Networking, Linux","Lahore, Pakistan",5 months,10000 PKR,Support in identifying and mitigating security vulnerabilities.,paid,2025-03-12T16:31:55.214990
+Mobile App Developer Intern,AI Ventures,"Flutter, Dart, Firebase","Karachi, Pakistan",3 months,15000 PKR,Build and maintain cross-platform mobile applications using Flutter.,unpaid,2025-03-12T16:31:55.214995
+Mobile App Developer Intern,TechSol Pvt Ltd,"Flutter, Dart, Firebase","Islamabad, Pakistan",3 months,12000 PKR,Build and maintain cross-platform mobile applications using Flutter.,paid,2025-03-12T16:31:55.214999
+Frontend Developer Intern,CloudNova,"HTML, CSS, JavaScript, React","Lahore, Pakistan",6 months,20000 PKR,Assist in designing and implementing user interfaces for web applications.,unpaid,2025-03-12T16:31:55.215003
+Python Developer Intern,NextGen Solutions,"Python, Django, REST APIs","Karachi, Pakistan",3 months,20000 PKR,Work on backend development using Django and build RESTful APIs.,remote,2025-03-12T16:31:55.215007
+AI Research Intern,NextGen Solutions,"Python, TensorFlow, Machine Learning",Remote,6 months,15000 PKR,Conduct research on machine learning models and contribute to AI projects.,paid,2025-03-12T16:31:55.215011
+Backend Developer Intern,SoftHub Pakistan,"Node.js, Express, MongoDB","Lahore, Pakistan",5 months,15000 PKR,Develop scalable backend systems using Node.js and MongoDB.,remote,2025-03-12T16:31:55.215015
+UI/UX Designer Intern,VisionTech,"Figma, Adobe XD, Sketch",Remote,6 months,20000 PKR,Create engaging user experiences and interface designs.,unpaid,2025-03-12T16:31:55.215019
+Frontend Developer Intern,ByteCraft,"HTML, CSS, JavaScript, React","Lahore, Pakistan",4 months,20000 PKR,Assist in designing and implementing user interfaces for web applications.,paid,2025-03-12T16:31:55.215023
+Data Analyst Intern,InnoSoft Solutions,"Python, Pandas, SQL","Islamabad, Pakistan",6 months,12000 PKR,Analyze datasets and generate actionable insights for business strategy.,unpaid,2025-03-12T16:31:55.215028
+Python Developer Intern,CloudNova,"Python, Django, REST APIs",Remote,3 months,10000 PKR,Work on backend development using Django and build RESTful APIs.,paid,2025-03-12T16:31:55.215032
+Backend Developer Intern,CloudNova,"Node.js, Express, MongoDB","Lahore, Pakistan",6 months,15000 PKR,Develop scalable backend systems using Node.js and MongoDB.,unpaid,2025-03-12T16:31:55.215037
+Mobile App Developer Intern,AI Ventures,"Flutter, Dart, Firebase","Lahore, Pakistan",5 months,15000 PKR,Build and maintain cross-platform mobile applications using Flutter.,paid,2025-03-12T16:31:55.215041
+Data Analyst Intern,Appify Studios,"Python, Pandas, SQL",Remote,5 months,20000 PKR,Analyze datasets and generate actionable insights for business strategy.,unpaid,2025-03-12T16:31:55.215045
+Backend Developer Intern,VisionTech,"Node.js, Express, MongoDB","Lahore, Pakistan",5 months,10000 PKR,Develop scalable backend systems using Node.js and MongoDB.,paid,2025-03-12T16:31:55.215052
+Frontend Developer Intern,AI Ventures,"HTML, CSS, JavaScript, React","Lahore, Pakistan",6 months,,Assist in designing and implementing user interfaces for web applications.,paid,2025-03-12T16:31:55.215056
+Data Analyst Intern,DataCorp,"Python, Pandas, SQL","Islamabad, Pakistan",5 months,10000 PKR,Analyze datasets and generate actionable insights for business strategy.,remote,2025-03-12T16:31:55.215061
+Frontend Developer Intern,TechSol Pvt Ltd,"HTML, CSS, JavaScript, React","Lahore, Pakistan",3 months,20000 PKR,Assist in designing and implementing user interfaces for web applications.,paid,2025-03-12T16:31:55.215065
+Backend Developer Intern,AI Ventures,"Node.js, Express, MongoDB","Karachi, Pakistan",3 months,,Develop scalable backend systems using Node.js and MongoDB.,remote,2025-03-12T16:31:55.215069
+Cybersecurity Intern,NextGen Solutions,"Cybersecurity, Networking, Linux","Lahore, Pakistan",6 months,15000 PKR,Support in identifying and mitigating security vulnerabilities.,paid,2025-03-12T16:31:55.215074
+UI/UX Designer Intern,ByteCraft,"Figma, Adobe XD, Sketch","Karachi, Pakistan",3 months,20000 PKR,Create engaging user experiences and interface designs.,remote,2025-03-12T16:31:55.215078
+Frontend Developer Intern,AI Ventures,"HTML, CSS, JavaScript, React","Lahore, Pakistan",6 months,,Assist in designing and implementing user interfaces for web applications.,paid,2025-03-12T16:31:55.215082
+Mobile App Developer Intern,AI Ventures,"Flutter, Dart, Firebase","Karachi, Pakistan",6 months,20000 PKR,Build and maintain cross-platform mobile applications using Flutter.,remote,2025-03-12T16:31:55.215086
+Data Analyst Intern,SoftHub Pakistan,"Python, Pandas, SQL",Remote,6 months,12000 PKR,Analyze datasets and generate actionable insights for business strategy.,remote,2025-03-12T16:31:55.215091
+Data Analyst Intern,Appify Studios,"Python, Pandas, SQL","Karachi, Pakistan",3 months,20000 PKR,Analyze datasets and generate actionable insights for business strategy.,paid,2025-03-12T16:31:55.215095
+Frontend Developer Intern,ByteCraft,"HTML, CSS, JavaScript, React","Karachi, Pakistan",5 months,12000 PKR,Assist in designing and implementing user interfaces for web applications.,unpaid,2025-03-12T16:31:55.215099
+Mobile App Developer Intern,NextGen Solutions,"Flutter, Dart, Firebase","Islamabad, Pakistan",4 months,15000 PKR,Build and maintain cross-platform mobile applications using Flutter.,remote,2025-03-12T16:31:55.215103
+Frontend Developer Intern,NextGen Solutions,"HTML, CSS, JavaScript, React","Islamabad, Pakistan",3 months,15000 PKR,Assist in designing and implementing user interfaces for web applications.,remote,2025-03-12T16:31:55.215107
+UI/UX Designer Intern,AI Ventures,"Figma, Adobe XD, Sketch","Karachi, Pakistan",5 months,12000 PKR,Create engaging user experiences and interface designs.,unpaid,2025-03-12T16:31:55.215111
+AI Research Intern,AI Ventures,"Python, TensorFlow, Machine Learning","Islamabad, Pakistan",3 months,15000 PKR,Conduct research on machine learning models and contribute to AI projects.,paid,2025-03-12T16:31:55.215116
+Data Analyst Intern,AI Ventures,"Python, Pandas, SQL","Islamabad, Pakistan",5 months,20000 PKR,Analyze datasets and generate actionable insights for business strategy.,paid,2025-03-12T16:31:55.215120
+AI Research Intern,AI Ventures,"Python, TensorFlow, Machine Learning",Remote,4 months,15000 PKR,Conduct research on machine learning models and contribute to AI projects.,remote,2025-03-12T16:31:55.215123
+Product Management Intern,VisionTech,"Agile, Scrum, JIRA","Karachi, Pakistan",3 months,12000 PKR,Coordinate product development processes and team activities.,paid,2025-03-12T16:31:55.215130
+Backend Developer Intern,TechSol Pvt Ltd,"Node.js, Express, MongoDB","Karachi, Pakistan",5 months,20000 PKR,Develop scalable backend systems using Node.js and MongoDB.,paid,2025-03-12T16:31:55.215135
+AI Research Intern,NextGen Solutions,"Python, TensorFlow, Machine Learning","Karachi, Pakistan",5 months,15000 PKR,Conduct research on machine learning models and contribute to AI projects.,remote,2025-03-12T16:31:55.215139
+Product Management Intern,AI Ventures,"Agile, Scrum, JIRA",Remote,5 months,12000 PKR,Coordinate product development processes and team activities.,unpaid,2025-03-12T16:31:55.215143
+UI/UX Designer Intern,NextGen Solutions,"Figma, Adobe XD, Sketch","Lahore, Pakistan",6 months,10000 PKR,Create engaging user experiences and interface designs.,unpaid,2025-03-12T16:31:55.215147
+Mobile App Developer Intern,AI Ventures,"Flutter, Dart, Firebase","Lahore, Pakistan",5 months,,Build and maintain cross-platform mobile applications using Flutter.,paid,2025-03-12T16:31:55.215151
+Mobile App Developer Intern,Appify Studios,"Flutter, Dart, Firebase","Karachi, Pakistan",3 months,10000 PKR,Build and maintain cross-platform mobile applications using Flutter.,unpaid,2025-03-12T16:31:55.215155
+Backend Developer Intern,Appify Studios,"Node.js, Express, MongoDB","Karachi, Pakistan",6 months,20000 PKR,Develop scalable backend systems using Node.js and MongoDB.,remote,2025-03-12T16:31:55.215159
+Data Analyst Intern,TechSol Pvt Ltd,"Python, Pandas, SQL",Remote,3 months,15000 PKR,Analyze datasets and generate actionable insights for business strategy.,unpaid,2025-03-12T16:31:55.215166

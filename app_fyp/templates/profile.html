@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <header>
+        <h1>My Profile</h1>
+        <p>Manage your account and track your internship applications.</p>
+    </header>
+
+    <section>
+        <h2>Personal Information</h2>
+        {% if profile %}
+            <div>
+                <p>Full Name: {{ profile.full_name }}</p>
+                <p>Email: {{ profile.email }}</p>
+                <p>Skills: {{ profile.skills|default:"Not specified" }}</p>
+                <p>Experience: {{ profile.experience|default:"Not specified" }}</p>
+                <p>LinkedIn:
+                    {% if profile.linkedin %}
+                        <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a>
+                    {% else %}
+                        Not specified
+                    {% endif %}
+                </p>
+                <p>Joined: {{ user.date_joined|date:"F j, Y" }}</p>
+            </div>
+            <div>
+                <a href="{% url 'user_auth:edit_profile' %}">Edit Profile</a>
+            </div>
+        {% else %}
+            <p>Profile not found. Please complete your profile.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>My Internship Applications</h2>
+        {% if applications %}
+            {% for application in applications %}
+                <div>
+                    <h3>{{ application.internship.title }}</h3>
+                    <p>Company: {{ application.internship.company }}</p>
+                    <p>Applied Date: {{ application.created_at|date:"F j, Y" }}</p>
+                    <p>Status: {{ application.status|title }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You haven’t applied to any internships yet.
+                <a href="{% url 'app_fyp:paid_internships' %}">Explore opportunities</a>.
+            </p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

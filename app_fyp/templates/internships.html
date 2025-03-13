@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Internships - Aspire Interns{% endblock %}
+
+{% block content %}
+<div>
+    <header>
+        <h1>Aspire Interns</h1>
+        <p>Your Gateway to Professional Growth</p>
+    </header>
+
+    <!-- Filter Section -->
+    <section id="filters">
+        <form method="get">
+            <input type="text" name="q" placeholder="Search internships..." value="{{ query }}">
+
+            <select name="type">
+                <option value="">All Types</option>
+                <option value="paid" {% if request.GET.type == 'paid' %}selected{% endif %}>Paid</option>
+                <option value="unpaid" {% if request.GET.type == 'unpaid' %}selected{% endif %}>Unpaid</option>
+                <option value="remote" {% if request.GET.type == 'remote' %}selected{% endif %}>Remote</option>
+            </select>
+
+            <input type="text" name="duration" placeholder="Duration (e.g., 3 months)" value="{{ request.GET.duration }}">
+            <input type="text" name="location" placeholder="Location" value="{{ request.GET.location }}">
+
+            <button type="submit">Filter</button>
+        </form>
+    </section>
+
+    <!-- Featured or Search Results Section -->
+    <section id="featured">
+        <h2>
+            {% if query or request.GET.type or request.GET.duration or request.GET.location %}
+                Search Results
+            {% else %}
+                Featured Internships
+            {% endif %}
+        </h2>
+
+        <div id="internship-list">
+            {% for internship in internships %}
+                <div>
+                    <div>
+                        <span>
+                            {{ internship.internship_type|title }}
+                        </span>
+                        <h3>
+                            {{ internship.title }}
+                        </h3>
+                        <p><strong>Company:</strong> {{ internship.company }}</p>
+                        <p><strong>Location:</strong> {{ internship.location }}</p>
+                        <p><strong>Duration:</strong> {{ internship.duration }}</p>
+                        <p>{{ internship.description|truncatewords:20 }}</p>
+                        <div>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'app_fyp:apply_internship' internship.id %}">
+                                    Apply Now
+                                </a>
+                            {% else %}
+                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}">
+                                    Login to Apply
+                                </a>
+                            {% endif %}
+                            <button onclick="showDetails({{ internship.id }})">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No internships available matching your criteria.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<!-- Internship Details Modal (Optional) -->
+<div id="details-modal" style="display:none;">
+    <div id="modal-content"></div>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+<script src="{% static 'javascript/script.js' %}"></script>
+{% endblock %}
