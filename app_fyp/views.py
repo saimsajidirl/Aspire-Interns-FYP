@@ -6,6 +6,35 @@ from django.utils import timezone
 from django.http import JsonResponse
 from .models import Internship, InternshipApplication
 from user_auth.models import UserProfile
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import ProfileForm
+from django.contrib import messages
+
+@login_required
+def profile_view(request):
+    try:
+        profile = request.user.profile  # Access via 'profile' related_name
+    except UserProfile.DoesNotExist:
+        profile = UserProfile.objects.create(user=request.user, email=request.user.email)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('app_fyp:profile')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+        'email': request.user.email,
+    }
+    return render(request, 'profile.html', context)
+
 
 def index(request):
     # Stats for the homepage

@@ -60,6 +60,7 @@ class UserProfile(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     skills = models.TextField()
+    education = models.TextField(blank=True, help_text="Your education background")
     resume = models.FileField(upload_to='resumes/', null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
     projects = models.TextField(null=True, blank=True)
@@ -68,9 +69,7 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = 'user_profiles'
-        indexes = [
-            models.Index(fields=['user', 'email']),
-        ]
+        indexes = [models.Index(fields=['user', 'email'])]
 
     def __str__(self):
         return self.full_name

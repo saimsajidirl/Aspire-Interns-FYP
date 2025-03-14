@@ -1,6 +1,5 @@
-from django.db import models
 from django.utils import timezone
-from user_auth.models import User  
+from django.db import models
 
 class Internship(models.Model):
     INTERNSHIP_TYPE_CHOICES = [

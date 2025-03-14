@@ -1,55 +1,340 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}My Profile - Aspire Interns{% endblock %}
+{% block title %}Profile - Aspire Interns{% endblock %}
 
 {% block content %}
-<div>
-    <header>
-        <h1>My Profile</h1>
-        <p>Manage your account and track your internship applications.</p>
-    </header>
+<section id="profile-section" class="container">
+    <h1 class="header-title">Your Profile</h1>
+    <p class="header-subtitle">Manage your details below</p>
 
-    <section>
-        <h2>Personal Information</h2>
-        {% if profile %}
-            <div>
-                <p>Full Name: {{ profile.full_name }}</p>
-                <p>Email: {{ profile.email }}</p>
-                <p>Skills: {{ profile.skills|default:"Not specified" }}</p>
-                <p>Experience: {{ profile.experience|default:"Not specified" }}</p>
-                <p>LinkedIn:
-                    {% if profile.linkedin %}
-                        <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a>
-                    {% else %}
-                        Not specified
-                    {% endif %}
-                </p>
-                <p>Joined: {{ user.date_joined|date:"F j, Y" }}</p>
-            </div>
-            <div>
-                <a href="{% url 'user_auth:edit_profile' %}">Edit Profile</a>
-            </div>
-        {% else %}
-            <p>Profile not found. Please complete your profile.</p>
-        {% endif %}
-    </section>
-
-    <section>
-        <h2>My Internship Applications</h2>
-        {% if applications %}
-            {% for application in applications %}
-                <div>
-                    <h3>{{ application.internship.title }}</h3>
-                    <p>Company: {{ application.internship.company }}</p>
-                    <p>Applied Date: {{ application.created_at|date:"F j, Y" }}</p>
-                    <p>Status: {{ application.status|title }}</p>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}bg-success{% else %}bg-danger{% endif %}">
+                    {{ message }}
                 </div>
             {% endfor %}
-        {% else %}
-            <p>You haven’t applied to any internships yet.
-                <a href="{% url 'app_fyp:paid_internships' %}">Explore opportunities</a>.
-            </p>
-        {% endif %}
-    </section>
+        </div>
+    {% endif %}
+
+    <div class="profile-container">
+        <!-- Display Signup Info (Read-Only) -->
+        <div class="profile-info">
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">Account Information</h2>
+            <div class="info-item">
+                <label>Email:</label>
+                <span>{{ email }}</span> <!-- From User model -->
+            </div>
+            <div class="info-item">
+                <label>Username:</label>
+                <span>{{ user.username }}</span>
+            </div>
+        </div>
+
+        <!-- Editable Profile Form -->
+        <div class="profile-form">
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">Edit Profile</h2>
+            <form method="POST" action="{% url 'app_fyp:profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.full_name.id_for_label }}">Full Name:</label>
+                    {{ form.full_name }}
+                    {% if form.full_name.errors %}
+                        <span class="error">{{ form.full_name.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.skills.id_for_label }}">Skills:</label>
+                    {{ form.skills }}
+                    {% if form.skills.errors %}
+                        <span class="error">{{ form.skills.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.education.id_for_label }}">Education:</label>
+                    {{ form.education }}
+                    {% if form.education.errors %}
+                        <span class="error">{{ form.education.errors }}</span>
+                    {% endif %}
+                </div>
+             <div class="form-group">
+    <label for="{{ form.resume.id_for_label }}">Resume:</label>
+    <input type="file" name="resume" class="form-control" id="{{ form.resume.id_for_label }}">
+
+    {% if form.resume.errors %}
+        <span class="error">{{ form.resume.errors }}</span>
+    {% endif %}
+
+    {% if user.profile.resume %}
+        <p>Current: <a href="{{ user.profile.resume.url }}" target="_blank">View Resume</a></p>
+    {% endif %}
 </div>
+
+               <div class="form-group">
+    <label for="{{ form.linkedin.id_for_label }}">LinkedIn Profile:</label>
+    <input type="url" name="linkedin" class="form-control" id="{{ form.linkedin.id_for_label }}" value="{{ form.linkedin.value|default:'' }}" placeholder="Enter your LinkedIn profile URL">
+
+    {% if form.linkedin.errors %}
+        <span class="error">{{ form.linkedin.errors }}</span>
+    {% endif %}
+</div>
+
+<div class="form-group">
+    <label for="{{ form.projects.id_for_label }}">Projects (e.g., GitHub):</label>
+    <input type="url" name="projects" class="form-control" id="{{ form.projects.id_for_label }}" value="{{ form.projects.value|default:'' }}" placeholder="Enter your projects URL (GitHub, Portfolio, etc.)">
+
+    {% if form.projects.errors %}
+        <span class="error">{{ form.projects.errors }}</span>
+    {% endif %}
+</div>
+
+                <button type="submit" class="btn-primary">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Profile Section Container */
+.container {
+    max-width: 900px; /* Slightly wider for a more spacious feel */
+    margin: 4rem auto; /* More margin for breathing room */
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%); /* Subtle gradient */
+    border-radius: 20px; /* Smoother, larger radius */
+    box-shadow: 0 10px 40px rgba(58, 134, 255, 0.1), 0 2px 10px rgba(0, 0, 0, 0.05); /* Deeper, softer shadow */
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(58, 134, 255, 0.05); /* Subtle border */
+}
+
+/* Header Title */
+.header-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem); /* Larger, more dynamic sizing */
+    font-weight: 800;
+    color: var(--primary); /* Keep your primary color */
+    text-align: center;
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark)); /* Gradient text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 4px 12px rgba(58, 134, 255, 0.2);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* Header Subtitle */
+.header-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray-600);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    font-weight: 300;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+/* Profile Container Grid */
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout for larger screens */
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Profile Info and Form Cards */
+.profile-info, .profile-form {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95); /* Slightly translucent white */
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(8px); /* Glassmorphism effect */
+    border: 1px solid rgba(58, 134, 255, 0.1);
+}
+
+.profile-info:hover, .profile-form:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+    box-shadow: 0 12px 30px rgba(58, 134, 255, 0.15);
+}
+
+/* Info Items */
+.info-item {
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.info-item label {
+    font-weight: 700;
+    color: var(--gray-800);
+    width: 130px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item span {
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    font-weight: 400;
+    padding: 0.5rem 1rem;
+    background: rgba(58, 134, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(58, 134, 255, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+    outline: none;
+    transform: scale(1.02); /* Subtle zoom on focus */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resize only */
+    min-height: 100px;
+}
+
+/* Button Styling */
+.btn-primary {
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(58, 134, 255, 0.4);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 2s infinite;
+}
+
+/* Alerts */
+.alert {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out;
+}
+
+.bg-success {
+    background: linear-gradient(45deg, #34c759, #28a745); /* Vibrant green gradient */
+}
+
+.bg-danger {
+    background: linear-gradient(45deg, #e63946, #d00000); /* Bold red gradient */
+}
+
+/* Error Messages */
+.error {
+    color: #e63946;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.75rem;
+        margin: 2rem auto;
+    }
+
+    .profile-container {
+        grid-template-columns: 1fr; /* Stack vertically on mobile */
+        gap: 1.5rem;
+    }
+
+    .header-title {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%; /* Full-width button on mobile */
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1000px; /* Wider on large screens */
+    }
+}
+</style>
 {% endblock %}

@@ -26,7 +26,8 @@
         <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
-            <li><span>{{ user.username }}</span></li>
+    <li><a href="{% url 'app_fyp:profile' %}"><span>{{ user.username }}</span></a></li>
+
             <li>
                 <form action="{% url 'user_auth:logout' %}" method="post">
                     {% csrf_token %}
