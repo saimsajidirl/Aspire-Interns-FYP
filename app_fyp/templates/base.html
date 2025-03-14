@@ -15,36 +15,32 @@
 <body>
     <div>
         <nav>
-            <div>
-                <img src="{% static 'images/Logo.png' %}" alt="Aspire Internships Logo">
-                <div>
-                    Aspire Interns
-                </div>
-            </div>
-            <ul id="mobile-menu">
-                <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
-                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
-                <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
-                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li><span>{{ user.username }}</span></li>
-                    <li>
-                        <form action="{% url 'user_auth:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Logout</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li><a href="{% url 'user_auth:login' %}">Login</a></li>
-                {% endif %}
-            </ul>
-            <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
-                Menu
-            </button>
-        </nav>
+    <div>
+        <img src="{% static 'images/Logo.png' %}" alt="Aspire Internships Logo">
+        <div>Aspire Interns</div>
+    </div>
+    <ul id="mobile-menu">
+        <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+        <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+        <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
+        <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
+            <li><span>{{ user.username }}</span></li>
+            <li>
+                <form action="{% url 'user_auth:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        {% else %}
+            <li><a href="{% url 'user_auth:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+    <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger">☰</span>
+    </button>
+</nav>
     </div>
     {% if messages %}
         <div>

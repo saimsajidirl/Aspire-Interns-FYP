@@ -446,3 +446,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mark page as JS-loaded
     requestAnimationFrame(() => document.body.classList.add('js-loaded'));
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('show');
+        menuBtn.querySelector('.hamburger').textContent = isExpanded ? '☰' : '✕';
+    });
+
+    // Close menu when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && mobileMenu.classList.contains('show')) {
+            mobileMenu.classList.remove('show');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.querySelector('.hamburger').textContent = '☰';
+        }
+    });
+});
