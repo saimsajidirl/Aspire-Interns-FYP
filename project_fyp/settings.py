@@ -16,6 +16,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'rest_framework',
     'app_fyp.apps.AppFypConfig',
+    'internship_posting.apps.InternshipPostingConfig',
     'user_auth.apps.UserAuthConfig',
     'django.contrib.admin',
     'django.contrib.auth',

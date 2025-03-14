@@ -32,6 +32,7 @@ def internships(request):
     duration_filter = request.GET.get('duration', '')
     location_filter = request.GET.get('location', '')
 
+    # Display all internships, no approval filter
     internships = Internship.objects.all()
 
     # Applying Filters
@@ -53,7 +54,7 @@ def internships(request):
     unpaid_count = Internship.objects.filter(internship_type='unpaid').count()
     remote_count = Internship.objects.filter(internship_type='remote').count()
 
-    # Track applied internships for authenticated users
+    # Track applied internships
     applied_internships = set()
     if request.user.is_authenticated:
         applied_internships = set(
@@ -67,7 +68,7 @@ def internships(request):
         'paid_count': paid_count,
         'unpaid_count': unpaid_count,
         'remote_count': remote_count,
-        'applied_internships': applied_internships,  # Added to toggle button state
+        'applied_internships': applied_internships,
         'user': request.user,
     }
     return render(request, 'internships.html', context)

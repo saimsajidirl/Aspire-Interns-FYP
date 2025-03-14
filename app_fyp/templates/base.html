@@ -24,8 +24,11 @@
             <ul id="mobile-menu">
                 <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
                 <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
-                <li><a href="{% url 'app_fyp:about' %}">About</a></li>
+                <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
                 <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <li><span>{{ user.username }}</span></li>
                     <li>
@@ -69,10 +72,11 @@
     <div class="footer-section footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Internships</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+  <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+                <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
+                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+
       </ul>
     </div>
 
@@ -101,12 +105,12 @@
 
   <!-- Bottom Footer -->
   <div class="footer-bottom">
-    <p>&copy; 2025 Aspire Interns. All rights reserved.</p>
+  <p>2025 Aspire Interns. All rights reserved, Made with ❤️ by Muhammad Saim.</p>
+
   </div>
 </footer>
 
 <script src="{% static 'javascript/script.js' %}"></script>
-
 
     {% block extra_scripts %}{% endblock %}
 </body>

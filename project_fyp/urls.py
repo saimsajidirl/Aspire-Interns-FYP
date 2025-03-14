@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_fyp.urls', namespace='app_fyp')),
     path('auth/', include('user_auth.urls', namespace='user_auth')),
+    path('internship-posting/', include('internship_posting.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

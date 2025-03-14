@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post an Internship - Aspire Interns{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="font-size: 1.5rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
+  Post a new Internship
+</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ title|default:'' }}" required>
+        <label>Company:</label>
+        <input type="text" name="company" value="{{ company|default:'' }}" required>
+        <label>Tech Stack:</label>
+        <input type="text" name="stack" value="{{ stack|default:'' }}" required>
+        <label>Location:</label>
+        <input type="text" name="location" value="{{ location|default:'' }}" required>
+        <label>Duration (e.g., 3 months):</label>
+        <input type="text" name="duration" value="{{ duration|default:'' }}">
+        <label>Stipend (optional):</label>
+        <input type="text" name="stipend" value="{{ stipend|default:'' }}">
+        <label>Description:</label>
+        <textarea name="description" required>{{ description|default:'' }}</textarea>
+        <label>Internship Type:</label>
+        <select name="internship_type" required>
+            <option value="paid" {% if internship_type == 'paid' %}selected{% endif %}>Paid</option>
+            <option value="unpaid" {% if internship_type == 'unpaid' %}selected{% endif %}>Unpaid</option>
+            <option value="remote" {% if internship_type == 'remote' %}selected{% endif %}>Remote</option>
+        </select>
+        <button type="submit">Post Internship</button>
+    </form>
+</div>
+
+<style>
+/* Container Styling */
+.container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+/* Label Styling */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input, Textarea, Select Styling */
+input, textarea, select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.8rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Button Styling */
+button {
+  padding: 1rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+  background: darken(var(--primary), 10%);
+  color:black;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Alert Styling */
+.alert {
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.8rem;
+  font-weight: 500;
+  border-left: 5px solid;
+}
+
+.alert.success {
+  background-color: #e6f4ea;
+  color: #276749;
+  border-color: #38a169;
+}
+
+.alert.error {
+  background-color: #fdecea;
+  color: #c53030;
+  border-color: #e53e3e;
+}
+
+/* Transition for Smoothness */
+input, textarea, select, button {
+  transition: all 0.3s ease;
+}
+
+/* Placeholder Styling */
+input::placeholder, textarea::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+</style>
+{% endblock %}

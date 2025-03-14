@@ -1,22 +1,21 @@
-# project_fyp/dbrouters.py
 class DatabaseRouter:
     """
     A router to control database operations for models in different apps.
-    - 'user_auth' app models and auth-related apps go to 'user_auth' database
-    - 'app_fyp' app models go to 'default' (internships_list)
+    - 'user_auth', 'auth', 'admin', 'contenttypes', 'sessions' app models go to 'user_auth' database
+    - 'app_fyp' and 'internship_posting' app models go to 'default' (internships_list)
     """
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
             return 'user_auth'
-        elif model._meta.app_label == 'app_fyp':
+        elif model._meta.app_label in ['app_fyp', 'internship_posting']:  # Add internship_posting
             return 'default'
         return None
 
     def db_for_write(self, model, **hints):
         if model._meta.app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
             return 'user_auth'
-        elif model._meta.app_label == 'app_fyp':
+        elif model._meta.app_label in ['app_fyp', 'internship_posting']:  # Add internship_posting
             return 'default'
         return None
 
@@ -30,6 +29,6 @@ class DatabaseRouter:
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         if app_label in ['user_auth', 'auth', 'admin', 'contenttypes', 'sessions']:
             return db == 'user_auth'
-        elif app_label == 'app_fyp':
+        elif app_label in ['app_fyp', 'internship_posting']:  # Add internship_posting
             return db == 'default'
         return False  # Prevent migrations for unhandled apps
