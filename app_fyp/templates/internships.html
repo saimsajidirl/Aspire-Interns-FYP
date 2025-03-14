@@ -5,38 +5,39 @@
 {% block content %}
 <div>
     <header>
-        <h1>Aspire Interns</h1>
-        <p>Your Gateway to Professional Growth</p>
+        <h1 style="font-size: 4rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
+            Aspire Interns </h1>
+        <p>Empowering Potential, Shaping Professional Excellence.</p>
     </header>
 
     <!-- Filter Section -->
     <section id="filters">
         <form method="get">
             <input type="text" name="q" placeholder="Search internships..." value="{{ query }}">
-
             <select name="type">
                 <option value="">All Types</option>
                 <option value="paid" {% if request.GET.type == 'paid' %}selected{% endif %}>Paid</option>
                 <option value="unpaid" {% if request.GET.type == 'unpaid' %}selected{% endif %}>Unpaid</option>
                 <option value="remote" {% if request.GET.type == 'remote' %}selected{% endif %}>Remote</option>
             </select>
-
             <input type="text" name="duration" placeholder="Duration (e.g., 3 months)" value="{{ request.GET.duration }}">
             <input type="text" name="location" placeholder="Location" value="{{ request.GET.location }}">
-
             <button type="submit">Filter</button>
         </form>
     </section>
 
     <!-- Featured or Search Results Section -->
     <section id="featured">
-        <h2>
-            {% if query or request.GET.type or request.GET.duration or request.GET.location %}
-                Search Results
-            {% else %}
-                Featured Internships
-            {% endif %}
-        </h2>
+   <div style="display: flex; justify-content: center;">
+    <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+        {% if query or request.GET.type or request.GET.duration or request.GET.location %}
+            Search Results
+        {% else %}
+            Featured Internships
+        {% endif %}
+    </h2>
+</div>
+
 
         <div id="internship-list">
             {% for internship in internships %}
@@ -54,9 +55,15 @@
                         <p>{{ internship.description|truncatewords:20 }}</p>
                         <div>
                             {% if user.is_authenticated %}
-                                <a href="{% url 'app_fyp:apply_internship' internship.id %}">
-                                    Apply Now
-                                </a>
+                                {% if internship.id in applied_internships %}
+                                    <a href="#" class="applied-btn" disabled>Applied</a>
+                                {% else %}
+                                    <a href="{% url 'app_fyp:apply_internship' internship.id %}"
+                                       class="apply-btn"
+                                       data-internship-id="{{ internship.id }}">
+                                        Apply Now
+                                    </a>
+                                {% endif %}
                             {% else %}
                                 <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}">
                                     Login to Apply
@@ -75,10 +82,10 @@
     </section>
 </div>
 
-<!-- Internship Details Modal (Optional) -->
+<!-- Internship Details Modal -->
 <div id="details-modal" style="display:none;">
     <div id="modal-content"></div>
-    <button onclick="closeModal()">Close</button>
+    <button onclick="closeDetailsModal()">Close</button>
 </div>
 
 <script src="{% static 'javascript/script.js' %}"></script>

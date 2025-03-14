@@ -185,7 +185,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function openModal(internshipId) {
+// Open the Apply Modal and Pre-fill Data
+function openApplyModal(internshipId) {
     const modal = document.getElementById('applyModal');
     const form = document.getElementById('applyForm');
     const internshipIdField = document.getElementById('internship_id');
@@ -193,7 +194,7 @@ function openModal(internshipId) {
     internshipIdField.value = internshipId;
     form.action = "{% url 'app_fyp:apply_internship' 0 %}".replace('0', internshipId);
 
-    // Pre-fill form with profile data
+    // Fetch and Pre-fill Profile Data
     fetch("{% url 'user_auth:get_profile' %}", {
         method: 'GET',
         headers: {
@@ -217,37 +218,231 @@ function openModal(internshipId) {
     .catch(error => {
         console.error('Error fetching profile:', error);
         alert('Please log in or complete your profile to apply.');
-        closeModal();
+        closeApplyModal();
     });
 
     modal.classList.remove('hidden');
 }
 
-function closeModal() {
+// Close the Apply Modal
+function closeApplyModal() {
     document.getElementById('applyModal').classList.add('hidden');
 }
-  function showDetails(internshipId) {
-        fetch(`/internship/${internshipId}/details/`, {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
+
+// Open the Details Modal and Load Internship Details
+function showDetails(internshipId) {
+    fetch(`/internship/${internshipId}/details/`, {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const modalContent = `
+            <h3>${data.title}</h3>
+            <p><strong>Company:</strong> ${data.company}</p>
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Duration:</strong> ${data.duration}</p>
+            <p><strong>Stack:</strong> ${data.stack}</p>
+            <p><strong>Description:</strong> ${data.description}</p>
+            <p><strong>Stipend:</strong> ${data.stipend || 'N/A'}</p>
+        `;
+        document.getElementById('modal-content').innerHTML = modalContent;
+        document.getElementById('details-modal').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error fetching details:', error);
+        alert('Error loading internship details.');
+    });
+}
+
+// Close the Details Modal
+function closeDetailsModal() {
+    document.getElementById('details-modal').style.display = 'none';
+}
+
+// Utility Function to Get CSRF Token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const modalContent = `
-                <h3>${data.title}</h3>
-                <p><strong>Company:</strong> ${data.company}</p>
-                <p><strong>Location:</strong> ${data.location}</p>
-                <p><strong>Duration:</strong> ${data.duration}</p>
-                <p><strong>Stack:</strong> ${data.stack}</p>
-                <p><strong>Description:</strong> ${data.description}</p>
-                <p><strong>Stipend:</strong> ${data.stipend || 'N/A'}</p>
-            `;
-            document.getElementById('modal-content').innerHTML = modalContent;
-            document.getElementById('details-modal').style.display = 'block';
+        }
+    }
+    return cookieValue;
+}
+// Utility function to get CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+// Show internship details in modal
+function showDetails(internshipId) {
+    const modal = document.getElementById('details-modal');
+    const content = document.getElementById('modal-content');
+
+    fetch(`/internship/${internshipId}/details/`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(data => {
+        content.innerHTML = `
+            <h3>${data.title}</h3>
+            <p><strong>Company:</strong> ${data.company}</p>
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Duration:</strong> ${data.duration}</p>
+            <p><strong>Stack:</strong> ${data.stack}</p>
+            <p><strong>Description:</strong> ${data.description}</p>
+            <p><strong>Stipend:</strong> ${data.stipend || 'N/A'}</p>
+        `;
+        modal.style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error fetching details:', error);
+        content.innerHTML = '<p>Error loading internship details.</p>';
+        modal.style.display = 'block';
+    });
+}
+
+// Close the details modal
+function closeDetailsModal() {
+    document.getElementById('details-modal').style.display = 'none';
+}
+
+// Main DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded');
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
         });
     }
 
-    function closeModal() {
-        document.getElementById('details-modal').style.display = 'none';
+    // Navigation scroll effect
+    const nav = document.querySelector('nav');
+    function handleNavScroll() {
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
     }
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                handleNavScroll();
+                scrollTimeout = null;
+            }, 10);
+        }
+    });
+
+    // Ripple effect on buttons
+    const buttons = document.querySelectorAll('button, .btn, a[class*="bg-"]');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const x = e.clientX - e.target.getBoundingClientRect().left;
+            const y = e.clientY - e.target.getBoundingClientRect().top;
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Search box focus behavior (mobile)
+    const searchBox = document.getElementById('internship-search');
+    if (searchBox) {
+        searchBox.addEventListener('focus', function() {
+            if (window.innerWidth < 768) this.style.width = '100%';
+        });
+        searchBox.addEventListener('blur', function() {
+            if (window.innerWidth < 768) this.style.width = '';
+        });
+    }
+
+    // Hero title parallax effect
+    const heroTitle = document.querySelector('.hero-gradient');
+    if (heroTitle) {
+        window.addEventListener('mousemove', function(e) {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            heroTitle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    }
+
+    // Counter animation for stats
+    function animateCounter(el) {
+        const target = parseInt(el.textContent);
+        const duration = 2000;
+        const frameRate = 1000 / 60;
+        const totalFrames = Math.round(duration / frameRate);
+        let frame = 0;
+        const counter = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const currentCount = Math.round(target * progress);
+            el.textContent = frame === totalFrames ? target : currentCount;
+            if (frame === totalFrames) clearInterval(counter);
+        }, frameRate);
+    }
+    document.querySelectorAll('.stat-item h3').forEach(stat => animateCounter(stat));
+
+    // Responsive internship cards
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.internship-card').forEach(card => {
+                card.style.transition = 'all 0.3s ease';
+            });
+        }
+    }
+    handleResize();
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(handleResize, 250);
+    });
+
+    // Modal transition optimization
+    const modal = document.getElementById('details-modal');
+    const modalContent = document.getElementById('modal-content');
+    if (modal && modalContent) {
+        modal.addEventListener('transitionstart', () => {
+            modalContent.style.willChange = 'transform, opacity';
+        });
+        modal.addEventListener('transitionend', () => {
+            modalContent.style.willChange = 'auto';
+        });
+    }
+
+    // Mark page as JS-loaded
+    requestAnimationFrame(() => document.body.classList.add('js-loaded'));
+});
