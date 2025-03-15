@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Application Status - Aspire Interns{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1 class="header-title">Update Application Status</h1>
+    <p class="header-subtitle">Change the status for {{ application.full_name }}'s application</p>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}bg-success{% else %}bg-danger{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="profile-form">
+        <form method="POST" action="{% url 'app_fyp:update_application_status' application.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">Current Status: <strong>{{ application.status|title }}</strong></label>
+            </div>
+            <div class="form-group">
+                <label class="form-label">New Status:
+                    <select name="status" class="form-control">
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}" {% if value == application.status %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+            <button type="submit" class="btn-primary">Update Status</button>
+        </form>
+    </div>
+</section>
+
+<style>
+    /* Define custom variables for consistency */
+    :root {
+        --primary: #1e90ff; /* Dodger Blue */
+        --primary-dark: #187bcd; /* Darker shade of primary */
+        --gray-800: #2d3748;
+        --gray-700: #4a5568;
+        --gray-600: #718096;
+        --success: #34c759;
+        --danger: #e63946;
+    }
+
+    /* Section Container */
+    .container {
+        max-width: 900px;
+        margin: 4rem auto;
+        padding: 2.5rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(58, 134, 255, 0.1), 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(58, 134, 255, 0.05);
+    }
+
+    /* Header Styles */
+    .header-title {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        font-weight: 800;
+        color: var(--primary);
+        text-align: center;
+        margin-bottom: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 2px 4px 12px rgba(58, 134, 255, 0.2);
+        animation: fadeInDown 0.8s ease-out;
+    }
+
+    .header-subtitle {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        text-align: center;
+        margin-bottom: 2.5rem;
+        font-style: italic;
+        font-weight: 300;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    /* Form Container */
+    .profile-form {
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(58, 134, 255, 0.1);
+    }
+
+    .profile-form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(58, 134, 255, 0.15);
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 1.75rem;
+        position: relative;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 700;
+        color: var(--gray-800);
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+    }
+
+    .form-label strong {
+        color: var(--primary);
+    }
+
+    /* Form Control (Select) */
+    .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid rgba(58, 134, 255, 0.2);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+        appearance: none; /* Remove default select arrow in some browsers */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231e90ff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        cursor: pointer;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+        outline: none;
+        transform: scale(1.02);
+    }
+
+    /* Button */
+    .btn-primary {
+        padding: 1rem 2rem;
+        background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 6px 20px rgba(58, 134, 255, 0.25);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 12px 30px rgba(58, 134, 255, 0.4);
+    }
+
+    .btn-primary::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        animation: shine 2s infinite;
+    }
+
+    /* Messages */
+    .messages {
+        margin-bottom: 2rem;
+    }
+
+    .alert {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        animation: slideIn 0.5s ease-out;
+    }
+
+    .bg-success {
+        background: linear-gradient(45deg, var(--success), #28a745);
+    }
+
+    .bg-danger {
+        background: linear-gradient(45deg, var(--danger), #d00000);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 100%; }
+        100% { left: 100%; }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1.75rem;
+            margin: 2rem auto;
+        }
+
+        .header-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1000px;
+        }
+    }
+</style>
+{% endblock %}

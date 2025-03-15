@@ -111,6 +111,11 @@
                         <div class="mt-4">
                             <a href="{% url 'app_fyp:internship_details' application.internship.id %}" class="text-blue-600 hover:underline">View Internship Details</a>
                         </div>
+                        {% if user.is_staff %}
+    <div class="mt-2">
+        <a href="{% url 'app_fyp:update_application_status' application.id %}" class="text-blue-600 hover:underline">Update Status</a>
+    </div>
+{% endif %}
                     </div>
                 {% endfor %}
             </div>

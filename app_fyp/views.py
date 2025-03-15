@@ -8,6 +8,30 @@ from .models import Internship, InternshipApplication
 from user_auth.models import UserProfile
 from .forms import ProfileForm
 
+
+@login_required
+def update_application_status(request, application_id):
+    if not request.user.is_staff:  # Restrict to admins
+        messages.error(request, "You do not have permission to perform this action.")
+        return redirect('app_fyp:profile')
+
+    application = get_object_or_404(InternshipApplication, id=application_id)
+
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        if new_status in dict(InternshipApplication.APPLICATION_STATUS_CHOICES).keys():
+            application.status = new_status
+            application.save()
+            messages.success(request, f"Status updated to '{new_status.title()}' for {application.internship.title}.")
+        else:
+            messages.error(request, "Invalid status selected.")
+        return redirect('app_fyp:profile')
+
+    context = {
+        'application': application,
+        'status_choices': InternshipApplication.APPLICATION_STATUS_CHOICES,  # Use APPLICATION_STATUS_CHOICES
+    }
+    return render(request, 'update_application_status.html', context)
 @login_required
 def profile_view(request):
     try:
