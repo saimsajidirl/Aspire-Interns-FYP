@@ -15,99 +15,82 @@
 <body>
     <div>
         <nav>
-    <div>
-        <img src="{% static 'images/Logo.png' %}" alt="Aspire Internships Logo">
-        <div>Aspire Interns</div>
+            <div>
+                <img src="{% static 'images/Logo.png' %}" alt="Aspire Internships Logo">
+                <div>Aspire Interns</div>
+            </div>
+            <ul id="mobile-menu">
+                <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+                <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
+                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
+                    <li><a href="{% url 'app_fyp:profile' %}"><span>{{ user.profile.full_name|default:user.username }}</span></a></li>
+                    <li>
+                        <form action="{% url 'user_auth:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'user_auth:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+            <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger">☰</span>
+            </button>
+        </nav>
     </div>
-    <ul id="mobile-menu">
-        <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
-        <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
-        <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
-        <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'internship_posting:post_internship' %}">Post an Internship</a></li>
-    <li><a href="{% url 'app_fyp:profile' %}"><span>{{ user.username }}</span></a></li>
-
-            <li>
-                <form action="{% url 'user_auth:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
-        {% else %}
-            <li><a href="{% url 'user_auth:login' %}">Login</a></li>
-        {% endif %}
-    </ul>
-    <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu">
-        <span class="hamburger">☰</span>
-    </button>
-</nav>
-    </div>
-    {% if messages %}
-        <div>
-            {% for message in messages %}
-                <div>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
     <main>
         {% block content %}
         {% endblock %}
     </main>
     <footer>
-  <div class="footer-content">
+        <div class="footer-content">
+            <!-- Left: Logo & Description -->
+            <div class="footer-section footer-logo">
+                <img src="{% static 'images/Logo.png' %}" alt="Logo">
+                <p>Aspire Interns – Connecting aspiring professionals with top internship opportunities. Empowering careers, one opportunity at a time.</p>
+            </div>
 
-    <!-- Left: Logo & Description -->
-    <div class="footer-section footer-logo">
-      <img src="{% static 'images/Logo.png' %}" alt="Logo">
-      <p>Aspire Interns – Connecting aspiring professionals with top internship opportunities. Empowering careers, one opportunity at a time.</p>
-    </div>
+            <!-- Center: Quick Links -->
+            <div class="footer-section footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
+                    <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
+                    <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
+                    <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                </ul>
+            </div>
 
-    <!-- Center: Quick Links -->
-    <div class="footer-section footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-  <li><a href="{% url 'app_fyp:index' %}">Home</a></li>
-                <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
-                <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
-                <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+            <div class="footer-section footer-contact">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: <a href="aspireinterns@gmail.com">aspireinterns@gmail.com</a></li>
+                    <li>Phone: <a href="tel:+923243991747">+923243991747</a></li>
+                    <li>Location: Bhawalpur, Pakistan</li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://github.com/saimsajidirl" title="Github">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe1CLK7ijKDV1QiPsBsAKkaSkKx0QWAec8Tg&s" alt="Github">
+                    </a>
+                    <a href="https://x.com/MuhammadSaimDev" title="Twitter">
+                        <img src="https://cdn.worldvectorlogo.com/logos/twitter-logo-2.svg" alt="Twitter">
+                    </a>
+                    <a href="https://www.linkedin.com/in/muhammad-saim-744078266/" title="LinkedIn">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83wjVlFpnOy2joiaYr2JpcXN8ds4EfnbdHA&s" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Aspire Interns. All rights reserved, Made with ❤️ by Muhammad Saim.</p>
+        </div>
+    </footer>
 
-      </ul>
-    </div>
-
-    <div class="footer-section footer-contact">
-      <h4>Contact Us</h4>
-      <ul>
-        <li>Email: <a href="aspireinterns@gmail.com">aspireinterns@gmail.com</a></li>
-        <li>Phone: <a href="tel:+923243991747">+923243991747</a></li>
-        <li>Location: Bhawalpur, Pakistan</li>
-      </ul>
-    <div class="social-icons">
-  <a href="https://github.com/saimsajidirl" title="Github">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe1CLK7ijKDV1QiPsBsAKkaSkKx0QWAec8Tg&s" alt="Github">
-  </a>
-  <a href="https://x.com/MuhammadSaimDev" title="Twitter">
-    <img src="https://cdn.worldvectorlogo.com/logos/twitter-logo-2.svg" alt="Twitter">
-  </a>
-  <a href="https://www.linkedin.com/in/muhammad-saim-744078266/" title="LinkedIn">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83wjVlFpnOy2joiaYr2JpcXN8ds4EfnbdHA&s" alt="LinkedIn">
-  </a>
-</div>
-
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-  <p>2025 Aspire Interns. All rights reserved, Made with ❤️ by Muhammad Saim.</p>
-
-  </div>
-</footer>
-
-<script src="{% static 'javascript/script.js' %}"></script>
-
+    <script src="{% static 'javascript/script.js' %}"></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
