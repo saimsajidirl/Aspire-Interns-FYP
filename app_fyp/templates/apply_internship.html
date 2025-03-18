@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="apply-internship-container">
-    <h1>Apply for {{ internship.title }}</h1>
+    <h1 style="font-size: 2rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">Apply for {{ internship.title }}</h1>
     <p>Review and update your details below before submitting your application.</p>
 
     <form method="POST" enctype="multipart/form-data" class="apply-internship-form">
@@ -23,10 +23,7 @@
             <label for="skills">Skills</label>
             <textarea id="skills" name="skills" required>{{ profile.skills }}</textarea>
         </div>
-        <div class="apply-internship-field apply-internship-experience">
-            <label for="experience">Experience</label>
-            <textarea id="experience" name="experience">{{ profile.experience }}</textarea>
-        </div>
+
         <div class="apply-internship-field apply-internship-resume">
             <label for="resume">Resume</label>
             <input type="file" id="resume" name="resume">

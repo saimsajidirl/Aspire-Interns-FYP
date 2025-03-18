@@ -28,27 +28,22 @@
 
     <!-- Featured or Search Results Section -->
     <section id="featured">
-   <div style="display: flex; justify-content: center;">
-    <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
-        {% if query or request.GET.type or request.GET.duration or request.GET.location %}
-            Search Results
-        {% else %}
-            Featured Internships
-        {% endif %}
-    </h2>
-</div>
-
+        <div style="display: flex; justify-content: center;">
+            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+                {% if query or request.GET.type or request.GET.duration or request.GET.location %}
+                    Search Results
+                {% else %}
+                    Featured Internships
+                {% endif %}
+            </h2>
+        </div>
 
         <div id="internship-list">
             {% for internship in internships %}
                 <div>
                     <div>
-                        <span>
-                            {{ internship.internship_type|title }}
-                        </span>
-                        <h3>
-                            {{ internship.title }}
-                        </h3>
+                        <span>{{ internship.internship_type|title }}</span>
+                        <h3>{{ internship.title }}</h3>
                         <p><strong>Company:</strong> {{ internship.company }}</p>
                         <p><strong>Location:</strong> {{ internship.location }}</p>
                         <p><strong>Duration:</strong> {{ internship.duration }}</p>
@@ -59,8 +54,7 @@
                                     <a href="#" class="applied-btn" disabled>Applied</a>
                                 {% else %}
                                     <a href="{% url 'app_fyp:apply_internship' internship.id %}"
-                                       class="apply-btn"
-                                       data-internship-id="{{ internship.id }}">
+                                       class="apply-btn">
                                         Apply Now
                                     </a>
                                 {% endif %}
@@ -69,9 +63,9 @@
                                     Login to Apply
                                 </a>
                             {% endif %}
-                            <button onclick="showDetails({{ internship.id }})">
+                            <a href="{% url 'app_fyp:internship_detail' internship.id %}" class="view-details-btn">
                                 View Details
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -80,12 +74,6 @@
             {% endfor %}
         </div>
     </section>
-</div>
-
-<!-- Internship Details Modal -->
-<div id="details-modal" style="display:none;">
-    <div id="modal-content"></div>
-    <button onclick="closeDetailsModal()">Close</button>
 </div>
 
 <script src="{% static 'javascript/script.js' %}"></script>

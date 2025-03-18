@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ internship.title }} - Aspire Interns{% endblock %}
+
+{% block content %}
+<style>
+    /* Internship Detail Container */
+    .internship-detail-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(248, 252, 255, 0.95) 100%
+      );
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      border: 1px solid rgba(58, 134, 255, 0.05);
+      backdrop-filter: blur(5px);
+      isolation: isolate;
+    }
+    
+    /* Header Section */
+    .internship-header {
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(240, 248, 255, 0.9) 100%
+      );
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .internship-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top center,
+        rgba(58, 134, 255, 0.1),
+        transparent 70%
+      );
+      z-index: var(--z-negative);
+    }
+    
+
+    .internship-company {
+      font-size: 1.2rem;
+      color: var(--gray-700);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+    
+    .internship-company strong {
+      color: var(--gray-900);
+      font-weight: 700;
+    }
+    
+    /* Internship Info Section */
+    .internship-info {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.5rem;
+      padding: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .internship-info {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Internship Details */
+    .internship-details {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(248, 252, 255, 0.95) 100%
+      );
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .internship-details:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+    
+    .internship-details p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: var(--gray-700);
+      line-height: 1.6;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+    }
+    
+    .internship-details strong {
+      color: var(--gray-900);
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    
+    .internship-type,
+    .internship-location,
+    .internship-duration,
+    .internship-deadline,
+    .internship-stipend,
+    .internship-description {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    /* Internship Actions */
+    .internship-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(248, 252, 255, 0.95) 100%
+      );
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .internship-actions:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+    
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.75rem;
+      border-radius: var(--radius-lg);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .apply-btn {
+      background: linear-gradient(
+        45deg,
+        var(--primary) 0%,
+        var(--primary-dark) 100%
+      );
+      color: white;
+    }
+    
+    .apply-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(58, 134, 255, 0.3);
+    }
+    
+    .apply-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: shine 2s infinite;
+    }
+    
+    .login-btn {
+      background: linear-gradient(
+        45deg,
+        var(--secondary) 0%,
+        adjust-hue(var(--secondary), 20deg) 100%
+      );
+      color: white;
+    }
+    
+    .login-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(131, 56, 236, 0.3);
+    }
+    
+    .login-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: shine 2s infinite;
+    }
+    
+    .back-btn {
+      background: linear-gradient(
+        45deg,
+        var(--gray-100) 0%,
+        var(--gray-50) 100%
+      );
+      color: var(--gray-800);
+      border: 2px solid rgba(58, 134, 255, 0.1);
+    }
+    
+    .back-btn:hover {
+      background: linear-gradient(
+        45deg,
+        var(--primary) 0%,
+        var(--primary-dark) 100%
+      );
+      color: white;
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(58, 134, 255, 0.3);
+      border-color: var(--primary);
+    }
+    
+    .applied-btn {
+      background: linear-gradient(
+        45deg,
+        var(--gray-400) 0%,
+        var(--gray-500) 100%
+      );
+      color: var(--gray-700);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .internship-detail-container {
+        padding: 1rem;
+        margin: 1rem;
+      }
+    
+      .internship-header {
+        padding: 1rem;
+      }
+    
+      .internship-title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+    
+      .internship-details,
+      .internship-actions {
+        padding: 1.5rem;
+      }
+    
+      .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+      }
+    }
+    
+    /* Animations */
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+</style>
+<div class="internship-detail-container">
+    <header class="internship-header">
+        <h1 style="font-size: 3rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">{{ internship.title }}</h1>
+        <p class="internship-company">Offered by <strong>{{ internship.company }}</strong></p>
+    </header>
+
+    <section class="internship-info">
+        <div class="internship-details">
+            <p><strong>Type:</strong> <span class="internship-type">{{ internship.internship_type|title }}</span></p>
+            <p><strong>Location:</strong> <span class="internship-location">{{ internship.location }}</span></p>
+            <p><strong>Duration:</strong> <span class="internship-duration">{{ internship.duration }}</span></p>
+            <p><strong>Stipend:</strong> 
+                <span class="internship-stipend">
+                    {% if internship.stipend %}{{ internship.stipend }}{% else %}Unpaid{% endif %}
+                </span>
+            </p>
+            <p><strong>Description:</strong> <span class="internship-description">{{ internship.description }}</span></p>
+        </div>
+
+        <div class="internship-actions">
+            {% if user.is_authenticated %}
+                {% if internship.id in applied_internships %}
+                    <button class="btn applied-btn" disabled>Already Applied</button>
+                {% else %}
+                    <a href="{% url 'app_fyp:apply_internship' internship.id %}" class="btn apply-btn">
+                        Apply Now
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internship_detail' internship.id %}" class="btn login-btn">
+                    Login to Apply
+                </a>
+            {% endif %}
+            <a href="{% url 'app_fyp:internships' %}" class="btn back-btn">Back to Internships</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

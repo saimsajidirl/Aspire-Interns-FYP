@@ -205,18 +205,19 @@ def contact(request):
             messages.error(request, 'Please fill out all fields.')
     return render(request, 'contact.html', {'user': request.user})
 
-def internship_details(request, internship_id):
-    if request.headers.get('X-Requested-With') != 'XMLHttpRequest':
-        return JsonResponse({'error': 'Invalid request'}, status=400)
-
+def internship_detail(request, internship_id):
+    """View internship details and check if the user has applied."""
     internship = get_object_or_404(Internship, id=internship_id)
-    data = {
-        'title': internship.title,
-        'company': internship.company,
-        'location': internship.location,
-        'duration': internship.duration,
-        'stack': internship.stack,
-        'description': internship.description,
-        'stipend': internship.stipend if internship.stipend else None,
+
+    # Fetch applied internships correctly using user_id instead of user
+    applied_internships = []
+    if request.user.is_authenticated:
+        applied_internships = InternshipApplication.objects.filter(
+            user_id=request.user.id  # Use user_id instead of user
+        ).values_list('internship_id', flat=True)
+
+    context = {
+        'internship': internship,
+        'applied_internships': applied_internships
     }
-    return JsonResponse(data)
+    return render(request, 'internship_detail.html', context)

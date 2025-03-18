@@ -2,10 +2,9 @@ from datetime import timedelta
 from pathlib import Path
 from django.contrib import messages
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-ojya)yg##)4#h6ba5xwvph+rviha%e5-#u^06pxb_7y3!1*=#f'
 
 DEBUG = True
