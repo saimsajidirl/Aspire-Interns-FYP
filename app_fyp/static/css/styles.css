@@ -1178,11 +1178,11 @@ header select:focus {
 
 #categories > div:nth-child(1) a:hover {
   background: linear-gradient(
-    45deg,
-    var(--success) 0%,
-    adjust-hue(var(--success), 20deg) 100%
-  );
-  color: blue;
+    90deg,
+    var(--primary) 0%,
+    var(--success) 100%
+  ); /* Matches the top border gradient portion */
+  color: white; /* Adjusted for readability */
   transform: translateY(-3px) scale(1.03);
   box-shadow:
     0 6px 20px rgba(6, 214, 160, 0.3),
@@ -1192,11 +1192,11 @@ header select:focus {
 
 #categories > div:nth-child(2) a:hover {
   background: linear-gradient(
-    45deg,
-    var(--secondary) 0%,
-    adjust-hue(var(--secondary), 20deg) 100%
-  );
-  color: blue;
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 100%
+  ); /* Matches the top border gradient portion */
+  color: white; /* Adjusted for readability */
   transform: translateY(-3px) scale(1.03);
   box-shadow:
     0 6px 20px rgba(131, 56, 236, 0.3),
@@ -1206,18 +1206,17 @@ header select:focus {
 
 #categories > div:nth-child(3) a:hover {
   background: linear-gradient(
-    45deg,
-    var(--accent) 0%,
-    adjust-hue(var(--accent), 20deg) 100%
-  );
-  color: blue;
+    90deg,
+    var(--secondary) 0%,
+    var(--accent) 100%
+  ); /* Matches the top border gradient portion */
+  color: white; /* Adjusted for readability */
   transform: translateY(-3px) scale(1.03);
   box-shadow:
     0 6px 20px rgba(255, 0, 110, 0.3),
     0 2px 6px rgba(0, 0, 0, 0.1);
   border-color: var(--accent);
 }
-
 
 
 
@@ -2750,3 +2749,107 @@ footer .footer-bottom p {
     to { opacity: 1; transform: scale(1); }
 }
 
+.chat-btn {
+        background: linear-gradient(45deg, var(--success), #218838);
+        color: white;
+    }
+
+    .chat-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        background: linear-gradient(45deg, #218838, var(--success));
+    }
+
+    /* Chat Message Styling (chat_dashboard.html) */
+    .chat-message {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: var(--radius-sm);
+        border-left: 4px solid var(--primary);
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+    }
+
+    .chat-message:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .chat-message p {
+        margin: 0.25rem 0;
+        color: var(--gray-800);
+        line-height: 1.5;
+    }
+
+    .chat-message p strong {
+        color: var(--primary);
+    }
+
+    .chat-message small {
+        display: block;
+        color: var(--gray-600);
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Alerts (used in send_message.html) */
+    .alert {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: var(--radius-sm);
+        color: white;
+        font-weight: 500;
+        box-shadow: var(--shadow-md);
+        animation: slideIn 0.5s ease-out;
+    }
+
+    .alert-success {
+        background: linear-gradient(45deg, var(--success), #218838);
+    }
+
+    .alert-error {
+        background: linear-gradient(45deg, #e63946, #d00000);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .form-control {
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .btn, .btn-primary, .btn-success {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .chat-message {
+            padding: 0.75rem;
+        }
+    }
+    

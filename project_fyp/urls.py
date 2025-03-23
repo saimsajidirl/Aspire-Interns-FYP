@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('app_fyp.urls', namespace='app_fyp')),
     path('auth/', include('user_auth.urls', namespace='user_auth')),
     path('internship-posting/', include('internship_posting.urls')),
+    path('chat/', include('chat_aspire.urls')),
 ]
 
 if settings.DEBUG:

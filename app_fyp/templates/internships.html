@@ -6,7 +6,8 @@
 <div>
     <header>
         <h1 style="font-size: 4rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
-            Aspire Interns </h1>
+            Aspire Interns
+        </h1>
         <p>Empowering Potential, Shaping Professional Excellence.</p>
     </header>
 
@@ -40,26 +41,28 @@
 
         <div id="internship-list">
             {% for internship in internships %}
-                <div>
-                    <div>
-                        <span>{{ internship.internship_type|title }}</span>
-                        <h3>{{ internship.title }}</h3>
+                <div class="internship-card">
+                    <div class="internship-content">
+                        <span class="internship-type">{{ internship.internship_type|title }}</span>
+                        <h3 class="internship-title">{{ internship.title }}</h3>
                         <p><strong>Company:</strong> {{ internship.company }}</p>
                         <p><strong>Location:</strong> {{ internship.location }}</p>
                         <p><strong>Duration:</strong> {{ internship.duration }}</p>
                         <p>{{ internship.description|truncatewords:20 }}</p>
-                        <div>
+                        <div class="internship-actions">
                             {% if user.is_authenticated %}
                                 {% if internship.id in applied_internships %}
                                     <a href="#" class="applied-btn" disabled>Applied</a>
+                                    <a href="{% url 'chat_aspire:chat_room' internship.id %}" class="chat-btn">
+                                        Chat
+                                    </a>
                                 {% else %}
-                                    <a href="{% url 'app_fyp:apply_internship' internship.id %}"
-                                       class="apply-btn">
+                                    <a href="{% url 'app_fyp:apply_internship' internship.id %}" class="apply-btn">
                                         Apply Now
                                     </a>
                                 {% endif %}
                             {% else %}
-                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}">
+                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}" class="login-btn">
                                     Login to Apply
                                 </a>
                             {% endif %}

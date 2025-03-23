@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     {% block extra_head %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div>
@@ -62,7 +63,9 @@
                     <li><a href="{% url 'app_fyp:internships' %}">Internships</a></li>
                     <li><a href="{% url 'app_fyp:about' %}">About Us</a></li>
                     <li><a href="{% url 'app_fyp:contact' %}">Contact</a></li>
+                    <li><a href="{% url 'user_auth:signup' %}">Create an Account</a></li>
                 </ul>
+           
             </div>
 
             <div class="footer-section footer-contact">
@@ -88,6 +91,10 @@
         <div class="footer-bottom">
             <p>2025 Aspire Interns. All rights reserved, Made with ❤️ by Muhammad Saim.</p>
         </div>
+        <p style="margin-top: 20px; text-align: center;">
+            <a href="{% url 'app_fyp:terms_of_service' %}" style="color: #1e90ff; text-decoration: none;">Terms of Service</a> | 
+            <a href="{% url 'app_fyp:privacy_policy' %}" style="color: #1e90ff; text-decoration: none;">Privacy Policy</a>
+        </p>
     </footer>
 
     <script src="{% static 'javascript/script.js' %}"></script>

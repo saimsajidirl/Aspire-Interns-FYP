@@ -11,8 +11,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-# Application definition
+ASGI_APPLICATION = 'project_fyp.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {"hosts": [('127.0.0.1', 6379)]},
+    },
+}
 INSTALLED_APPS = [
+    'channels', 
+    'chat_aspire.apps.ChatAspireConfig',
     'rest_framework',
     'app_fyp.apps.AppFypConfig',
     'internship_posting.apps.InternshipPostingConfig',
@@ -70,23 +78,20 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     },
-    'user_auth': {  # Updated database name to 'user_auth'
+    'user_auth': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user_auth',  # Database for authentication
-        'USER': 'postgres',  # Replace with your PostgreSQL username
-        'PASSWORD': 'Saim123@?',  # Replace with your PostgreSQL password
+        'NAME': 'user_auth',  
+        'USER': 'postgres',
+        'PASSWORD': 'Saim123@?',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 
-
-# Authentication Backends (using Django's default ORM backend)
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # Default Django backend
+    'django.contrib.auth.backends.ModelBackend', 
 ]
 
-# REST Framework and JWT Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -115,10 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# settings.py
+
 AUTH_USER_MODEL = 'user_auth.User'
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -135,3 +139,27 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Example for Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'saimsajidirl@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'sausuoqaxgiivkeb '  # App-specific password for Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

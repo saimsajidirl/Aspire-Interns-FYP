@@ -300,8 +300,9 @@
                     {% if internship.stipend %}{{ internship.stipend }}{% else %}Unpaid{% endif %}
                 </span>
             </p>
-            <p><strong>Description:</strong> <span class="internship-description">{{ internship.description }}</span></p>
-        </div>
+            <p><strong>Description:</strong></p>
+            <p class="internship-description">{{ internship.description|linebreaksbr }}</p>
+                    </div>
 
         <div class="internship-actions">
             {% if user.is_authenticated %}

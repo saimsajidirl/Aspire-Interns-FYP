@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from .models import Internship, InternshipApplication
 from user_auth.models import UserProfile
 from .forms import ProfileForm
-
+from rest_framework.views import APIView
 
 @login_required
 def update_application_status(request, application_id):
@@ -221,3 +221,12 @@ def internship_detail(request, internship_id):
         'applied_internships': applied_internships
     }
     return render(request, 'internship_detail.html', context)
+
+
+class TermsOfServiceView(APIView):
+    def get(self, request):
+        return render(request, 'terms_of_service.html')
+
+class PrivacyPolicyView(APIView):
+    def get(self, request):
+        return render(request, 'privacy_policy.html')

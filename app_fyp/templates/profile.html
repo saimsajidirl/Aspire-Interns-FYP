@@ -64,13 +64,16 @@
                 </div>
                 <div class="form-group">
                     <label>Resume:
-                        {{ form.resume }}
+                        <div class="file-upload-wrapper">
+                            {{ form.resume }}
+                            <span class="file-upload-label">Choose File</span>
+                        </div>
                     </label>
                     {% if form.resume.errors %}
                         <span class="error">{{ form.resume.errors }}</span>
                     {% endif %}
                     {% if user.profile.resume %}
-                        <p>Current: <a href="{{ user.profile.resume.url }}" target="_blank">View Resume</a></p>
+                        <p class="resume-link">Current: <a href="{{ user.profile.resume.url }}" target="_blank">View Resume</a></p>
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -109,13 +112,13 @@
                         <p class="text-gray-600"><strong>Location:</strong> {{ application.internship.location }}</p>
                         <p class="text-gray-600"><strong>Applied Date:</strong> {{ application.applied_at|date:"F j, Y" }}</p>
                         <div class="mt-4">
-                            <a href="{% url 'app_fyp:internship_details' application.internship.id %}" class="text-blue-600 hover:underline">View Internship Details</a>
+                            <a href="{% url 'app_fyp:internship_detail' application.internship.id %}" class="text-blue-600 hover:underline">View Internship Details</a>
                         </div>
                         {% if user.is_staff %}
-    <div class="mt-2">
-        <a href="{% url 'app_fyp:update_application_status' application.id %}" class="text-blue-600 hover:underline">Update Status</a>
-    </div>
-{% endif %}
+                            <div class="mt-2">
+                                <a href="{% url 'app_fyp:update_application_status' application.id %}" class="text-blue-600 hover:underline">Update Status</a>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
@@ -129,7 +132,16 @@
 </section>
 
 <style>
-    /* Existing CSS */
+    /* CSS Variables */
+    :root {
+        --primary: #1e90ff;
+        --primary-dark: #0056b3;
+        --gray-600: #6c757d;
+        --gray-700: #495057;
+        --gray-800: #343a40;
+    }
+
+    /* Container */
     .container {
         max-width: 900px;
         margin: 4rem auto;
@@ -142,6 +154,7 @@
         border: 1px solid rgba(58, 134, 255, 0.05);
     }
 
+    /* Header */
     .header-title {
         font-size: clamp(2.5rem, 6vw, 3.5rem);
         font-weight: 800;
@@ -169,6 +182,7 @@
         animation: fadeInUp 1s ease-out 0.2s both;
     }
 
+    /* Profile Layout */
     .profile-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -191,6 +205,7 @@
         box-shadow: 0 12px 30px rgba(58, 134, 255, 0.15);
     }
 
+    /* Profile Info */
     .info-item {
         margin-bottom: 1.25rem;
         display: flex;
@@ -215,6 +230,7 @@
         border-radius: 8px;
     }
 
+    /* Form Styling */
     .form-group {
         margin-bottom: 1.75rem;
         position: relative;
@@ -230,17 +246,16 @@
     }
 
     .form-group input, .form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid rgba(58, 134, 255, 0.2);
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 400; /* Add this line */
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid rgba(58, 134, 255, 0.2);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
 
     .form-group input:focus, .form-group textarea:focus {
         border-color: var(--primary);
@@ -254,6 +269,65 @@
         min-height: 100px;
     }
 
+    /* Resume File Upload Styling */
+    .file-upload-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .file-upload-wrapper input[type="file"] {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        opacity: 0; /* Hide the default input */
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    .file-upload-label {
+        display: block;
+        padding: 1rem 1.5rem;
+        background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(58, 134, 255, 0.2);
+    }
+
+    .file-upload-label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(58, 134, 255, 0.3);
+    }
+
+    .file-upload-wrapper input[type="file"]:focus + .file-upload-label {
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(58, 134, 255, 0.4);
+    }
+
+    .resume-link {
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--gray-600);
+    }
+
+    .resume-link a {
+        color: var(--primary);
+        text-decoration: underline;
+        transition: color 0.3s ease;
+    }
+
+    .resume-link a:hover {
+        color: var(--primary-dark);
+    }
+
+    /* Button */
     .btn-primary {
         padding: 1rem 2rem;
         background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -285,6 +359,7 @@
         animation: shine 2s infinite;
     }
 
+    /* Alerts */
     .alert {
         padding: 1.25rem;
         margin-bottom: 1.5rem;
@@ -310,63 +385,7 @@
         font-weight: 500;
     }
 
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes shine {
-        0% { left: -100%; }
-        20% { left: 100%; }
-        100% { left: 100%; }
-    }
-
-    @keyframes slideIn {
-        from { opacity: 0; transform: translateX(-20px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    @media (max-width: 768px) {
-        .container {
-            padding: 1.75rem;
-            margin: 2rem auto;
-        }
-
-        .profile-container {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .header-title {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-        }
-
-        .header-subtitle {
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            width: 100%;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .container {
-            max-width: 1000px;
-        }
-    }
-input[type="file"] {
-    padding: 0.5rem;
-    border: 1px solid rgba(58, 134, 255, 0.2);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-}
-    /* Styles for Internship Applications Section */
+    /* Internship Applications */
     .application-card {
         padding: 1.5rem;
         background: rgba(255, 255, 255, 0.95);
@@ -403,6 +422,64 @@ input[type="file"] {
     .status-rejected {
         background: rgba(230, 57, 70, 0.1);
         color: #e63946;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 100%; }
+        100% { left: 100%; }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1.75rem;
+            margin: 2rem auto;
+        }
+
+        .profile-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .header-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .file-upload-label {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1000px;
+        }
     }
 </style>
 {% endblock %}

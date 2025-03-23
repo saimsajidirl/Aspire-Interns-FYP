@@ -9,13 +9,11 @@ class ProfileForm(forms.ModelForm):
             'skills': forms.Textarea(attrs={'rows': 3}),
             'education': forms.Textarea(attrs={'rows': 3}),
             'projects': forms.Textarea(attrs={'rows': 3}),
-            # Customize the resume field to use a FileInput widget without the "Clear" checkbox
             'resume': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Ensure the "Clear" checkbox is not rendered
         self.fields['resume'].widget.clear_checkbox_label = None
         self.fields['resume'].widget.initial_text = ""
         self.fields['resume'].widget.clear_checkbox_name = None

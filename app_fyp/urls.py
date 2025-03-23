@@ -12,4 +12,6 @@ urlpatterns = [
     path('internships/<int:internship_id>/', views.internship_detail, name='internship_detail'),  # Updated URL pattern
     path('profile/', views.profile_view, name='profile'),
     path('application/<int:application_id>/update-status/', views.update_application_status, name='update_application_status'),
+    path('terms-of-service/', views.TermsOfServiceView.as_view(), name='terms_of_service'),
+    path('privacy-policy/', views.PrivacyPolicyView.as_view(), name='privacy_policy'),
 ]

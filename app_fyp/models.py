@@ -49,7 +49,7 @@ class InternshipApplication(models.Model):
 
     class Meta:
         db_table = 'internship_applications'
-        unique_together = ('user_id', 'internship')  # Update to user_id
+        unique_together = ('user_id', 'internship')
         indexes = [
             models.Index(fields=['user_id', 'status']),
         ]
