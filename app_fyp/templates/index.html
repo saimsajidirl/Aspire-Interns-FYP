@@ -99,59 +99,6 @@
 
 </div>
 
-    <section id="categories">
-        <div>
-            <div>
-                <span>
-                    Paid ({{ paid_count }})
-                </span>
-                <h2>Paid Internships</h2>
-                <p>Competitive compensation for top talent.</p>
-                <ul>
-                    <li>✓ Competitive Salary</li>
-                    <li>✓ Performance Bonuses</li>
-                    <li>✓ Professional Development</li>
-                </ul>
-                <a href="{% url 'app_fyp:internships' %}">
-                    Apply Now
-                </a>
-            </div>
-        </div>
-        <div>
-            <div>
-                <span>
-                    Unpaid ({{ unpaid_count }})
-                </span>
-                <h2>Skill-Building Internships</h2>
-                <p>Zero-cost learning opportunities.</p>
-                <ul>
-                    <li>✓ Mentorship Programs</li>
-                    <li>✓ Certificate of Completion</li>
-                    <li>✓ Portfolio Enhancement</li>
-                </ul>
-                <a href="{% url 'app_fyp:internships' %}">
-                    Explore Opportunities
-                </a>
-            </div>
-        </div>
-        <div>
-            <div>
-                <span>
-                    Remote ({{ remote_count }})
-                </span>
-                <h2>Remote Internships</h2>
-                <p>Global opportunities from home.</p>
-                <ul>
-                    <li>✓ All Paid Internships</li>
-                    <li>✓ Flexible Schedules</li>
-                    <li>✓ Cross-Cultural Experience</li>
-                </ul>
-                <a href="{% url 'app_fyp:internships' %}">
-                    Discover Remote Roles
-                </a>
-            </div>
-        </div>
-    </section>
 
     <section id="about">
         <div>
@@ -171,7 +118,109 @@
         </div>
     </section>
 
-   <!-- Testimonials Section -->
+    <section id="categories">
+        <div>
+            <div>
+                <span>
+                    Paid
+                </span>
+                <h2>Paid Internships</h2>
+                <p>Competitive compensation for top talent.</p>
+                <ul>
+                    <li>✓ Competitive Salary</li>
+                    <li>✓ Performance Bonuses</li>
+                    <li>✓ Professional Development</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span>
+                    Unpaid
+                </span>
+                <h2>Skill-Building Internships</h2>
+                <p>Zero-cost learning opportunities.</p>
+                <ul>
+                    <li>✓ Mentorship Programs</li>
+                    <li>✓ Certificate of Completion</li>
+                    <li>✓ Portfolio Enhancement</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Explore Opportunities
+                </a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span>
+                    Remote
+                </span>
+                <h2>Remote Internships</h2>
+                <p>Global opportunities from home.</p>
+                <ul>
+                    <li>✓ All Paid Internships</li>
+                    <li>✓ Flexible Schedules</li>
+                    <li>✓ Cross-Cultural Experience</li>
+                </ul>
+                <a href="{% url 'app_fyp:internships' %}">
+                    Discover Remote Roles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="faq-container">
+            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
+                Frequently Asked Questions
+            </h2>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">How do I apply for an internship?</h3>
+                <p class="faq-answer">
+                    To apply, sign up or log in, then browse available internships on the Internships page. Click "Apply & Chat" to submit your resume and connect with the employer.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">What types of internships are available?</h3>
+                <p class="faq-answer">
+                    We offer paid, unpaid, and remote internships. Use the filters on the homepage or internships page to find opportunities that match your preferences.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">Is there a cost to use Aspire Interns?</h3>
+                <p class="faq-answer">
+                    No, signing up and applying for internships is completely free for students and job seekers.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">How does the chat feature work?</h3>
+                <p class="faq-answer">
+                    After applying, you can use our real-time chat to communicate directly with employers about your application or internship details.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">What if I don’t receive my OTP?</h3>
+                <p class="faq-answer">
+                    Check your spam/junk folder. If it’s still missing, click "Resend" on the OTP verification page or contact us at <a href="mailto:support@aspireinterns.com">support@aspireinterns.com</a>.
+                </p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">Can I update my profile after signing up?</h3>
+                <p class="faq-answer">
+                    Yes, once logged in, you can edit your profile details, including your resume and skills, through your dashboard.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
 <section id="testimonials">
    <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e90ff; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);">
   What Our Interns Say

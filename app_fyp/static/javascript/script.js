@@ -166,3 +166,18 @@ document.addEventListener("click", (event) => {
         closeDetailsModal();
     }
 });
+
+function toggleFAQ(element) {
+    const answer = element.nextElementSibling;
+    const isActive = answer.classList.contains('active');
+    document.querySelectorAll('.faq-answer').forEach(item => {
+        item.classList.remove('active');
+    });
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+        item.classList.remove('active');
+    });
+    if (!isActive) {
+        answer.classList.add('active');
+        element.classList.add('active');
+    }
+}
