@@ -76,6 +76,23 @@
                 <p>No internships available matching your criteria.</p>
             {% endfor %}
         </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            {% if internships.has_other_pages %}
+                <ul>
+                    {% if internships.has_previous %}
+                        <li><a href="?page=1">&laquo; First</a></li>
+                        <li><a href="?page={{ internships.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    <li>Page {{ internships.number }} of {{ internships.paginator.num_pages }}</li>
+                    {% if internships.has_next %}
+                        <li><a href="?page={{ internships.next_page_number }}">Next</a></li>
+                        <li><a href="?page={{ internships.paginator.num_pages }}">Last &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
     </section>
 </div>
 

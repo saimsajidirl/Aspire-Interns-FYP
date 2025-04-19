@@ -8,59 +8,9 @@ from .models import Internship, InternshipApplication
 from user_auth.models import UserProfile
 from .forms import ProfileForm
 from rest_framework.views import APIView
+from django.core.paginator import Paginator
 
-@login_required
-def update_application_status(request, application_id):
-    if not request.user.is_staff:  # Restrict to admins
-        messages.error(request, "You do not have permission to perform this action.")
-        return redirect('app_fyp:profile')
 
-    application = get_object_or_404(InternshipApplication, id=application_id)
-
-    if request.method == 'POST':
-        new_status = request.POST.get('status')
-        if new_status in dict(InternshipApplication.APPLICATION_STATUS_CHOICES).keys():
-            application.status = new_status
-            application.save()
-            messages.success(request, f"Status updated to '{new_status.title()}' for {application.internship.title}.")
-        else:
-            messages.error(request, "Invalid status selected.")
-        return redirect('app_fyp:profile')
-
-    context = {
-        'application': application,
-        'status_choices': InternshipApplication.APPLICATION_STATUS_CHOICES,  # Use APPLICATION_STATUS_CHOICES
-    }
-    return render(request, 'update_application_status.html', context)
-@login_required
-def profile_view(request):
-    try:
-        profile = request.user.profile  # Access via 'profile' related_name
-    except UserProfile.DoesNotExist:
-        profile = UserProfile.objects.create(user=request.user, email=request.user.email)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully!')
-            context = {
-                'form': form,
-                'email': request.user.email,
-                'applications': InternshipApplication.objects.filter(user_id=request.user.id).select_related('internship'),
-            }
-            return render(request, 'profile.html', context)
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        form = ProfileForm(instance=profile)
-
-    context = {
-        'form': form,
-        'email': request.user.email,
-        'applications': InternshipApplication.objects.filter(user_id=request.user.id).select_related('internship'),
-    }
-    return render(request, 'profile.html', context)
 
 def index(request):
     total_opportunities = Internship.objects.count()
@@ -121,6 +71,103 @@ def internships(request):
         'user': request.user,
     }
     return render(request, 'internships.html', context)
+
+def about(request):
+    return render(request, 'about.html', {'user': request.user})
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        if name and email and message:
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('contact.html')
+        else:
+            messages.error(request, 'Please fill out all fields.')
+    return render(request, 'contact.html', {'user': request.user})
+
+def internship_detail(request, internship_id):
+    """View internship details and check if the user has applied."""
+    internship = get_object_or_404(Internship, id=internship_id)
+    paginator = Paginator(internships, 10)
+    # Fetch applied internships correctly using user_id instead of user
+    applied_internships = []
+    if request.user.is_authenticated:
+        applied_internships = InternshipApplication.objects.filter(
+            user_id=request.user.id  # Use user_id instead of user
+        ).values_list('internship_id', flat=True)
+
+    context = {
+        'internship': internship,
+        'applied_internships': applied_internships
+    }
+    return render(request, 'internship_detail.html', context)
+
+
+class TermsOfServiceView(APIView):
+    def get(self, request):
+        return render(request, 'terms_of_service.html')
+
+class PrivacyPolicyView(APIView):
+    def get(self, request):
+        return render(request, 'privacy_policy.html')
+    
+    
+@login_required
+def update_application_status(request, application_id):
+    if not request.user.is_staff:  # Restrict to admins
+        messages.error(request, "You do not have permission to perform this action.")
+        return redirect('app_fyp:profile')
+
+    application = get_object_or_404(InternshipApplication, id=application_id)
+
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        if new_status in dict(InternshipApplication.APPLICATION_STATUS_CHOICES).keys():
+            application.status = new_status
+            application.save()
+            messages.success(request, f"Status updated to '{new_status.title()}' for {application.internship.title}.")
+        else:
+            messages.error(request, "Invalid status selected.")
+        return redirect('app_fyp:profile')
+
+    context = {
+        'application': application,
+        'status_choices': InternshipApplication.APPLICATION_STATUS_CHOICES,  # Use APPLICATION_STATUS_CHOICES
+    }
+    return render(request, 'update_application_status.html', context)
+@login_required
+def profile_view(request):
+    try:
+        profile = request.user.profile  # Access via 'profile' related_name
+    except UserProfile.DoesNotExist:
+        profile = UserProfile.objects.create(user=request.user, email=request.user.email)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            context = {
+                'form': form,
+                'email': request.user.email,
+                'applications': InternshipApplication.objects.filter(user_id=request.user.id).select_related('internship'),
+            }
+            return render(request, 'profile.html', context)
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+        'email': request.user.email,
+        'applications': InternshipApplication.objects.filter(user_id=request.user.id).select_related('internship'),
+    }
+    return render(request, 'profile.html', context)
+
+
 
 @login_required
 def apply_internship(request, internship_id):
@@ -190,43 +237,3 @@ def apply_internship(request, internship_id):
 
     return render(request, 'apply_internship.html', {'internship': internship, 'profile': profile})
 
-def about(request):
-    return render(request, 'about.html', {'user': request.user})
-
-def contact(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-        if name and email and message:
-            messages.success(request, 'Your message has been sent successfully!')
-            return redirect('contact.html')
-        else:
-            messages.error(request, 'Please fill out all fields.')
-    return render(request, 'contact.html', {'user': request.user})
-
-def internship_detail(request, internship_id):
-    """View internship details and check if the user has applied."""
-    internship = get_object_or_404(Internship, id=internship_id)
-
-    # Fetch applied internships correctly using user_id instead of user
-    applied_internships = []
-    if request.user.is_authenticated:
-        applied_internships = InternshipApplication.objects.filter(
-            user_id=request.user.id  # Use user_id instead of user
-        ).values_list('internship_id', flat=True)
-
-    context = {
-        'internship': internship,
-        'applied_internships': applied_internships
-    }
-    return render(request, 'internship_detail.html', context)
-
-
-class TermsOfServiceView(APIView):
-    def get(self, request):
-        return render(request, 'terms_of_service.html')
-
-class PrivacyPolicyView(APIView):
-    def get(self, request):
-        return render(request, 'privacy_policy.html')
