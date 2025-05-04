@@ -53,9 +53,7 @@
                             {% if user.is_authenticated %}
                                 {% if internship.id in applied_internships %}
                                     <a href="#" class="applied-btn" disabled>Applied</a>
-                                    <a href="{% url 'chat_aspire:chat_room' internship.id %}" class="chat-btn">
-                                        Chat
-                                    </a>
+                              
                                 {% else %}
                                     <a href="{% url 'app_fyp:apply_internship' internship.id %}" class="apply-btn">
                                         Apply Now

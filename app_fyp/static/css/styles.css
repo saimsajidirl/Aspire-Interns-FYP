@@ -1,9 +1,4 @@
-/* ================= ASPIRE INTERNS MODERN CSS ================= */
-/* High-performance, 60FPS, ultra-responsive design */
-
-/* ================= BASE STYLES ================= */
 :root {
-  /* Color Palette */
   --primary: #3a86ff;
   --primary-light: #72a8ff;
   --primary-dark: #0061ff;
@@ -23,29 +18,19 @@
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
-
-  /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
-
-  /* Border Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
-
-  /* Animation Speeds */
   --trans-fast: 150ms;
   --trans-normal: 250ms;
   --trans-slow: 400ms;
-
-  /* Z-index layers */
   --z-negative: -1;
   --z-base: 1;
   --z-dropdown: 1000;
@@ -55,8 +40,6 @@
   --z-popover: 1050;
   --z-tooltip: 1060;
 }
-
-/* Smooth Scrolling & Text Rendering */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -70,7 +53,6 @@ html {
   );
 }
 
-/* Reset & Baseline */
 * {
   margin: 0;
   padding: 0;
@@ -101,7 +83,6 @@ body::before {
   z-index: -1;
 }
 
-/* ================= LAYOUT & CONTAINERS ================= */
 main {
   max-width: 1440px;
   margin: 0 auto;
@@ -116,7 +97,6 @@ main {
   }
 }
 
-/* ================= TYPOGRAPHY ================= */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.75em;
   font-weight: 800;
@@ -188,8 +168,6 @@ p {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
 }
 
-
-/* Keyframe Animations */
 @keyframes underline-slide {
   0% { width: 0; left: 15px; }
   100% { width: calc(100% - 30px); left: 15px; }
@@ -205,7 +183,6 @@ p {
   50% { transform: scale(1.02); }
 }
 
-/* Navigation Bar */
 nav {
   display: flex;
   justify-content: space-between;
@@ -230,7 +207,6 @@ nav::before {
   animation: pulse 8s infinite ease-in-out;
 }
 
-/* Logo Container */
 .logo-container {
   display: flex;
   align-items: center;
@@ -238,7 +214,6 @@ nav::before {
   transform: translateZ(0);
 }
 
-/* Logo Image */
 .logo-img {
   width: 100px;
   height: 100px;
@@ -254,7 +229,6 @@ nav::before {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo Text */
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
@@ -266,7 +240,6 @@ nav::before {
   animation: gradient-shift 6s infinite ease-in-out;
 }
 
-/* Navigation Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -310,7 +283,6 @@ nav::before {
   animation: underline-slide 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Logout Button */
 .logout-btn {
   background: linear-gradient(45deg, #f4f4f4, #e0e0e0);
   border: 1px solid #ccc;

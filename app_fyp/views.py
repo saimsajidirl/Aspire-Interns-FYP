@@ -237,3 +237,18 @@ def apply_internship(request, internship_id):
 
     return render(request, 'apply_internship.html', {'internship': internship, 'profile': profile})
 
+def chat_view(request):
+    # Pass Firebase config to template (ideally, use environment variables for security)
+    firebase_config = {
+        "apiKey": "AIzaSyCW5As-CAaYebShYAQNCPtg9Kx_OhBvgr8",
+        "authDomain": "aspire-chat-46d27.firebaseapp.com",
+        "databaseURL": "https://aspire-chat-46d27-default-rtdb.firebaseio.com",
+        "projectId": "aspire-chat-46d27",
+        "storageBucket": "aspire-chat-46d27.firebasestorage.app",
+        "messagingSenderId": "1033790970390",
+        "appId": "1:1033790970390:web:7b8175d10ec49ff0e33337",
+        "measurementId": "G-E6GKZ7BX5G"
+    }
+    return render(request, 'chat.html', {'firebase_config': firebase_config})
+
+

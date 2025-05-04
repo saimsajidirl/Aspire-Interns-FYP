@@ -1,0 +1,361 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire Interns Real-Time Chat</title>
+    <style>
+    /* ================= ASPIRE INTERNS CHAT CSS ================= */
+/* High-performance, 60FPS, ultra-responsive chat interface */
+
+:root {
+  /* Inherit variables from main styles.css for consistency */
+  --primary: #3a86ff;
+  --primary-light: #72a8ff;
+  --primary-dark: #0061ff;
+  --secondary: #8338ec;
+  --accent: #ff006e;
+  --light: #f8f9fa;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+  --trans-normal: 250ms;
+}
+
+/* Smooth scrolling and text rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Chat-specific body styles */
+body {
+  font-family: var(--font-primary);
+  color: var(--gray-800);
+  background: linear-gradient(
+    180deg,
+    rgba(240, 248, 255, 0.3) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  line-height: 1.7;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  will-change: background-color;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(58, 134, 255, 0.05),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+/* Main container */
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  isolation: isolate;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 3rem;
+  }
+}
+
+/* Chat heading */
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+  background: linear-gradient(
+    120deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--primary-light) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 2px 10px rgba(58, 134, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  animation: gradientShift 8s infinite ease-in-out;
+}
+
+/* Chat window */
+#chat-window {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 252, 255, 0.95) 100%
+  );
+  border: 1px solid rgba(58, 134, 255, 0.05);
+  border-radius: var(--radius-lg);
+  height: 400px;
+  overflow-y: scroll;
+  padding: 15px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  backdrop-filter: blur(3px);
+  transition: all var(--trans-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#chat-window:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Message list */
+#messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#messages li {
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: var(--radius-lg);
+  background: var(--gray-200);
+  color: var(--gray-800);
+  font-size: 1.1rem;
+  transition: all var(--trans-normal) ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+#messages li:hover {
+  background: var(--gray-100);
+  transform: translateY(-2px);
+}
+
+/* Message form */
+#messageForm {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+}
+
+/* Input field */
+#msg-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 1.1rem;
+  background: var(--light);
+  transition: all var(--trans-normal) cubic-bezier(0.2, 0.8, 0.4, 1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+#msg-input:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(58, 134, 255, 0.2),
+    0 4px 15px rgba(58, 134, 255, 0.15);
+  transform: scale(1.02);
+}
+
+/* Send button */
+#msg-btn {
+  background: linear-gradient(
+    45deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all var(--trans-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 15px rgba(58, 134, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#msg-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(58, 134, 255, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+#msg-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #chat-window {
+    height: 300px;
+  }
+
+  #messageForm {
+    flex-direction: column;
+    padding: 0.25rem;
+  }
+
+  #msg-input,
+  #msg-btn {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  #chat-window {
+    height: 250px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+}
+    </style>
+</head>
+<body>
+    <h1>Chat with </h1>
+    <div id="chat-window">
+        <ul id="messages"></ul>
+    </div>
+    <form id="messageForm" autocomplete="off">
+        <input type="text" id="msg-input" placeholder="Type your message..." required>
+        <button id="msg-btn" type="submit">Send</button>
+    </form>
+
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+
+        // Firebase configuration (passed from Django view)
+        const firebaseConfig = {
+            apiKey: "{{ firebase_config.apiKey }}",
+            authDomain: "{{ firebase_config.authDomain }}",
+            databaseURL: "{{ firebase_config.databaseURL }}",
+            projectId: "{{ firebase_config.projectId }}",
+            storageBucket: "{{ firebase_config.storageBucket }}",
+            messagingSenderId: "{{ firebase_config.messagingSenderId }}",
+            appId: "{{ firebase_config.appId }}",
+            measurementId: "{{ firebase_config.measurementId }}"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Prompt for username (simple for demo; consider Django user or Firebase Authentication)
+        const username = prompt("Enter your name:");
+        if (!username) {
+            alert("Name is required!");
+            throw new Error("Username not provided");
+        }
+
+        // Reference to 'messages' node in Realtime Database
+        const messagesRef = ref(db, "messages");
+
+        // Handle form submission to send messages
+        document.getElementById("messageForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const messageInput = document.getElementById("msg-input");
+            const message = messageInput.value.trim();
+            if (message) {
+                push(messagesRef, {
+                    usr: username,
+                    msg: message,
+                    timestamp: Date.now()
+                }).catch((error) => {
+                    console.error("Error sending message:", error);
+                    alert("Failed to send message. Check console for details.");
+                });
+                messageInput.value = ""; // Clear input
+            }
+        });
+
+        // Listen for new messages and update UI
+        onChildAdded(messagesRef, (snapshot) => {
+            const message = snapshot.val();
+            const msgElement = document.createElement("li");
+            msgElement.textContent = `${message.usr}: ${message.msg}`;
+            document.getElementById("messages").appendChild(msgElement);
+            // Auto-scroll to latest message
+            document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+        }, (error) => {
+            console.error("Error fetching messages:", error);
+            alert("Failed to load messages. Check console for details.");
+        });
+    </script>
+</body>
+</html>

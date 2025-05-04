@@ -1,15 +1,11 @@
 class DatabaseRouter:
     def db_for_read(self, model, **hints):
-        if model._meta.app_label == 'chat_aspire':
-            return 'default'
-        elif model._meta.app_label == 'user_auth':
+        if model._meta.app_label == 'user_auth':
             return 'user_auth'
         return 'default'
 
     def db_for_write(self, model, **hints):
-        if model._meta.app_label == 'chat_aspire':
-            return 'default'
-        elif model._meta.app_label == 'user_auth':
+        if model._meta.app_label == 'user_auth':
             return 'user_auth'
         return 'default'
 
@@ -19,8 +15,6 @@ class DatabaseRouter:
         return db1 == db2 if db1 and db2 else None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        if app_label == 'chat_aspire':
-            return db == 'default'
-        elif app_label == 'user_auth':
+        if app_label == 'user_auth':
             return db == 'user_auth'
         return db == 'default'

@@ -20,7 +20,6 @@ CHANNEL_LAYERS = {
 }
 INSTALLED_APPS = [
     'channels', 
-    'chat_aspire.apps.ChatAspireConfig',
     'rest_framework',
     'app_fyp.apps.AppFypConfig',
     'internship_posting.apps.InternshipPostingConfig',
