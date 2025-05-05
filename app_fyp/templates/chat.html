@@ -1,16 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspire Interns Real-Time Chat</title>
-    <style>
-    /* ================= ASPIRE INTERNS CHAT CSS ================= */
-/* High-performance, 60FPS, ultra-responsive chat interface */
 
+{% block title %}Aspire Interns - Chat with {{ internship.company }}{% endblock %}
+
+{% block extra_head %}
+<style>
 :root {
-  /* Inherit variables from main styles.css for consistency */
   --primary: #3a86ff;
   --primary-light: #72a8ff;
   --primary-dark: #0061ff;
@@ -30,61 +25,6 @@
   --trans-normal: 250ms;
 }
 
-/* Smooth scrolling and text rendering */
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Chat-specific body styles */
-body {
-  font-family: var(--font-primary);
-  color: var(--gray-800);
-  background: linear-gradient(
-    180deg,
-    rgba(240, 248, 255, 0.3) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  line-height: 1.7;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  position: relative;
-  will-change: background-color;
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    circle at top left,
-    rgba(58, 134, 255, 0.05),
-    transparent 70%
-  );
-  z-index: -1;
-}
-
-/* Main container */
-main {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  position: relative;
-  isolation: isolate;
-}
-
-@media (min-width: 768px) {
-  main {
-    padding: 0 3rem;
-  }
-}
-
-/* Chat heading */
 h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
@@ -106,7 +46,6 @@ h1 {
   animation: gradientShift 8s infinite ease-in-out;
 }
 
-/* Chat window */
 #chat-window {
   background: linear-gradient(
     145deg,
@@ -128,7 +67,6 @@ h1 {
   box-shadow: var(--shadow-lg);
 }
 
-/* Message list */
 #messages {
   list-style: none;
   padding: 0;
@@ -151,7 +89,6 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* Message form */
 #messageForm {
   margin-top: 15px;
   display: flex;
@@ -162,7 +99,6 @@ h1 {
   box-shadow: var(--shadow-md);
 }
 
-/* Input field */
 #msg-input {
   flex: 1;
   padding: 1rem 1.5rem;
@@ -184,7 +120,6 @@ h1 {
   transform: scale(1.02);
 }
 
-/* Send button */
 #msg-btn {
   background: linear-gradient(
     45deg,
@@ -229,7 +164,6 @@ h1 {
   animation: shine 2s infinite;
 }
 
-/* Animations */
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -241,7 +175,6 @@ h1 {
   100% { left: 100%; }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   #chat-window {
     height: 300px;
@@ -269,7 +202,6 @@ h1 {
   }
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -283,79 +215,73 @@ h1 {
   outline-offset: 2px;
   box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
 }
-    </style>
-</head>
-<body>
-    <h1>Chat with </h1>
-    <div id="chat-window">
-        <ul id="messages"></ul>
-    </div>
-    <form id="messageForm" autocomplete="off">
-        <input type="text" id="msg-input" placeholder="Type your message..." required>
-        <button id="msg-btn" type="submit">Send</button>
-    </form>
+</style>
+{% endblock %}
 
-    <script type="module">
-        // Import Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+{% block content %}
+<h1 style="margin-top: 10px; font-size: 2rem; font-weight: 800; color: #1e90ff; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">Chat with {{ internship.company }}</h1>
+<div id="chat-window">
+    <ul id="messages"></ul>
+</div>
+<form id="messageForm" autocomplete="off">
+    <input type="text" id="msg-input" placeholder="Type your message..." required>
+    <button id="msg-btn" type="submit">Send</button>
+</form>
+{% endblock %}
 
-        // Firebase configuration (passed from Django view)
-        const firebaseConfig = {
-            apiKey: "{{ firebase_config.apiKey }}",
-            authDomain: "{{ firebase_config.authDomain }}",
-            databaseURL: "{{ firebase_config.databaseURL }}",
-            projectId: "{{ firebase_config.projectId }}",
-            storageBucket: "{{ firebase_config.storageBucket }}",
-            messagingSenderId: "{{ firebase_config.messagingSenderId }}",
-            appId: "{{ firebase_config.appId }}",
-            measurementId: "{{ firebase_config.measurementId }}"
-        };
+{% block extra_scripts %}
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+    const firebaseConfig = {
+        apiKey: "{{ firebase_config.apiKey|escapejs }}",
+        authDomain: "{{ firebase_config.authDomain|escapejs }}",
+        databaseURL: "{{ firebase_config.databaseURL|escapejs }}",
+        projectId: "{{ firebase_config.projectId|escapejs }}",
+        storageBucket: "{{ firebase_config.storageBucket|escapejs }}",
+        messagingSenderId: "{{ firebase_config.messagingSenderId|escapejs }}",
+        appId: "{{ firebase_config.appId|escapejs }}",
+        measurementId: "{{ firebase_config.measurementId|escapejs }}"
+    };
 
-        // Prompt for username (simple for demo; consider Django user or Firebase Authentication)
-        const username = prompt("Enter your name:");
-        if (!username) {
-            alert("Name is required!");
-            throw new Error("Username not provided");
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const username = "{{ user.profile.full_name|escapejs }}";
+    if (!username) {
+        alert("Please complete your profile with a full name to chat!");
+        throw new Error("Full name not provided");
+    }
+
+    const messagesRef = ref(db, "messages/" + {{ internship.id|escapejs }});
+
+    document.getElementById("messageForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const messageInput = document.getElementById("msg-input");
+        const message = messageInput.value.trim();
+        if (message) {
+            push(messagesRef, {
+                usr: username,
+                msg: message,
+                timestamp: Date.now()
+            }).catch((error) => {
+                console.error("Error sending message:", error);
+                alert("Failed to send message. Check console for details.");
+            });
+            messageInput.value = "";
         }
+    });
 
-        // Reference to 'messages' node in Realtime Database
-        const messagesRef = ref(db, "messages");
-
-        // Handle form submission to send messages
-        document.getElementById("messageForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const messageInput = document.getElementById("msg-input");
-            const message = messageInput.value.trim();
-            if (message) {
-                push(messagesRef, {
-                    usr: username,
-                    msg: message,
-                    timestamp: Date.now()
-                }).catch((error) => {
-                    console.error("Error sending message:", error);
-                    alert("Failed to send message. Check console for details.");
-                });
-                messageInput.value = ""; // Clear input
-            }
-        });
-
-        // Listen for new messages and update UI
-        onChildAdded(messagesRef, (snapshot) => {
-            const message = snapshot.val();
-            const msgElement = document.createElement("li");
-            msgElement.textContent = `${message.usr}: ${message.msg}`;
-            document.getElementById("messages").appendChild(msgElement);
-            // Auto-scroll to latest message
-            document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
-        }, (error) => {
-            console.error("Error fetching messages:", error);
-            alert("Failed to load messages. Check console for details.");
-        });
-    </script>
-</body>
-</html>
+    onChildAdded(messagesRef, (snapshot) => {
+        const message = snapshot.val();
+        const msgElement = document.createElement("li");
+        msgElement.textContent = `${message.usr}: ${message.msg}`;
+        document.getElementById("messages").appendChild(msgElement);
+        document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+    }, (error) => {
+        console.error("Error fetching messages:", error);
+        alert("Failed to load messages. Check console for details.");
+    });
+</script>
+{% endblock %}

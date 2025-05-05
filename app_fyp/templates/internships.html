@@ -53,15 +53,20 @@
                             {% if user.is_authenticated %}
                                 {% if internship.id in applied_internships %}
                                     <a href="#" class="applied-btn" disabled>Applied</a>
-                              
                                 {% else %}
                                     <a href="{% url 'app_fyp:apply_internship' internship.id %}" class="apply-btn">
                                         Apply Now
                                     </a>
                                 {% endif %}
+                                <a href="{% url 'app_fyp:chat' internship.id %}" class="chat-btn">
+                                    Chat
+                                </a>
                             {% else %}
                                 <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:internships' %}" class="login-btn">
                                     Login to Apply
+                                </a>
+                                <a href="{% url 'user_auth:login' %}?next={% url 'app_fyp:chat' internship.id %}" class="chat-btn">
+                                    Login to Chat
                                 </a>
                             {% endif %}
                             <a href="{% url 'app_fyp:internship_detail' internship.id %}" class="view-details-btn">
@@ -80,13 +85,13 @@
             {% if internships.has_other_pages %}
                 <ul>
                     {% if internships.has_previous %}
-                        <li><a href="?page=1">&laquo; First</a></li>
+                        <li><a href="?page=1">« First</a></li>
                         <li><a href="?page={{ internships.previous_page_number }}">Previous</a></li>
                     {% endif %}
                     <li>Page {{ internships.number }} of {{ internships.paginator.num_pages }}</li>
                     {% if internships.has_next %}
                         <li><a href="?page={{ internships.next_page_number }}">Next</a></li>
-                        <li><a href="?page={{ internships.paginator.num_pages }}">Last &raquo;</a></li>
+                        <li><a href="?page={{ internships.paginator.num_pages }}">Last »</a></li>
                     {% endif %}
                 </ul>
             {% endif %}

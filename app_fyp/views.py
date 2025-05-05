@@ -3,13 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from django.utils import timezone
-from django.http import JsonResponse
 from .models import Internship, InternshipApplication
 from user_auth.models import UserProfile
 from .forms import ProfileForm
 from rest_framework.views import APIView
 from django.core.paginator import Paginator
-
 
 
 def index(request):
@@ -237,8 +235,9 @@ def apply_internship(request, internship_id):
 
     return render(request, 'apply_internship.html', {'internship': internship, 'profile': profile})
 
-def chat_view(request):
-    # Pass Firebase config to template (ideally, use environment variables for security)
+@login_required
+def chat_view(request, internship_id):
+    internship = get_object_or_404(Internship, id=internship_id)
     firebase_config = {
         "apiKey": "AIzaSyCW5As-CAaYebShYAQNCPtg9Kx_OhBvgr8",
         "authDomain": "aspire-chat-46d27.firebaseapp.com",
@@ -249,6 +248,8 @@ def chat_view(request):
         "appId": "1:1033790970390:web:7b8175d10ec49ff0e33337",
         "measurementId": "G-E6GKZ7BX5G"
     }
-    return render(request, 'chat.html', {'firebase_config': firebase_config})
-
-
+    return render(request, 'chat.html', {
+        'firebase_config': firebase_config,
+        'user': request.user,
+        'internship': internship
+    })
