@@ -13,7 +13,6 @@ import random
 from django.core.mail import send_mail
 from django.conf import settings
 import base64
-from io import BytesIO
 from django.core.files.base import ContentFile
 
 def serve_resume(request, user_id):

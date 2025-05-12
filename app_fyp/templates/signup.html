@@ -9,9 +9,6 @@
   Create Your Account
 </h2>
 
-
-
-        <!-- Display Messages -->
         {% if messages %}
             <div>
                 {% for message in messages %}
@@ -24,7 +21,6 @@
 
         <form id="signupForm" action="{% url 'user_auth:signup' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- Full Name -->
             <div>
                 <label for="fullName">Full Name</label>
                 <input
@@ -34,7 +30,6 @@
                     value="{{ request.POST.full_name|default:'' }}"
                     required>
             </div>
-            <!-- Email -->
             <div>
                 <label for="email">Email</label>
                 <input
@@ -44,7 +39,7 @@
                     value="{{ request.POST.email|default:'' }}"
                     required>
             </div>
-            <!-- Password -->
+
             <div>
                 <label for="password">Password</label>
                 <input
@@ -53,7 +48,6 @@
                     name="password"
                     required>
             </div>
-            <!-- Confirm Password -->
             <div>
                 <label for="confirmPassword">Confirm Password</label>
                 <input
@@ -62,7 +56,6 @@
                     name="confirm_password"
                     required>
             </div>
-            <!-- Skills -->
             <div>
                 <label for="skills">Skills</label>
                 <textarea
@@ -71,7 +64,6 @@
                     rows="3"
                     required>{{ request.POST.skills|default:'' }}</textarea>
             </div>
-            <!-- Resume -->
             <div>
                 <label for="resume">Resume</label>
                 <input
@@ -80,7 +72,6 @@
                     name="resume"
                     accept=".pdf,.doc,.docx">
             </div>
-            <!-- LinkedIn Link -->
             <div>
                 <label for="linkedin">LinkedIn Profile</label>
                 <input
@@ -90,7 +81,6 @@
                     value="{{ request.POST.linkedin|default:'' }}"
                     placeholder="https://www.linkedin.com/in/your-profile">
             </div>
-            <!-- Projects Link -->
             <div>
                 <label for="projects">Projects Link (e.g., GitHub)</label>
                 <input
@@ -100,7 +90,6 @@
                     value="{{ request.POST.projects|default:'' }}"
                     placeholder="https://github.com/your-projects">
             </div>
-            <!-- Submit Button -->
             <div>
                 <button type="submit">Sign Up</button>
             </div>
