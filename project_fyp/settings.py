@@ -5,7 +5,7 @@ from django.contrib import messages
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ojya)yg##)4#h6ba5xwvph+rviha%e5-#u^06pxb_7y3!1*=#f'
+SECRET_KEY = ''
 
 DEBUG = True
 
@@ -73,7 +73,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'internships_list',
         'USER': 'postgres',
-        'PASSWORD': 'Saim123@?',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     },
@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'user_auth',  
         'USER': 'postgres',
-        'PASSWORD': 'Saim123@?',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -156,9 +156,9 @@ LOGGING = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Example for Gmail
+EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'saimsajidirl@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'sausuoqaxgiivkeb '  # App-specific password for Gmail
+EMAIL_HOST_USER = ''  # Your email
+EMAIL_HOST_PASSWORD = ' '  # App-specific password for Gmail
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
