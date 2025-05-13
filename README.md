@@ -1,67 +1,169 @@
-# 🌟 Aspire Interns – Internship Management System
+# 🌐 Aspire Interns
 
-Aspire Interns is a full-featured web-based platform designed to bridge the gap between aspiring interns and companies. The system streamlines the internship discovery, application, and management process through an intuitive, centralized dashboard for students, employers, and administrators.
-
----
-
-## 📌 Project Purpose
-
-The Aspire Interns platform was created to:
-
-- Simplify the internship application process for students.
-- Allow companies to post and manage internship listings.
-- Enable administrators to oversee internship workflows.
-- Provide real-time updates and communication between all parties.
-
-Whether you're a student seeking hands-on experience, a company looking for fresh talent, or a university department streamlining internship management, Aspire Interns has you covered.
+> Bridging the gap between aspiring interns and top companies through a smart, streamlined, and skill-focused internship platform.
 
 ---
 
-## 🚀 Key Features
+## 📘 Table of Contents
 
-### 🎓 For Interns:
-- Register and create professional profiles
-- Browse and search internships by title, skill, location, or type
-- Apply for internships with a single click
-- Track application status in real-time
-- Receive notifications and feedback
-
-### 🏢 For Companies:
-- Post new internships with full details
-- Manage incoming applications
-- View intern profiles and communicate directly
-
-### 🛠️ For Admins:
-- Approve internship listings and user accounts
-- Assign mentors and track student progress
-- Manage reports and evaluation workflows
+- [📌 Overview](#-overview)
+- [🎯 Features](#-features)
+- [🧠 System Architecture](#-system-architecture)
+- [🚀 Tech Stack](#-tech-stack)
+- [🧩 Functional Modules](#-functional-modules)
+- [🧪 Testing & Quality Assurance](#-testing--quality-assurance)
+- [🔐 Security & Privacy](#-security--privacy)
+- [📷 UI Screenshots](#-ui-screenshots)
+- [📂 Project Structure](#-project-structure)
+- [⚙️ Setup & Installation](#️-setup--installation)
+- [👥 Contributing](#-contributing)
+- [📝 License](#-license)
 
 ---
 
-## 🧑‍💻 Tech Stack
+## 📌 Overview
 
-**Frontend**:  
-- HTML, CSS, JavaScript  
+**Aspire Interns** is a web-based platform that connects fresh graduates and students with internship opportunities in a user-friendly, efficient, and secure environment. It supports:
 
-**Backend**:  
-- Django (Python), Django REST Framework  
-- PostgreSQL (Relational Database)  
-
-**Authentication**:  
-- JWT (JSON Web Tokens)  
-
-**Other Tools**:  
-- Firebase (for real-time chat and notifications)  
-- Git & GitHub (for version control)  
+- Real-time chat with Firebase.
+- Skill-based internship matching.
+- Company-intern interaction.
+- Application tracking and profile customization.
 
 ---
 
-## 🏗️ System Architecture
+## 🎯 Features
 
-The system follows a modular **three-tier architecture**:
+### Intern Features
+- Signup/Login using JWT
+- Search internships with filters (remote, skill-based, industry)
+- One-click apply
+- Real-time application status
+- Personalized profile (skills, resume, certifications)
 
-- **Presentation Layer**: User Interface (HTML/CSS/JS)
-- **Application Layer**: Core logic and REST APIs (Django/DRF)
-- **Data Layer**: Persistent storage (PostgreSQL)
+### Company Features
+- Create internship listings
+- View and filter applicants
+- Real-time notifications
+- Profile matching algorithm
 
 ---
+
+## 🧠 System Architecture
+
+- **Frontend (Presentation Layer)**: HTML, CSS, JS
+- **Backend (Application Layer)**: Django + Django REST Framework
+- **Database (Data Layer)**: PostgreSQL
+- **Realtime**: Firebase (chat & notifications)
+
+---
+
+## 🚀 Tech Stack
+
+| Layer            | Technology                     |
+|------------------|--------------------------------|
+| Frontend         | HTML5, CSS3, JavaScript        |
+| Backend          | Django, Django REST Framework  |
+| Database         | PostgreSQL                     |
+| Auth             | JSON Web Tokens (JWT)          |
+| Realtime Service | Firebase (Realtime DB + FCM)   |
+| Hosting          | (To be specified e.g. Heroku)  |
+
+---
+
+## 🧩 Functional Modules
+
+- `User Module`: Registration, login, profile management.
+- `Internship Module`: Search, view, and apply to internships.
+- `Application Module`: Application creation, status tracking.
+- `Notification Module`: Realtime alerts using Firebase.
+- `Admin Module`: Platform moderation and analytics.
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+- Validation: All forms validated client-side and server-side.
+- Testing: Unit tests, integration tests (Django test framework).
+- Performance: Optimized DB queries (indexes, relationships).
+- Scalability: Modular structure allows horizontal scaling.
+
+---
+
+## 🔐 Security & Privacy
+
+- Passwords hashed using Django's `pbkdf2_sha256`.
+- JWT for secure session management.
+- HTTPS and TLS enforced.
+- Role-based access control.
+- GDPR-compliant data protection.
+
+---
+
+## 📷 UI Screenshots
+
+- Signup/Login page
+- Internship board with filters
+- Profile section
+- Application status tracker
+- Company dashboard
+
+> Screenshots are available in `/screenshots/` directory (add them manually).
+
+---
+
+## 📂 Project Structure
+
+```plaintext
+aspire_interns/
+├── backend/
+│   ├── manage.py
+│   ├── api/
+│   ├── users/
+│   ├── internships/
+├── frontend/
+│   ├── index.html
+│   ├── styles/
+│   ├── scripts/
+├── README.md
+├── requirements.txt
+└── .env
+```
+
+---
+
+## ⚙️ Setup & Installation
+
+```bash
+# Clone repo
+git clone https://github.com/yourusername/aspire-interns.git
+
+# Backend setup
+cd aspire-interns/backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+# Frontend
+Open frontend/index.html in your browser
+```
+
+---
+
+## 👥 Contributing
+
+Contributions are welcome! Please fork the repo and submit a PR.
+
+---
+
+## 📝 License
+
+Licensed under the [MIT License](LICENSE).
+
+---
+
+**Project By:** Muhammad Saim Sajid  
+**University:** The Islamia University of Bahawalpur  
+**Supervisor:** Ma’am Tayyaba Rashid
