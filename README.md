@@ -164,6 +164,6 @@ Licensed under the [MIT License](LICENSE).
 
 ---
 
-**Project By:** Muhammad Saim Sajid  
+**Project By:** Muhammad Saim
 **University:** The Islamia University of Bahawalpur  
 **Supervisor:** Ma’am Tayyaba Rashid
